@@ -44,7 +44,7 @@
             { title: "E-mail", render: encode, data: "email_oportunidade" },
             { title: "Soluções", render: encode, data: "nome_solucao" },
             { title: "Descrição da oportunidade", render: encode, data: "descricao_oportunidade" },
-            { title: "", "class": "col-min", searchable: false, orderable: false, data: "id_oportunidade", render: function (v, type, row) { return '<a target="_blank" title="Editar" href="/negocios/oportunidade/alterar?id_oportunidade=' + row.id_oportunidade + '" class="btn btn-outline btn-primary"><i class="fa fa-nomargin fa-edit"></i></a> <button title="Excluir" type="button" data-excluir="1" class="btn btn-outline btn-danger"><i class="fa fa-nomargin fa-times"></i></button>'; } },
+            { title: "", "class": "col-min", searchable: false, orderable: false, data: "id_oportunidade", render: function (v, type, row) { return '<a target="_blank" title="Editar" href="/oportunidade/alterar?id_oportunidade=' + row.id_oportunidade + '" class="btn btn-outline btn-primary"><i class="fa fa-nomargin fa-edit"></i></a> <button title="Excluir" type="button" data-excluir="1" class="btn btn-outline btn-danger"><i class="fa fa-nomargin fa-times"></i></button>'; } },
 		],
 	    data: <%- lista %>
 	});
