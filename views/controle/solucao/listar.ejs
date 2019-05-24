@@ -18,7 +18,7 @@
 			</div>
 			<div class="modal-body">
 				<p>
-					Tem certeza que deseja excluir o formato <span id="lblNome"></span>? Essa operação NÃO pode ser desfeita!
+					Tem certeza que deseja excluir a solução <span id="lblNome"></span>? Essa operação NÃO pode ser desfeita!
 				</p>
 			</div>
 			<div class="modal-footer">
@@ -39,7 +39,7 @@
 		deferRender: true,
 		columns: [
             { title: "Solução", render: encode, data: "nome_solucao" },
-			{ title: "", "class": "col-min", searchable: false, orderable: false, data: "id_solucao", render: function (v, type, row) { return "<a target=\"_blank\" title=\"Editar\" href=\"/controle/solucao/alterar?id_solucao=" + row.id_solucao + "\" class=\"btn btn-outline btn-primary\"><i class=\"fa fa-nomargin fa-edit\"></i></a> <button title=\"Excluir\" type=\"button\" data-excluir=\"1\" class=\"btn btn-outline btn-danger\"><i class=\"fa fa-nomargin fa-times\"></i></button>"; } },
+			{ title: "", "class": "col-min", searchable: false, orderable: false, data: "id_solucao", render: function (v, type, row) { return "<a target=\"_blank\" title=\"Editar\" href=\"/solucao/alterar?id_solucao=" + row.id_solucao + "\" class=\"btn btn-outline btn-primary\"><i class=\"fa fa-nomargin fa-edit\"></i></a> <button title=\"Excluir\" type=\"button\" data-excluir=\"1\" class=\"btn btn-outline btn-danger\"><i class=\"fa fa-nomargin fa-times\"></i></button>"; } },
 		],
 		data: <%- lista %>
 	});
@@ -53,7 +53,7 @@
 		var solucao = tabela.row(trClicada = this.parentNode.parentNode).data();
 
 		if (this.getAttribute("data-excluir")) {
-			$("#lblNome").text(solucao.nome);
+			$("#lblNome").text(solucao.nome_solucao);
 
 			$("#modalExcluir").modal({
 				backdrop: "static",

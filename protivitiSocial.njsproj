@@ -183,6 +183,9 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="models\pec.ts" />
     <TypeScriptCompile Include="models\projeto.ts" />
+    <TypeScriptCompile Include="models\pursuitTeam.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="models\solucao.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -205,6 +208,9 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="routes\api\pec.ts" />
     <TypeScriptCompile Include="routes\api\projeto.ts" />
+    <TypeScriptCompile Include="routes\api\pursuitTeam.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="routes\api\solucao.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
