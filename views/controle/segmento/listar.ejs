@@ -18,7 +18,7 @@
 			</div>
 			<div class="modal-body">
 				<p>
-					Tem certeza que deseja excluir o formato <span id="lblNome"></span>? Essa operação NÃO pode ser desfeita!
+					Tem certeza que deseja excluir o segmento <span id="lblNome"></span>? Essa operação NÃO pode ser desfeita!
 				</p>
 			</div>
 			<div class="modal-footer">
@@ -35,18 +35,13 @@
 	"use strict";
 
 	var tabela = prepareDataTable("#tabela", {
-		order: [[0, "asc"]],
+		order: [[1, "asc"]],
 		deferRender: true,
 		columns: [
-            { title: "Segmento", render: encode, data: "segmento" },
-			{ title: "", "class": "col-min", searchable: false, orderable: false, data: "id", render: function (v, type, row) { return "<a target=\"_blank\" title=\"Editar\" href=\"/formato/alterar?id=" + row.id + "\" class=\"btn btn-outline btn-primary\"><i class=\"fa fa-nomargin fa-edit\"></i></a> <button title=\"Excluir\" type=\"button\" data-excluir=\"1\" class=\"btn btn-outline btn-danger\"><i class=\"fa fa-nomargin fa-times\"></i></button>"; } },
+            { title: "Segmento", render: encode, data: "nome_segmento" },
+			{ title: "", "class": "col-min", searchable: false, orderable: false, data: "id_segmento", render: function (v, type, row) { return "<a target=\"_blank\" title=\"Editar\" href=\"/segmento/alterar?id_segmento=" + row.id_segmento  + "\" class=\"btn btn-outline btn-primary\"><i class=\"fa fa-nomargin fa-edit\"></i></a> <button title=\"Excluir\" type=\"button\" data-excluir=\"1\" class=\"btn btn-outline btn-danger\"><i class=\"fa fa-nomargin fa-times\"></i></button>"; } },
 		],
-	
-		data: [
-      {segmento:"Bens de Consumo e Varejo",id:1},
-      {segmento:"Saúde e Biomédicas",id:2},
-      {segmento:"Serviços e Ensino",id:3},
-    ]
+		data: <%- lista %>
 	});
 
 	var trClicada;
@@ -55,10 +50,10 @@
 		if (JsonWebApi.active)
 			return;
 
-		var formato = tabela.row(trClicada = this.parentNode.parentNode).data();
+		var segmento = tabela.row(trClicada = this.parentNode.parentNode).data();
 
 		if (this.getAttribute("data-excluir")) {
-			$("#lblNome").text(formato.nome);
+			$("#lblNome").text(segmento.nome_segmento);
 
 			$("#modalExcluir").modal({
 				backdrop: "static",
@@ -73,19 +68,19 @@
 
 		$("#modalExcluir").modal("hide");
 
-		var formato = tabela.row(trClicada).data();
+		var segmento = tabela.row(trClicada).data();
 
 		Notification.wait();
 
-		JsonWebApi.get("/api/formato/excluir", function (response) {
+		JsonWebApi.get("/api/segmento/excluir", function (response) {
 			if (response.success) {
-				Notification.success("Formato excluído com sucesso! \uD83D\uDE04");
+				Notification.success("Segmento excluído com sucesso! \uD83D\uDE04");
 				tabela.row(trClicada).remove().draw();
 			} else {
 				Notification.error(response.value, true);
 			}
-			trClicada = null;
-		}, "id", formato.id);
+            trClicada = null;
+        }, "id_segmento", segmento.id_segmento);
 	}
 
 	//]]>

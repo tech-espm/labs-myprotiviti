@@ -123,6 +123,7 @@ app.use("/api/pec", require("./routes/api/pec"));
 app.use("/api/projeto", require("./routes/api/projeto"));
 app.use("/api/pursuitTeam", require("./routes/api/pursuitTeam"));
 app.use("/api/solucao", require("./routes/api/solucao"));
+app.use("/api/segmento", require("./routes/api/segmento"));
 app.use("/api/usuario", require("./routes/api/usuario"));
 // Depois de registrados todos os caminhos das rotas e seus
 // tratadores, registramos os tratadores que serão chamados
