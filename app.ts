@@ -115,6 +115,7 @@ app.use("/api/alocacao", require("./routes/api/alocacao"));
 app.use("/api/carreiraCapacitacaoTreinamentos", require("./routes/api/carreiraCapacitacaoTreinamentos"));
 app.use("/api/carreiraCurriculo", require("./routes/api/carreiraCurriculo"));
 app.use("/api/cliente", require("./routes/api/cliente"));
+app.use("/api/empresa", require("./routes/api/empresa"));
 app.use("/api/inovacao", require("./routes/api/inovacao"));
 app.use("/api/oportunidade", require("./routes/api/oportunidade"));
 app.use("/api/parceria", require("./routes/api/parceria"));

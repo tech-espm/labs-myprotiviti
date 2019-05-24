@@ -171,6 +171,9 @@
     <TypeScriptCompile Include="models\carreiraCapacitacaoTreinamentos.ts" />
     <TypeScriptCompile Include="models\carreiraCurriculo.ts" />
     <TypeScriptCompile Include="models\cliente.ts" />
+    <TypeScriptCompile Include="models\empresa.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="models\enums\tipoTutorial.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -199,6 +202,9 @@
     <TypeScriptCompile Include="routes\api\carreiraCapacitacaoTreinamentos.ts" />
     <TypeScriptCompile Include="routes\api\carreiraCurriculo.ts" />
     <TypeScriptCompile Include="routes\api\cliente.ts" />
+    <TypeScriptCompile Include="routes\api\empresa.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="routes\api\inovacao.ts" />
     <TypeScriptCompile Include="routes\api\oportunidade.ts">
       <SubType>Code</SubType>

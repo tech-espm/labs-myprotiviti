@@ -18,7 +18,7 @@
 			</div>
 			<div class="modal-body">
 				<p>
-					Tem certeza que deseja excluir o formato <span id="lblNome"></span>? Essa operação NÃO pode ser desfeita!
+					Tem certeza que deseja excluir a empresa <span id="lblNome"></span>? Essa operação NÃO pode ser desfeita!
 				</p>
 			</div>
 			<div class="modal-footer">
@@ -35,18 +35,13 @@
 	"use strict";
 
 	var tabela = prepareDataTable("#tabela", {
-		order: [[0, "asc"]],
+		order: [[1, "asc"]],
 		deferRender: true,
 		columns: [
-            { title: "Empresa", render: encode, data: "empresa" },
-			{ title: "", "class": "col-min", searchable: false, orderable: false, data: "id", render: function (v, type, row) { return "<a target=\"_blank\" title=\"Editar\" href=\"/formato/alterar?id=" + row.id + "\" class=\"btn btn-outline btn-primary\"><i class=\"fa fa-nomargin fa-edit\"></i></a> <button title=\"Excluir\" type=\"button\" data-excluir=\"1\" class=\"btn btn-outline btn-danger\"><i class=\"fa fa-nomargin fa-times\"></i></button>"; } },
+            { title: "Empresa", render: encode, data: "nome_empresa" },
+			{ title: "", "class": "col-min", searchable: false, orderable: false, data: "id_empresa", render: function (v, type, row) { return "<a target=\"_blank\" title=\"Editar\" href=\"/empresa/alterar?id_empresa=" + row.id_empresa + "\" class=\"btn btn-outline btn-primary\"><i class=\"fa fa-nomargin fa-edit\"></i></a> <button title=\"Excluir\" type=\"button\" data-excluir=\"1\" class=\"btn btn-outline btn-danger\"><i class=\"fa fa-nomargin fa-times\"></i></button>"; } },
 		],
-	
-		data: [
-      {empresa:"Empresa 1",id:1},
-      {empresa:"Empresa 2",id:2},
-      {empresa:"Empresa 3",id:3}
-    ]
+		data: <%- lista %>
 	});
 
 	var trClicada;
@@ -55,10 +50,10 @@
 		if (JsonWebApi.active)
 			return;
 
-		var formato = tabela.row(trClicada = this.parentNode.parentNode).data();
+		var empresa = tabela.row(trClicada = this.parentNode.parentNode).data();
 
-		if (this.getAttribute("data-excluir")) {
-			$("#lblNome").text(formato.nome);
+        if (this.getAttribute("data-excluir")) {
+            $("#lblNome").text(empresa.nome_empresa);
 
 			$("#modalExcluir").modal({
 				backdrop: "static",
@@ -73,19 +68,19 @@
 
 		$("#modalExcluir").modal("hide");
 
-		var formato = tabela.row(trClicada).data();
+		var empresa = tabela.row(trClicada).data();
 
 		Notification.wait();
 
-		JsonWebApi.get("/api/formato/excluir", function (response) {
+		JsonWebApi.get("/api/empresa/excluir", function (response) {
 			if (response.success) {
-				Notification.success("Formato excluído com sucesso! \uD83D\uDE04");
+				Notification.success("Empresa excluída com sucesso! \uD83D\uDE04");
 				tabela.row(trClicada).remove().draw();
 			} else {
 				Notification.error(response.value, true);
 			}
-			trClicada = null;
-		}, "id", formato.id);
+            trClicada = null;
+        }, "id_empresa", empresa.id_empresa);
 	}
 
 	//]]>
