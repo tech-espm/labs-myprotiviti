@@ -49,7 +49,7 @@
     <Content Include="public\apple-icon-72x72.png" />
     <Content Include="public\apple-icon-76x76.png" />
     <Content Include="public\browserconfig.xml" />
-    <Content Include="public\css\admin-1.0.24.css" />
+    <Content Include="public\css\admin-1.0.25.css" />
     <Content Include="public\favicon-16x16.png" />
     <Content Include="public\favicon-32x32.png" />
     <Content Include="public\favicon-96x96.png" />
