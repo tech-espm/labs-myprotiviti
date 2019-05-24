@@ -3,18 +3,25 @@ import Tutorial = require("./tutorial");
 
 export = class Pec extends Tutorial {
 	public static readonly tabela = "pec";
-	public static readonly extensaoArquivo = "mp4";
 
 	public static caminhoAbsolutoPastaExterno(): string {
 		return Tutorial.caminhoAbsolutoPastaExternoPorTipo(TipoTutorial.Pec);
 	}
 
-	public static caminhoRelativoArquivo(id: number): string {
-		return Tutorial.caminhoRelativoArquivoPorTipo(TipoTutorial.Pec, id, Pec.extensaoArquivo);
+	public static caminhoRelativoMiniatura(id: number): string {
+		return Tutorial.caminhoRelativoArquivoPorTipo(TipoTutorial.Pec, id, Tutorial.extensaoMiniatura);
 	}
 
-	public static caminhoAbsolutoArquivoExterno(id: number): string {
-		return Tutorial.caminhoAbsolutoArquivoExternoPorTipo(TipoTutorial.Pec, id, Pec.extensaoArquivo);
+	public static caminhoAbsolutoMiniaturaExterno(id: number): string {
+		return Tutorial.caminhoAbsolutoArquivoExternoPorTipo(TipoTutorial.Pec, id, Tutorial.extensaoMiniatura);
+	}
+
+	public static caminhoRelativoVideo(id: number): string {
+		return Tutorial.caminhoRelativoArquivoPorTipo(TipoTutorial.Pec, id, Tutorial.extensaoVideo);
+	}
+
+	public static caminhoAbsolutoVideoExterno(id: number): string {
+		return Tutorial.caminhoAbsolutoArquivoExternoPorTipo(TipoTutorial.Pec, id, Tutorial.extensaoVideo);
 	}
 
 	public static validar(a: Pec): string {
@@ -42,15 +49,19 @@ export = class Pec extends Tutorial {
 		return await Tutorial.obterPorTipo(Pec.tabela, id) as Pec;
 	}
 
-	//public static async criar(a: Pec, arquivo: any): Promise<string> {
-	//	return await Tutorial.criarPorTipo(Pec.tabela, TipoTutorial.Pec, a, arquivo, Pec.extensaoArquivo);
-	//}
+	public static async criar(a: Pec, arquivo: any): Promise<string> {
+		return await Tutorial.criarPorTipo(Pec.tabela, TipoTutorial.Pec, a, arquivo);
+	}
+
+	public static async uploadVideo(id: number, arquivo: any): Promise<string> {
+		return await Tutorial.uploadVideoPorTipo(TipoTutorial.Pec, id, arquivo);
+	}
 
 	public static async alterar(a: Pec): Promise<string> {
 		return await Tutorial.alterarPorTipo(Pec.tabela, a);
 	}
 
-	//public static async excluir(id: number): Promise<string> {
-	//	return await Tutorial.excluirPorTipo(Pec.tabela, TipoTutorial.Pec, id, Pec.extensaoArquivo);
-	//}
+	public static async excluir(id: number): Promise<string> {
+		return await Tutorial.excluirPorTipo(Pec.tabela, TipoTutorial.Pec, id);
+	}
 }

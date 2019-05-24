@@ -4,14 +4,11 @@
 		<form id="form" class="panel panel-default" action="#">
 			<div class="panel-heading">Adicionar Novo Pursuit Team</div>
 			<div class="panel-body no-bottom">
-				
+				<input type="hidden" id="id_pursuit_team" name="id_pursuit_team" value="<%=(item ? item.id_pursuit_team : 0) %>" />
 				<div class="form-group">
-					<label for="nomePursuitTeam">Nome do Pursuit Team</label>
-					<input id="nomePursuitTeam" name="nomePursuitTeam" maxlength="50" class="form-control upper" type="text" spellcheck="false" value="" />
+					<label for="nome_pursuit_team">Nome do Pursuit Team</label>
+					<input id="nome_pursuit_team" name="nome_pursuit_team" maxlength="255" class="form-control upper" type="text" spellcheck="false" value="<%=(item ? item.nome_pursuit_team : '') %>" />
 				</div>
-        
-				
-
       </div>
 			<div class="panel-footer">
 				<input value="Criar" class="btn btn-primary btn-lg btn-block" type="submit" />
@@ -21,4 +18,50 @@
 	</div>
 </div>
 
+<%- contentFor("scripts") %>
+<script type="text/javascript">
+    //<![CDATA[
+    "use strict";
+
+    $("#form").validate({
+        rules: {
+            nome_pursuit_team: {
+                required: true,
+                minlength: 3,
+                maxlength: 255
+            },
+        },
+
+        submitHandler: function (form) {
+            if (JsonWebApi.active)
+                return;
+
+            Notification.wait();
+
+            //<% if (item) { %>
+
+            JsonWebApi.postFormData("/api/pursuitTeam/alterar", form, function (response) {
+				if (response.success)
+					Notification.success("Time alterado com sucesso! \uD83D\uDE04");
+				else
+					Notification.error(response.value, true);
+            });
+
+            //<% } else { %>
+
+            JsonWebApi.postFormData("/api/pursuitTeam/criar", form, function (response) {
+				if (response.success) {
+					form.reset();
+					$("#form").validate().resetForm();
+					Notification.success("Time criado com sucesso! \uD83D\uDE04");
+				} else {
+					Notification.error(response.value, true);
+				}
+            });
+
+            //<% } %>
+        }
+    });
+    //]]>
+</script>
 
