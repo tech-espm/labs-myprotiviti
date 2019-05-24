@@ -101,7 +101,7 @@ app.use("/mentor", require("./routes/mentor"));
 app.use("/mentorado", require("./routes/mentorado"));
 app.use("/mentoring", require("./routes/mentoring"));
 app.use("/oportunidade", require("./routes/oportunidade"));
-app.use("/parceria", require("./routes/parceria"));
+app.use("/negocios/parceria", require("./routes/parceria"));
 app.use("/pec", require("./routes/pec"));
 app.use("/projeto", require("./routes/projeto"));
 app.use("/pursuitTeam", require("./routes/pursuitTeam"));
@@ -121,6 +121,7 @@ app.use("/api/oportunidade", require("./routes/api/oportunidade"));
 app.use("/api/parceria", require("./routes/api/parceria"));
 app.use("/api/pec", require("./routes/api/pec"));
 app.use("/api/projeto", require("./routes/api/projeto"));
+app.use("/api/pursuitTeam", require("./routes/api/pursuitTeam"));
 app.use("/api/solucao", require("./routes/api/solucao"));
 app.use("/api/usuario", require("./routes/api/usuario"));
 // Depois de registrados todos os caminhos das rotas e seus
