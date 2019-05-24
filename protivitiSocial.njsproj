@@ -284,6 +284,7 @@
     <Folder Include="views\construcao\" />
     <Folder Include="views\controle\cliente\" />
     <Folder Include="views\controle\empresa\" />
+    <Folder Include="views\controle\industria\" />
     <Folder Include="views\controle\segmento\" />
     <Folder Include="views\controle\pursuitTeam\" />
     <Folder Include="views\controle\tipoLocal\" />
