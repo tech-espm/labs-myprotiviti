@@ -81,7 +81,7 @@ export = class Solucao {
 				res = sql.linhasAfetadas.toString();
 			} catch (e) {
 				if (e.code && (e.code === "ER_ROW_IS_REFERENCED" || e.code === "ER_ROW_IS_REFERENCED_2"))
-					res = "O solução já está em uso";
+                    res = "A solução está em uso em outros formulários!";
 				else
 					throw e;
 			}
