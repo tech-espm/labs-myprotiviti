@@ -220,7 +220,7 @@ CREATE TABLE projeto (
 ALTER TABLE projeto ADD CONSTRAINT fk_projeto_id_cliente FOREIGN KEY (id_cliente) REFERENCES cliente (id_cliente);
 ALTER TABLE projeto ADD CONSTRAINT fk_projeto_id_segmento FOREIGN KEY (id_segmento) REFERENCES segmento (id_segmento);
 ALTER TABLE projeto ADD CONSTRAINT fk_projeto_id_matriz_servico FOREIGN KEY (id_matriz_servico) REFERENCES matriz_servico (id_matriz_servico);
-ALTER TABLE projeto ADD CONSTRAINT fk_projeto_id_origem_lead FOREIGN KEY (id_origem_lead) REFERENCES origem_lead (id_origem_lead);
+ALTER TABLE projeto ADD CONSTRAINT fk_projeto_id_forma_contato FOREIGN KEY (id_forma_contato) REFERENCES forma_contato (id_forma_contato);
 ALTER TABLE projeto ADD CONSTRAINT fk_projeto_id_responsavel_proposta FOREIGN KEY (id_responsavel_proposta) REFERENCES responsavel_proposta (id_responsavel_proposta);
 ALTER TABLE projeto ADD CONSTRAINT fk_projeto_id_pursuit_team FOREIGN KEY (id_pursuit_team) REFERENCES pursuit_team (id_pursuit_team);
 ALTER TABLE projeto ADD CONSTRAINT fk_projeto_escritorio_lider FOREIGN KEY (id_escritorio_lider) REFERENCES escritorio_lider (id_escritorio_lider);
