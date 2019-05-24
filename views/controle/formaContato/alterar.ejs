@@ -4,10 +4,10 @@
 		<form id="form" class="panel panel-default" action="#">
 			<div class="panel-heading">Adicionar Nova Forma de Contato</div>
 			<div class="panel-body no-bottom">
-				
+				<input type="hidden" id="id_forma_contato" name="id_forma_contato" value="<%=(item ? item.id_forma_contato : 0) %>" />
 				<div class="form-group">
-					<label for="nomeFormaContato">Nome da Forma de Contato</label>
-					<input id="nomeFormaContato" name="nomeFormaContato" maxlength="50" class="form-control upper" type="text" spellcheck="false" value="" />
+					<label for="nome_forma_contato">Nome da Forma de Contato</label>
+					<input id="nome_forma_contato" name="nome_forma_contato" maxlength="50" class="form-control upper" type="text" spellcheck="false" value="<%=(item ? item.nome_forma_contato : '') %>" />
 				</div>
         
 				
@@ -20,5 +20,52 @@
 		</form>
 	</div>
 </div>
+
+<%- contentFor("scripts") %>
+<script type="text/javascript">
+    //<![CDATA[
+    "use strict";
+
+    $("#form").validate({
+        rules: {
+            nome_forma_contato: {
+                required: true,
+                minlength: 3,
+                maxlength: 255
+            },
+        },
+
+        submitHandler: function (form) {
+            if (JsonWebApi.active)
+                return;
+
+            Notification.wait();
+
+            //<% if (item) { %>
+
+            JsonWebApi.postFormData("/api/formaContato/alterar", form, function (response) {
+				if (response.success)
+					Notification.success("Forma de contato alterada com sucesso! \uD83D\uDE04");
+				else
+					Notification.error(response.value, true);
+            });
+
+            //<% } else { %>
+
+            JsonWebApi.postFormData("/api/formaContato/criar", form, function (response) {
+				if (response.success) {
+					form.reset();
+					$("#form").validate().resetForm();
+					Notification.success("Forma de contato criada com sucesso! \uD83D\uDE04");
+				} else {
+					Notification.error(response.value, true);
+				}
+            });
+
+            //<% } %>
+        }
+    });
+    //]]>
+</script>
 
 
