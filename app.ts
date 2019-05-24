@@ -122,6 +122,7 @@ app.use("/api/pec", require("./routes/api/pec"));
 app.use("/api/projeto", require("./routes/api/projeto"));
 app.use("/api/solucao", require("./routes/api/solucao"));
 app.use("/api/usuario", require("./routes/api/usuario"));
+app.use("/api/timeout", require("./routes/api/timeout"));
 // Depois de registrados todos os caminhos das rotas e seus
 // tratadores, registramos os tratadores que serão chamados
 // caso nenhum dos tratadores anteriores tenha devolvido alguma

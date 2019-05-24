@@ -3,7 +3,7 @@
     <div class="alert alert-danger"><%=msg %></div>
     <% } %>
     <div class="col-lg-12">
-        <div id="map" style="height: 440px; border: 1px solid #AAA;"></div>
+        <div id="map" style="height: 410px; border: 1px solid #AAA;"></div>
     </div>
 </div>
 
@@ -20,7 +20,7 @@
 <script type='text/javascript'>
     function iniciarMapa(lat, lng) {
         var latlng = new L.LatLng(lat, lng);
-        var map = L.map('map').setView(latlng, 13);
+        var map = L.map('map').setView(latlng, 14);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
             subdomains: ['a', 'b', 'c'],
@@ -29,6 +29,10 @@
             zoom: 14
         }).addTo(map);
         var marker = L.marker(latlng).addTo(map);
+
+        for (var i = 0; i < marker.length; i++) {
+            marker[i]=L.marker(latlng).addTo(map);
+        }
 
         map.on('click', function (e) {
             var popup = L.popup()
