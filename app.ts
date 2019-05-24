@@ -126,6 +126,7 @@ app.use("/api/pec", require("./routes/api/pec"));
 app.use("/api/projeto", require("./routes/api/projeto"));
 app.use("/api/pursuitTeam", require("./routes/api/pursuitTeam"));
 app.use("/api/solucao", require("./routes/api/solucao"));
+app.use("/api/segmento", require("./routes/api/segmento"));
 app.use("/api/usuario", require("./routes/api/usuario"));
 app.use("/api/matrizServico", require("./routes/api/matrizServico"));
 app.use("/api/timeout", require("./routes/api/timeout"));
