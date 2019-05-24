@@ -38,14 +38,12 @@
 		order: [[0, "asc"]],
 		deferRender: true,
 		columns: [
-            { title: "Indústria", render: encode, data: "industria" },
+            { title: "Forma de contato", render: encode, data: "formaContato" },
 			{ title: "", "class": "col-min", searchable: false, orderable: false, data: "id", render: function (v, type, row) { return "<a target=\"_blank\" title=\"Editar\" href=\"/formato/alterar?id=" + row.id + "\" class=\"btn btn-outline btn-primary\"><i class=\"fa fa-nomargin fa-edit\"></i></a> <button title=\"Excluir\" type=\"button\" data-excluir=\"1\" class=\"btn btn-outline btn-danger\"><i class=\"fa fa-nomargin fa-times\"></i></button>"; } },
 		],
 	
 		data: [
-      {industria:"Bens de Consumo e Varejo",id:1},
-      {industria:"Saúde e Biomédicas",id:2},
-      {industria:"Serviços e Ensino",id:3},
+
     ]
 	});
 
