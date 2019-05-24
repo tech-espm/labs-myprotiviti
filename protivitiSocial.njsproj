@@ -111,10 +111,10 @@
     <Content Include="views\controle\empresa\alterar.ejs" />
     <Content Include="views\controle\empresa\listar.ejs" />
     <Content Include="views\controle\empresa\listar.ejs" />
+    <Content Include="views\controle\formaContato\alterar.ejs" />
+    <Content Include="views\controle\formaContato\listar.ejs" />
     <Content Include="views\controle\segmento\alterar.ejs" />
-    <Content Include="views\controle\industria\alterar.ejs" />
     <Content Include="views\controle\segmento\listar.ejs" />
-    <Content Include="views\controle\industria\listar.ejs" />
     <Content Include="views\controle\pursuitTeam\alterar.ejs" />
     <Content Include="views\controle\pursuitTeam\alterar.ejs" />
     <Content Include="views\controle\pursuitTeam\listar.ejs" />
@@ -293,6 +293,7 @@
     <Folder Include="views\controle\industria\" />
     <Folder Include="views\controle\segmento\" />
     <Folder Include="views\controle\pursuitTeam\" />
+    <Folder Include="views\controle\formaContato\" />
     <Folder Include="views\controle\tipoLocal\" />
     <Folder Include="views\inovacao\" />
     <Folder Include="views\negocios\" />

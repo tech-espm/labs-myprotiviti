@@ -5,11 +5,12 @@
 			<div class="panel-heading">Criar Novo Projeto</div>
 			<div class="panel-body no-bottom">
         <input type="hidden" id="id_projeto" name="id_projeto" value="<%=(item ? item.id_projeto : 0) %>" />
-				<div class="form-group">
-					<label for="id_cliente">Nome do cliente</label>
-          <select id="id_cliente" name="id_cliente" class="form-control" size="1">
-            <option value="">SELECIONE...</option>
-            <option value="1" <%=(item && item.id_cliente == 1 ? 'selected="selected"' : '')%>>Cliente 1</option>
+				
+          <div class="form-group">
+					  <label for="id_cliente">Nome do cliente</label>
+            <select id="id_cliente" name="id_cliente" class="form-control" size="1">
+              <option value="">SELECIONE...</option>
+              <option value="1" <%=(item && item.id_cliente == 1 ? 'selected="selected"' : '')%>>Cliente 1</option>
             
           </select>
 				</div>
@@ -42,6 +43,16 @@
           </select>
         </div>
 
+          <div class="form-group">
+            <label for="matrizServico">Matriz de Serviço</label>
+            <select id="matrizServico" name="matrizServico" class="form-control" size="1">
+              <option value="">SELECIONE...</option>
+              <option value="">Telefone</option>
+              <option value="">E-mail</option>
+              <option value="">Indicação</option>
+            </select>
+          </div>  
+          
         <div class="form-group">
           <label for="responsavelProposta">Responsável pela proposta</label>
           <select id="responsavelProposta" name="responsavelProposta" class="form-control" size="1">
