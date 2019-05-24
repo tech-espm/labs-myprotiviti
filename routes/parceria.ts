@@ -9,11 +9,11 @@ router.all("/criar", wrap(async (req: express.Request, res: express.Response) =>
     let u = await Usuario.cookie(req);
     if (!u || !u.admin) {
         res.redirect("/acesso");
-    } else {
+    }
+    else {
         res.render("negocios/parceria/alterar", {
             titulo: "Criar Parceria",
             usuario: u,
-            rota: "parceria",
             item: null
         });
     }
@@ -23,16 +23,16 @@ router.all("/alterar", wrap(async (req: express.Request, res: express.Response) 
     let u = await Usuario.cookie(req);
     if (!u || !u.admin) {
         res.redirect("/acesso");
-    } else {
-        let id = parseInt(req.query["id_parceria"]);
-        let item: Parceria = null;
-        if (isNaN(id) || !(item = await Parceria.obter(id)))
-            res.render("shared/nao-encontrado");
+    }
+    else {
+        let id_parceria = parseInt(req.query["id_parceria"]);
+        let item = null;
+        if (isNaN(id_parceria) || !(item = await Parceria.obter(id_parceria)))
+            res.render("shared/nao-encontrado", { usuario: u });
         else
             res.render("negocios/parceria/alterar", {
                 titulo: "Editar Parceria",
                 usuario: u,
-                rota: "parceria",
                 item: item
             });
     }
@@ -42,11 +42,11 @@ router.get("/listar", wrap(async (req: express.Request, res: express.Response) =
     let u = await Usuario.cookie(req);
     if (!u || !u.admin) {
         res.redirect("/acesso");
-    } else {
+    }
+    else {
         res.render("negocios/parceria/listar", {
-            titulo: "Visualizar Parcerias",
+            titulo: "Gerenciar Parceria",
             usuario: u,
-            rota: "parceria",
             lista: JSON.stringify(await Parceria.listar())
         });
     }

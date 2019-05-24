@@ -111,9 +111,9 @@
     <Content Include="views\controle\empresa\alterar.ejs" />
     <Content Include="views\controle\empresa\listar.ejs" />
     <Content Include="views\controle\empresa\listar.ejs" />
+    <Content Include="views\controle\segmento\alterar.ejs" />
     <Content Include="views\controle\industria\alterar.ejs" />
-    <Content Include="views\controle\industria\alterar.ejs" />
-    <Content Include="views\controle\industria\listar.ejs" />
+    <Content Include="views\controle\segmento\listar.ejs" />
     <Content Include="views\controle\industria\listar.ejs" />
     <Content Include="views\controle\pursuitTeam\alterar.ejs" />
     <Content Include="views\controle\pursuitTeam\alterar.ejs" />
@@ -171,6 +171,9 @@
     <TypeScriptCompile Include="models\carreiraCapacitacaoTreinamentos.ts" />
     <TypeScriptCompile Include="models\carreiraCurriculo.ts" />
     <TypeScriptCompile Include="models\cliente.ts" />
+    <TypeScriptCompile Include="models\empresa.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="models\enums\tipoTutorial.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -183,6 +186,9 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="models\pec.ts" />
     <TypeScriptCompile Include="models\projeto.ts" />
+    <TypeScriptCompile Include="models\pursuitTeam.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="models\solucao.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -196,6 +202,9 @@
     <TypeScriptCompile Include="routes\api\carreiraCapacitacaoTreinamentos.ts" />
     <TypeScriptCompile Include="routes\api\carreiraCurriculo.ts" />
     <TypeScriptCompile Include="routes\api\cliente.ts" />
+    <TypeScriptCompile Include="routes\api\empresa.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="routes\api\inovacao.ts" />
     <TypeScriptCompile Include="routes\api\oportunidade.ts">
       <SubType>Code</SubType>
@@ -205,6 +214,9 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="routes\api\pec.ts" />
     <TypeScriptCompile Include="routes\api\projeto.ts" />
+    <TypeScriptCompile Include="routes\api\pursuitTeam.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="routes\api\solucao.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -219,6 +231,7 @@
     <TypeScriptCompile Include="routes\mentoring.ts" />
     <TypeScriptCompile Include="routes\pursuitTeam.ts" />
     <TypeScriptCompile Include="routes\empresa.ts" />
+    <TypeScriptCompile Include="routes\segmento.ts" />
     <TypeScriptCompile Include="routes\solucao.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -278,6 +291,7 @@
     <Folder Include="views\controle\cliente\" />
     <Folder Include="views\controle\empresa\" />
     <Folder Include="views\controle\industria\" />
+    <Folder Include="views\controle\segmento\" />
     <Folder Include="views\controle\pursuitTeam\" />
     <Folder Include="views\controle\tipoLocal\" />
     <Folder Include="views\inovacao\" />
