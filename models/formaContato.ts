@@ -17,7 +17,7 @@ export = class FormaContato {
         let lista: FormaContato[] = null;
 
         await Sql.conectar(async (sql: Sql) => {
-            lista = await sql.query("select o.id_forma_contato, o.nome_forma_contato, p.id_projeto, p.valor_produto, p.descricao_projeto from forma_contato o, projeto p where o.id_forma_contato = o.id_projeto order by nome_forma_contato asc") as FormaContato[];
+            lista = await sql.query("select id_forma_contato, nome_forma_contato from forma_contato order by nome_forma_contato asc") as FormaContato[];
         });
 
         return (lista || []);
@@ -27,7 +27,7 @@ export = class FormaContato {
         let lista: FormaContato[] = null;
 
         await Sql.conectar(async (sql: Sql) => {
-            lista = await sql.query("select o.id_forma_contato, o.nome_forma_contato, p.id_projeto, p.valor_produto, p.descricao_projeto from forma_contato o, projeto p where o.id_forma_contato = o.id_projeto and id_forma_contato = ? order by nome_forma_contato asc", [id_forma_contato]) as FormaContato[];
+            lista = await sql.query("select id_forma_contato, nome_forma_contato from forma_contato where id_forma_contato = ? order by nome_forma_contato asc", [id_forma_contato]) as FormaContato[];
         });
 
         return ((lista && lista[0]) || null);
