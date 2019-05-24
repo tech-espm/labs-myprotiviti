@@ -2,6 +2,9 @@
 import wrap = require("express-async-error-wrapper");
 import Usuario = require("../models/usuario");
 import Parceria = require("../models/parceria");
+import Empresa = require("../models/empresa");
+import Solucao = require("../models/solucao");
+import PursuitTeam = require("../models/pursuitTeam");
 
 const router = express.Router();
 
@@ -14,7 +17,10 @@ router.all("/criar", wrap(async (req: express.Request, res: express.Response) =>
         res.render("negocios/parceria/alterar", {
             titulo: "Criar Parceria",
             usuario: u,
-            item: null
+            item: null,
+            empresas: await Empresa.listar(),
+            solucoes: await Solucao.listar(),
+            times: await PursuitTeam.listar()
         });
     }
 }));
@@ -33,7 +39,10 @@ router.all("/alterar", wrap(async (req: express.Request, res: express.Response) 
             res.render("negocios/parceria/alterar", {
                 titulo: "Editar Parceria",
                 usuario: u,
-                item: item
+                item: item,
+                empresas: await Empresa.listar(),
+                solucoes: await Solucao.listar(),
+                times: await PursuitTeam.listar()
             });
     }
 }));

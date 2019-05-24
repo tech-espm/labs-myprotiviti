@@ -2,13 +2,16 @@
 <div class="row">
 	<div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
 		<form id="form" class="panel panel-default" action="#">
-			<div class="panel-heading">Adicionar Nova Empresa</div>
+			<div class="panel-heading">Adicionar Nova Forma de Contato</div>
 			<div class="panel-body no-bottom">
-				<input type="hidden" id="id_empresa" name="id_empresa" value="<%=(item ? item.id_empresa : 0) %>" />
+				<input type="hidden" id="id_matriz_servico" name="id_matriz_servico" value="<%=(item ? item.id_matriz_servico : 0) %>" />
 				<div class="form-group">
-					<label for="nome_empresa">Nome da Empresa</label>
-					<input id="nome_empresa" name="nome_empresa" maxlength="255" class="form-control upper" type="text" spellcheck="false" value="<%=(item ? item.nome_empresa : '') %>" />
+					<label for="nome_matriz_servico">Nome da Forma de Contato</label>
+					<input id="nome_matriz_servico" name="nome_matriz_servico" maxlength="50" class="form-control upper" type="text" spellcheck="false" value="<%=(item ? item.nome_matriz_servico : '') %>" />
 				</div>
+        
+				
+
       </div>
 			<div class="panel-footer">
 				<input value="Criar" class="btn btn-primary btn-lg btn-block" type="submit" />
@@ -25,7 +28,7 @@
 
     $("#form").validate({
         rules: {
-            nome_empresa: {
+            nome_matriz_servico: {
                 required: true,
                 minlength: 3,
                 maxlength: 255
@@ -40,20 +43,20 @@
 
             //<% if (item) { %>
 
-            JsonWebApi.postFormData("/api/empresa/alterar", form, function (response) {
+            JsonWebApi.postFormData("/api/matrizServico/alterar", form, function (response) {
 				if (response.success)
-					Notification.success("Empresa alterada com sucesso! \uD83D\uDE04");
+					Notification.success("Matriz de Serviço alterada com sucesso! \uD83D\uDE04");
 				else
 					Notification.error(response.value, true);
             });
 
             //<% } else { %>
 
-            JsonWebApi.postFormData("/api/empresa/criar", form, function (response) {
+            JsonWebApi.postFormData("/api/matrizServico/criar", form, function (response) {
 				if (response.success) {
 					form.reset();
 					$("#form").validate().resetForm();
-					Notification.success("Empresa criada com sucesso! \uD83D\uDE04");
+					Notification.success("Matriz de Serviço criada com sucesso! \uD83D\uDE04");
 				} else {
 					Notification.error(response.value, true);
 				}
@@ -64,4 +67,5 @@
     });
     //]]>
 </script>
+
 

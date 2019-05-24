@@ -76,8 +76,16 @@ export = class PursuitTeam {
         let res: string = null;
 
         await Sql.conectar(async (sql: Sql) => {
-            await sql.query("delete from pursuit_team where id_pursuit_team = " + id_pursuit_team);
-            res = sql.linhasAfetadas.toString();
+            try {
+                await sql.query("delete from pursuit_team where id_pursuit_team = " + id_pursuit_team);
+                res = sql.linhasAfetadas.toString();
+            } catch (e) {
+                if (e.code && (e.code === "ER_ROW_IS_REFERENCED" || e.code === "ER_ROW_IS_REFERENCED_2"))
+                    res = "O time está em uso em outros formulários!";
+                else
+                    throw e;
+            }
+            
         });
 
         return res;
