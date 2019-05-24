@@ -17,7 +17,7 @@ body {
 }
 
 #page-wrapper {
-    padding: 0;
+    padding: 0 15px;
 }
 
 .navbar-right {
@@ -105,6 +105,10 @@ body {
             min-height: 50px;
         }
 
+        .navbar-top-links li a i{
+            transform:none;
+        }
+
     .navbar-top-links.nav > li > a:hover {
         background-color: #346a88;
     }
@@ -112,6 +116,11 @@ body {
     .navbar-top-links.nav > li > a:focus {
         background-color: #2a5a75;
     }
+
+    .navbar-top-links.nav > li > a:focus i {
+        transform:rotate(180deg);
+    }
+
 
 input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].btn-block {
     width: 45%;
@@ -382,9 +391,9 @@ i.fa-nomargin {
     flex-direction: column;
     height: calc(100vh - 100px);
     background-image: url('/imagens/skyline.svg');
-    background-position: bottom left;
+    background-position: bottom;
+    background-size: auto 9%;
     background-repeat: repeat-x;
-    background-size: 70vw;
 }
 
 .index-header {
@@ -614,7 +623,7 @@ i.fa-nomargin {
             color: #FFED85;
         }
 
-@media(min-width:801px) {
+@media(min-width:768px) {
     .index-wrapper {
         height: calc(100vh - 50px);
     }
@@ -652,4 +661,10 @@ i.fa-nomargin {
 }
 
 .index-footer {
+}
+
+.navbar-right .dropdown .dropdown-toggle {
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    padding-left: 10px;
 }

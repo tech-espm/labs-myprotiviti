@@ -13,6 +13,14 @@ CREATE TABLE perfil (
 
 INSERT INTO perfil (nome) VALUES ('ADMINISTRADOR');
 
+-- DROP TABLE IF EXISTS perfil_feature;
+CREATE TABLE perfil_feature (
+	id_perfil int NOT NULL,
+	id_feature int NOT NULL,
+	PRIMARY KEY (id_perfil, id_feature),
+	CONSTRAINT perfil_feature_FK FOREIGN KEY (id_feature) REFERENCES perfil (id) ON DELETE CASCADE
+);
+
 -- DROP TABLE IF EXISTS usuario;
 CREATE TABLE usuario (
 	id int NOT NULL AUTO_INCREMENT,
@@ -207,7 +215,7 @@ CREATE TABLE projeto (
   id_cliente INT NOT NULL,
   id_segmento INT NULL,
   id_matriz_servico INT NULL,
-  id_origem_lead INT NULL,
+  id_forma_contato INT NULL,
   id_responsavel_proposta INT NULL,
   id_pursuit_team INT NULL,
   id_escritorio_lider INT NULL,

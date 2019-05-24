@@ -3,7 +3,6 @@ import wrap = require("express-async-error-wrapper");
 import Usuario = require("../models/usuario");
 import Pec = require("../models/pec");
 
-
 const router = express.Router();
 
 router.all("/criar", wrap(async (req: express.Request, res: express.Response) => {
@@ -50,7 +49,8 @@ router.get("/listar", wrap(async (req: express.Request, res: express.Response) =
 			rota: "pec",
 			lista: JSON.stringify(await Pec.listar()),
 			caminhoAbsolutoPastaExterno: Pec.caminhoAbsolutoPastaExterno(),
-			extensaoArquivo: Pec.extensaoArquivo
+			extensaoMiniatura: Pec.extensaoMiniatura,
+			extensaoVideo: Pec.extensaoVideo
 		});
 	}
 }));
