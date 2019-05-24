@@ -75,9 +75,17 @@ export = class Cliente {
 	public static async excluir(id_cliente: number): Promise<string> {
 		let res: string = null;
 
-		await Sql.conectar(async (sql: Sql) => {
-			await sql.query("delete from cliente where id_cliente = " + id_cliente);
-			res = sql.linhasAfetadas.toString();
+        await Sql.conectar(async (sql: Sql) => {
+            try {
+                await sql.query("delete from cliente where id_cliente = " + id_cliente);
+                res = sql.linhasAfetadas.toString();
+            } catch (e) {
+                if (e.code && (e.code === "ER_ROW_IS_REFERENCED" || e.code === "ER_ROW_IS_REFERENCED_2"))
+                    res = "O cliente está em uso em outros formulários!";
+                else
+                    throw e;
+            }
+			
 		});
 
 		return res;
