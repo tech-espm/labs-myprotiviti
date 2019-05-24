@@ -27,7 +27,7 @@ export = class PursuitTeam {
         let lista: PursuitTeam[] = null;
 
         await Sql.conectar(async (sql: Sql) => {
-            lista = await sql.query("select id_pursuit_team, nome_pursuit_team from pursuit_team where id_pursuit_team = ? order by nome_pursuit_team asc", [id_pursuit_team]) as PursuitTeam[];
+            lista = await sql.query("select id_pursuit_team, nome_pursuit_team from pursuit_team where id_pursuit_team = ?", [id_pursuit_team]) as PursuitTeam[];
         });
 
         return ((lista && lista[0]) || null);

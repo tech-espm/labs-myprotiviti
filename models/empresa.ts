@@ -27,7 +27,7 @@ export = class Empresa {
         let lista: Empresa[] = null;
 
         await Sql.conectar(async (sql: Sql) => {
-            lista = await sql.query("select id_empresa, nome_empresa from empresa where id_empresa = ? order by nome_empresa asc", [id_empresa]) as Empresa[];
+            lista = await sql.query("select id_empresa, nome_empresa from empresa where id_empresa = ?", [id_empresa]) as Empresa[];
         });
 
         return ((lista && lista[0]) || null);

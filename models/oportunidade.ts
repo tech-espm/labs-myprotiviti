@@ -41,7 +41,7 @@ export = class Oportunidade {
         await Sql.conectar(async (sql: Sql) => {
             lista = await sql.query("select id_oportunidade, empresa_oportunidade, contato_oportunidade, "
                 + "tel_oportunidade, email_oportunidade, oportunidade.id_solucao, solucao.nome_solucao, descricao_oportunidade"
-                + " from oportunidade inner join solucao on solucao.id_solucao = oportunidade.id_solucao where id_oportunidade = ? order by empresa_oportunidade asc", [id_oportunidade]) as Oportunidade[];
+                + " from oportunidade inner join solucao on solucao.id_solucao = oportunidade.id_solucao where id_oportunidade = ?", [id_oportunidade]) as Oportunidade[];
         });
 
         return ((lista && lista[0]) || null);
