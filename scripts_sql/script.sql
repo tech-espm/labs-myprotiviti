@@ -207,7 +207,7 @@ CREATE TABLE projeto (
   id_cliente INT NOT NULL,
   id_segmento INT NULL,
   id_matriz_servico INT NULL,
-  id_origem_lead INT NULL,
+  id_forma_contato INT NULL,
   id_responsavel_proposta INT NULL,
   id_pursuit_team INT NULL,
   id_escritorio_lider INT NULL,
