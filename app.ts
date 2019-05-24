@@ -101,13 +101,14 @@ app.use("/mentor", require("./routes/mentor"));
 app.use("/mentorado", require("./routes/mentorado"));
 app.use("/mentoring", require("./routes/mentoring"));
 app.use("/oportunidade", require("./routes/oportunidade"));
-app.use("/parceria", require("./routes/parceria"));
+app.use("/negocios/parceria", require("./routes/parceria"));
 app.use("/pec", require("./routes/pec"));
 app.use("/projeto", require("./routes/projeto"));
 app.use("/pursuitTeam", require("./routes/pursuitTeam"));
 app.use("/solucao", require("./routes/solucao"));
 app.use("/timeout", require("./routes/timeout"));
 app.use("/usuario", require("./routes/usuario"));
+app.use("/segmento", require("./routes/segmento"));
 
 // API
 app.use("/api/administrativo", require("./routes/api/administrativo"));

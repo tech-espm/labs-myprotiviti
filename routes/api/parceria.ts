@@ -17,33 +17,34 @@ router.get("/obter", wrap(async (req: express.Request, res: express.Response) =>
     let u = await Usuario.cookie(req, res);
     if (!u)
         return;
-    let id = parseInt(req.query["id_parceria"]);
-    res.json(isNaN(id) ? null : await Parceria.obter(id));
+    let id_parceria = parseInt(req.query["id_parceria"]);
+    res.json(isNaN(id_parceria) ? null : await Parceria.obter(id_parceria));
 }));
 
 router.post("/criar", wrap(async (req: express.Request, res: express.Response) => {
     let u = await Usuario.cookie(req, res, true);
     if (!u)
         return;
-    let p = req.body as Parceria;
-
-    jsonRes(res, 400, p ? await Parceria.criar(p) : "Dados inválidos");
+    let o = req.body;
+    jsonRes(res, 400, o ? await Parceria.criar(o) : "Dados inválidos!");
 }));
 
 router.post("/alterar", wrap(async (req: express.Request, res: express.Response) => {
-    let u = await Usuario.cookie(req, res);
+    let u = await Usuario.cookie(req, res, true);
     if (!u)
         return;
-    let p = req.body as Parceria;
-    jsonRes(res, 400, p ? await Parceria.alterar(p) : "Dados inválidos!");
+    let o = req.body;
+    if (o)
+        o.id_parceria = parseInt(req.body.id_parceria);
+    jsonRes(res, 400, (o && !isNaN(o.id_parceria)) ? await Parceria.alterar(o) : "Dados inválidos!");
 }));
 
 router.get("/excluir", wrap(async (req: express.Request, res: express.Response) => {
     let u = await Usuario.cookie(req, res, true);
     if (!u)
         return;
-    let id = parseInt(req.query["id_parceria"]);
-    jsonRes(res, 400, !isNaN(id) ? await Parceria.excluir(id) : "Dados inválidos");
+    let id_parceria = parseInt(req.query["id_parceria"]);
+    jsonRes(res, 400, isNaN(id_parceria) ? "Dados inválidos!" : await Parceria.excluir(id_parceria));
 }));
 
 export = router;
