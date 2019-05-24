@@ -105,6 +105,10 @@ body {
             min-height: 50px;
         }
 
+        .navbar-top-links li a i{
+            transform:none;
+        }
+
     .navbar-top-links.nav > li > a:hover {
         background-color: #346a88;
     }
@@ -112,6 +116,11 @@ body {
     .navbar-top-links.nav > li > a:focus {
         background-color: #2a5a75;
     }
+
+    .navbar-top-links.nav > li > a:focus i {
+        transform:rotate(180deg);
+    }
+
 
 input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].btn-block {
     width: 45%;
@@ -652,4 +661,10 @@ i.fa-nomargin {
 }
 
 .index-footer {
+}
+
+.navbar-right .dropdown .dropdown-toggle {
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    padding-left: 10px;
 }
