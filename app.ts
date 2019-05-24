@@ -108,6 +108,7 @@ app.use("/pursuitTeam", require("./routes/pursuitTeam"));
 app.use("/solucao", require("./routes/solucao"));
 app.use("/timeout", require("./routes/timeout"));
 app.use("/usuario", require("./routes/usuario"));
+app.use("/segmento", require("./routes/segmento"));
 
 // API
 app.use("/api/administrativo", require("./routes/api/administrativo"));

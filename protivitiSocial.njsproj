@@ -111,9 +111,9 @@
     <Content Include="views\controle\empresa\alterar.ejs" />
     <Content Include="views\controle\empresa\listar.ejs" />
     <Content Include="views\controle\empresa\listar.ejs" />
+    <Content Include="views\controle\segmento\alterar.ejs" />
     <Content Include="views\controle\industria\alterar.ejs" />
-    <Content Include="views\controle\industria\alterar.ejs" />
-    <Content Include="views\controle\industria\listar.ejs" />
+    <Content Include="views\controle\segmento\listar.ejs" />
     <Content Include="views\controle\industria\listar.ejs" />
     <Content Include="views\controle\pursuitTeam\alterar.ejs" />
     <Content Include="views\controle\pursuitTeam\alterar.ejs" />
@@ -219,6 +219,7 @@
     <TypeScriptCompile Include="routes\mentoring.ts" />
     <TypeScriptCompile Include="routes\pursuitTeam.ts" />
     <TypeScriptCompile Include="routes\empresa.ts" />
+    <TypeScriptCompile Include="routes\segmento.ts" />
     <TypeScriptCompile Include="routes\solucao.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -277,7 +278,7 @@
     <Folder Include="views\construcao\" />
     <Folder Include="views\controle\cliente\" />
     <Folder Include="views\controle\empresa\" />
-    <Folder Include="views\controle\industria\" />
+    <Folder Include="views\controle\segmento\" />
     <Folder Include="views\controle\pursuitTeam\" />
     <Folder Include="views\controle\tipoLocal\" />
     <Folder Include="views\inovacao\" />
