@@ -2,6 +2,7 @@
 import wrap = require("express-async-error-wrapper");
 import Usuario = require("../models/usuario");
 import Oportunidade = require("../models/oportunidade");
+import Solucao = require("../models/solucao");
 
 const router = express.Router();
 
@@ -13,7 +14,8 @@ router.all("/criar", wrap(async (req: express.Request, res: express.Response) =>
         res.render("negocios/oportunidade/alterar", {
             titulo: "Criar Oportunidade",
             usuario: u,
-            item: null
+            item: null,
+            solucoes: await Solucao.listar()
         });
     }
 }));
@@ -31,7 +33,8 @@ router.all("/alterar", wrap(async (req: express.Request, res: express.Response) 
             res.render("negocios/oportunidade/alterar", {
                 titulo: "Editar Oportunidade",
                 usuario: u,
-                item: item
+                item: item,
+                solucoes: await Solucao.listar()
             });
     }
 }));
