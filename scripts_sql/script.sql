@@ -181,11 +181,11 @@ CREATE TABLE matriz_servico (
   INDEX matriz_servico_nome_matriz_servico_IX (nome_matriz_servico ASC)
 );
 
-CREATE TABLE origem_lead (
-  id_origem_lead INT NOT NULL AUTO_INCREMENT,
-  nome_origem_lead VARCHAR(255) NOT NULL,
-  PRIMARY KEY (id_origem_lead),
-  INDEX origem_lead_origem_lead_servico_IX (nome_origem_lead ASC)
+CREATE TABLE forma_contato (
+  id_forma_contato INT NOT NULL AUTO_INCREMENT,
+  nome_forma_contato VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id_forma_contato),
+  INDEX forma_contato_nome_forma_contato_IX (nome_forma_contato ASC)
 );
 
 
