@@ -112,6 +112,8 @@ app.use("/segmento", require("./routes/segmento"));
 app.use("/formaContato", require("./routes/formaContato"));
 app.use("/matrizServico", require("./routes/matrizServico"));
 app.use("/ccLider", require("./routes/ccLider"));
+app.use("/responsavelProposta", require("./routes/responsavelProposta"));
+app.use("/escritorioLider", require("./routes/escritorioLider"));
 
 
 // API
@@ -134,6 +136,9 @@ app.use("/api/timeout", require("./routes/api/timeout"));
 app.use("/api/formaContato", require("./routes/api/formaContato"));
 app.use("/api/matrizServico", require("./routes/api/matrizServico"));
 app.use("/api/ccLider", require("./routes/api/ccLider"));
+app.use("/api/responsavelProposta", require("./routes/api/responsavelProposta"));
+app.use("/api/escritorioLider", require("./routes/api/escritorioLider"));
+
 // Depois de registrados todos os caminhos das rotas e seus
 // tratadores, registramos os tratadores que serão chamados
 // caso nenhum dos tratadores anteriores tenha devolvido alguma
