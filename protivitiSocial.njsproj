@@ -178,6 +178,7 @@
     <TypeScriptCompile Include="models\alocacao.ts" />
     <TypeScriptCompile Include="models\carreiraCapacitacaoTreinamentos.ts" />
     <TypeScriptCompile Include="models\carreiraCurriculo.ts" />
+    <TypeScriptCompile Include="models\ccLider.ts" />
     <TypeScriptCompile Include="models\cliente.ts" />
     <TypeScriptCompile Include="models\empresa.ts">
       <SubType>Code</SubType>
@@ -185,7 +186,9 @@
     <TypeScriptCompile Include="models\enums\tipoTutorial.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="models\formaContato.ts" />
     <TypeScriptCompile Include="models\inovacao.ts" />
+    <TypeScriptCompile Include="models\matrizServico.ts" />
     <TypeScriptCompile Include="models\responsavelProposta.ts" />
     <TypeScriptCompile Include="models\oportunidade.ts">
       <SubType>Code</SubType>
@@ -199,9 +202,12 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="models\escritorioLider.ts" />
+    <TypeScriptCompile Include="models\segmento.ts" />
     <TypeScriptCompile Include="models\solucao.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="models\timeout.ts" />
+    <TypeScriptCompile Include="models\tipoLocal.ts" />
     <TypeScriptCompile Include="models\tutorial.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
