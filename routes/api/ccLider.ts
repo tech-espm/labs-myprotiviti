@@ -43,7 +43,7 @@ router.get("/excluir", wrap(async (req: express.Request, res: express.Response) 
     let u = await Usuario.cookie(req, res, true);
     if (!u)
         return;
-    let id_cc_lider = parseInt(req.query["id_matriz_servico"]);
+    let id_cc_lider = parseInt(req.query["id_cc_lider"]);
     jsonRes(res, 400, isNaN(id_cc_lider) ? "Dados inválidos!" : await Cclider.excluir(id_cc_lider));
 }));
 
