@@ -2,6 +2,14 @@
 import wrap = require("express-async-error-wrapper");
 import Usuario = require("../models/usuario");
 import Projeto = require("../models/projeto");
+//import Cliente = require("../models/cliente");
+import Segmento = require("../models/segmento");
+import Solucao = require("../models/solucao");
+// origem lead - contato
+// matriz de serviço    
+import PursuitTeam = require("../models/pursuitTeam");
+// escritório líder
+// cc líder
 
 const router = express.Router();
 
