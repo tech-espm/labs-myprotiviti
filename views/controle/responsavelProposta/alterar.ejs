@@ -1,0 +1,65 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+    <form id="form" class="panel panel-default" action="#">
+      <div class="panel-heading">Adicionar Novo Responsável Pela Proposta</div>
+      <div class="panel-body no-bottom">
+        <input type="hidden" id="id_responsavel_proposta" name="id_responsavel_proposta" value=""<%=(item ? item.id_responsavel_proposta : 0) %>" />
+        <div class="form-group">
+          <label for="nome_responsavel_proposta">Nome do Responsável Pela Proposta</label>
+          <input id="nome_responsavel_proposta" name="nome_responsavel_proposta" maxlength="255" class="form-control upper" type="text" spellcheck="false" value=""<%=(item ? item.nome_responsavel_proposta : '') %>" />
+        </div>
+      </div>
+      <div class="panel-footer">
+        <input value="Criar" class="btn btn-primary btn-lg btn-block" type="submit" />
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<%- contentFor("scripts") %>
+  <script type="text/javascript">
+    //<![CDATA[
+    "use strict";
+
+    $("#form").validate({
+        rules: {
+            nome_responsavel_proposta: {
+                required: true,
+                minlength: 3,
+                maxlength: 255
+            },
+        },
+
+        submitHandler: function (form) {
+            if (JsonWebApi.active)
+                return;
+
+            Notification.wait();
+
+            //<% if (item) { %>
+
+            JsonWebApi.postFormData("/api/responsavelProposta/alterar", form, function (response) {
+				if (response.success)
+					Notification.success("Responsável pela proposta alterado com sucesso! \uD83D\uDE04");
+				else
+					Notification.error(response.value, true);
+            });
+
+            //<% } else { %>
+
+            JsonWebApi.postFormData("/api/responsavelProposta/criar", form, function (response) {
+				if (response.success) {
+					form.reset();
+					$("#form").validate().resetForm();
+					Notification.success("Responsável pela proposta criado com sucesso! \uD83D\uDE04");
+				} else {
+					Notification.error(response.value, true);
+				}
+            });
+
+            //<% } %>
+        }
+    });
+    //]]>
+  </script>
