@@ -103,6 +103,8 @@
     <Content Include="views\carreira\mentoring\mentor\listar.ejs" />
     <Content Include="views\construcao\gifemconstrucao.ejs" />
     <Content Include="views\construindo\construindo.ejs" />
+    <Content Include="views\controle\ccLider\alterar.ejs" />
+    <Content Include="views\controle\ccLider\listar.ejs" />
     <Content Include="views\controle\cliente\alterar.ejs" />
     <Content Include="views\controle\cliente\alterar.ejs" />
     <Content Include="views\controle\cliente\listar.ejs" />
@@ -111,8 +113,14 @@
     <Content Include="views\controle\empresa\alterar.ejs" />
     <Content Include="views\controle\empresa\listar.ejs" />
     <Content Include="views\controle\empresa\listar.ejs" />
+    <Content Include="views\controle\escritorioLider\alterar.ejs" />
+    <Content Include="views\controle\escritorioLider\listar.ejs" />
     <Content Include="views\controle\formaContato\alterar.ejs" />
     <Content Include="views\controle\formaContato\listar.ejs" />
+    <Content Include="views\controle\matrizServico\alterar.ejs" />
+    <Content Include="views\controle\matrizServico\listar.ejs" />
+    <Content Include="views\controle\responsavelProposta\alterar.ejs" />
+    <Content Include="views\controle\responsavelProposta\listar.ejs" />
     <Content Include="views\controle\segmento\alterar.ejs" />
     <Content Include="views\controle\segmento\listar.ejs" />
     <Content Include="views\controle\pursuitTeam\alterar.ejs" />
@@ -178,6 +186,7 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="models\inovacao.ts" />
+    <TypeScriptCompile Include="models\responsavelProposta.ts" />
     <TypeScriptCompile Include="models\oportunidade.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -189,6 +198,7 @@
     <TypeScriptCompile Include="models\pursuitTeam.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="models\escritorioLider.ts" />
     <TypeScriptCompile Include="models\solucao.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -214,9 +224,11 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="routes\api\pec.ts" />
     <TypeScriptCompile Include="routes\api\projeto.ts" />
-    <TypeScriptCompile Include="routes\api\pursuitTeam.ts">
+    <TypeScriptCompile Include="routes\api\pursuitTeam - Copy.ts" />
+    <TypeScriptCompile Include="routes\api\responsavelProposta.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="routes\api\escritorioLider.ts" />
     <TypeScriptCompile Include="routes\api\solucao.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -229,8 +241,10 @@
     <TypeScriptCompile Include="routes\mentor.ts" />
     <TypeScriptCompile Include="routes\pec.ts" />
     <TypeScriptCompile Include="routes\mentoring.ts" />
+    <TypeScriptCompile Include="routes\responsavelProposta.ts" />
     <TypeScriptCompile Include="routes\pursuitTeam.ts" />
     <TypeScriptCompile Include="routes\empresa.ts" />
+    <TypeScriptCompile Include="routes\escritorioLider.ts" />
     <TypeScriptCompile Include="routes\segmento.ts" />
     <TypeScriptCompile Include="routes\solucao.ts">
       <SubType>Code</SubType>
@@ -288,9 +302,13 @@
     <Folder Include="views\carreira\mentoring\mentor\" />
     <Folder Include="views\carreira\mentoring\mentorado\" />
     <Folder Include="views\construcao\" />
+    <Folder Include="views\controle\ccLider\" />
     <Folder Include="views\controle\cliente\" />
     <Folder Include="views\controle\empresa\" />
+    <Folder Include="views\controle\escritorioLider\" />
     <Folder Include="views\controle\industria\" />
+    <Folder Include="views\controle\matrizServico\" />
+    <Folder Include="views\controle\responsavelProposta\" />
     <Folder Include="views\controle\segmento\" />
     <Folder Include="views\controle\pursuitTeam\" />
     <Folder Include="views\controle\formaContato\" />

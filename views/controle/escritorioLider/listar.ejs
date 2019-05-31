@@ -38,7 +38,7 @@
 		order: [[0, "asc"]],
 		deferRender: true,
 		columns: [
-            { title: "Escritório líder", render: encode, data: "escritorio_lider" },
+            { title: "Escritório líder", render: encode, data: "nome_escritorio_lider" },
 			{ title: "", "class": "col-min", searchable: false, orderable: false, data: "id_escritorio_lider", render: function (v, type, row) { return "<a target=\"_blank\" title=\"Editar\" href=\"/escritorioLider/alterar?id=" + row.id_escritorio_lider + "\" class=\"btn btn-outline btn-primary\"><i class=\"fa fa-nomargin fa-edit\"></i></a> <button title=\"Excluir\" type=\"button\" data-excluir=\"1\" class=\"btn btn-outline btn-danger\"><i class=\"fa fa-nomargin fa-times\"></i></button>"; } },
 		],
 	
