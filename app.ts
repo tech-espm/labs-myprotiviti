@@ -110,7 +110,7 @@ app.use("/timeout", require("./routes/timeout"));
 app.use("/usuario", require("./routes/usuario"));
 app.use("/segmento", require("./routes/segmento"));
 app.use("/responsavelProposta", require("./routes/responsavelProposta"));
-
+app.use("/escritorioLider", require("./routes/escritorioLider"));
 // API
 app.use("/api/administrativo", require("./routes/api/administrativo"));
 app.use("/api/alocacao", require("./routes/api/alocacao"));
@@ -126,6 +126,7 @@ app.use("/api/pursuitTeam", require("./routes/api/pursuitTeam"));
 app.use("/api/solucao", require("./routes/api/solucao"));
 app.use("/api/usuario", require("./routes/api/usuario"));
 app.use("/api/responsavelProposta", require("./routes/api/responsavelProposta"));
+app.use("/api/escritorioLider", require("./routes/api/escritorioLider"));
 // Depois de registrados todos os caminhos das rotas e seus
 // tratadores, registramos os tratadores que serão chamados
 // caso nenhum dos tratadores anteriores tenha devolvido alguma
