@@ -109,10 +109,7 @@ app.use("/solucao", require("./routes/solucao"));
 app.use("/timeout", require("./routes/timeout"));
 app.use("/usuario", require("./routes/usuario"));
 app.use("/segmento", require("./routes/segmento"));
-app.use("/formaContato", require("./routes/formaContato"));
-app.use("/matrizServico", require("./routes/matrizServico"));
-app.use("/ccLider", require("./routes/ccLider"));
-
+app.use("/responsavelProposta", require("./routes/responsavelProposta"));
 
 // API
 app.use("/api/administrativo", require("./routes/api/administrativo"));
@@ -120,7 +117,6 @@ app.use("/api/alocacao", require("./routes/api/alocacao"));
 app.use("/api/carreiraCapacitacaoTreinamentos", require("./routes/api/carreiraCapacitacaoTreinamentos"));
 app.use("/api/carreiraCurriculo", require("./routes/api/carreiraCurriculo"));
 app.use("/api/cliente", require("./routes/api/cliente"));
-app.use("/api/empresa", require("./routes/api/empresa"));
 app.use("/api/inovacao", require("./routes/api/inovacao"));
 app.use("/api/oportunidade", require("./routes/api/oportunidade"));
 app.use("/api/parceria", require("./routes/api/parceria"));
@@ -128,12 +124,8 @@ app.use("/api/pec", require("./routes/api/pec"));
 app.use("/api/projeto", require("./routes/api/projeto"));
 app.use("/api/pursuitTeam", require("./routes/api/pursuitTeam"));
 app.use("/api/solucao", require("./routes/api/solucao"));
-app.use("/api/segmento", require("./routes/api/segmento"));
 app.use("/api/usuario", require("./routes/api/usuario"));
-app.use("/api/timeout", require("./routes/api/timeout"));
-app.use("/api/formaContato", require("./routes/api/formaContato"));
-app.use("/api/matrizServico", require("./routes/api/matrizServico"));
-app.use("/api/ccLider", require("./routes/api/ccLider"));
+app.use("/api/responsavelProposta", require("./routes/api/responsavelProposta"));
 // Depois de registrados todos os caminhos das rotas e seus
 // tratadores, registramos os tratadores que serão chamados
 // caso nenhum dos tratadores anteriores tenha devolvido alguma
