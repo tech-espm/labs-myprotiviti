@@ -34,24 +34,24 @@
 	//<![CDATA[
 	"use strict";
 
-	var tabela = prepareDataTable("#tabela", {
+    var tabela = prepareDataTable("#tabela", {
 		order: [[0, "asc"]],
 		deferRender: true,
 		columns: [
-            { title: "Nome", render: encode, data: "nome" },
-            { title: "Localização", render: encode, data: "localizacao" },
-            { title: "Preço", render: encode, data: "preco" },
-            { title: "Ambiente", render: encode, data: "ambiente" },
-            { title: "Atendimento", render: encode, data: "atendimento" },
-            { title: "Bebidas", render: encode, data: "bebidas" },
-            { title: "Tira Gosto", render: encode, data: "tiraGosto" },
-            { title: "Comentário", render: encode, data: "comentario" },
-			{ title: "", "class": "col-min", searchable: false, orderable: false, data: "id", render: function (v, type, row) { return "<a target=\"_blank\" title=\"Editar\" href=\"/timeout/alterar?id=" + row.id + "\" class=\"btn btn-outline btn-primary\"><i class=\"fa fa-nomargin fa-edit\"></i></a> <button title=\"Excluir\" type=\"button\" data-excluir=\"1\" class=\"btn btn-outline btn-danger\"><i class=\"fa fa-nomargin fa-times\"></i></button>"; } },
+            { title: "Nome", render: encode, data: "nome_localizacao" },
+            { title: "Tipo do local", render: encode, data: "nome_tipo_local" },
+            { title: "Horario de abertura", render: encode, data: "horario_abertura_localizacao" },
+            { title: "Horario de fechamento", reder: encode, data: "horario_fechamento_localizacao"},
+            { title: "Preço", data: "preco_localizacao" },
+            { title: "Ambiente", data: "ambiente_localizacao" },
+            { title: "Atendimento", data: "atendimento_localizacao" },
+            { title: "Bebidas", data: "bebida_localizacao" },
+            { title: "Tira Gosto", data: "tira_gosto_localizacao" },
+            { title: "Comentário", render: encode, data: "comentario_localizacao" },
+			{ title: "", "class": "col-min", searchable: false, orderable: false, data: "id_localizacao", render: function (v, type, row) { return "<a target=\"_blank\" title=\"Editar\" href=\"/timeout/alterar?id_localizacao=" + row.id_localizacao +"&lat=" + encodeURIComponent(row.latitude_localizacao) + '&lng=' + encodeURIComponent(row.longitude_localizacao)+ "\" class=\"btn btn-outline btn-primary\"><i class=\"fa fa-nomargin fa-edit\"></i></a> <button title=\"Excluir\" type=\"button\" data-excluir=\"1\" class=\"btn btn-outline btn-danger\"><i class=\"fa fa-nomargin fa-times\"></i></button>"; } },
 		],
 	
-		data: [
-    {nome:"Teste",localizacao:"R. Joaquim Távora, 1235 - Vila Mariana",preco:"3.5",ambiente:"2",atendimento:"5",bebidas:"2.5",tiraGosto:"1",comentario:"Muito ruim",id:1},
-    ]
+		data: <%- lista %>
 	});
 
 	var trClicada;
@@ -78,20 +78,20 @@
 
 		$("#modalExcluir").modal("hide");
 
-		var formato = tabela.row(trClicada).data();
+		var timeout = tabela.row(trClicada).data();
 
 		Notification.wait();
 
-		JsonWebApi.get("/api/formato/excluir", function (response) {
+		JsonWebApi.get("/api/timeout/excluir", function (response) {
 			if (response.success) {
-				Notification.success("Formato excluído com sucesso! \uD83D\uDE04");
+				Notification.success("Timeout excluído com sucesso! \uD83D\uDE04");
 				tabela.row(trClicada).remove().draw();
 			} else {
 				Notification.error(response.value, true);
 			}
 			trClicada = null;
-		}, "id", formato.id);
-	}
+		}, "id_localizacao", timeout.id_localizacao);
+	}   
 
 	//]]>
 </script>

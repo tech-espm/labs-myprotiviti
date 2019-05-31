@@ -1,9 +1,8 @@
 ﻿import Sql = require("../infra/sql");
-
+import tipo_local = require("../")
 export = class Timeout {
     public id_localizacao: number;
-    public nome_localizacao: string;
-    public id_tipo_local: number;
+    public nome_localizacao: string;    
     public dia_semana_localizacao: number;
     public horario_abertura_localizacao: string;
     public horario_fechamento_localizacao: string;
@@ -15,6 +14,9 @@ export = class Timeout {
     public comentario_localizacao: string;
     public latitude_localizacao: number;
     public longitude_localizacao: number;
+
+    public id_tipo_local: number;
+    public nome_tipo_local: string;
 
     public static converter(t: any): Timeout {
         t.id_tipo_local = parseInt(t.id_tipo_local);
@@ -44,17 +46,20 @@ export = class Timeout {
         let lista: Timeout[] = null;
 
         await Sql.conectar(async (sql: Sql) => {
-            lista = await sql.query("select * from localizacao order by id_localizacao  asc") as Timeout[];
+            lista = await sql.query("select loc.id_localizacao,loc.nome_localizacao,tpl.nome_tipo_local,loc.dia_semana_localizacao,loc.horario_abertura_localizacao, "+
+                " loc.horario_fechamento_localizacao, loc.preco_localizacao, loc.ambiente_localizacao, loc.atendimento_localizacao, "+
+                " loc.bebida_localizacao, loc.tira_gosto_localizacao, loc.comentario_localizacao ,loc.latitude_localizacao, loc.longitude_localizacao" +
+                " from localizacao loc, tipo_local tpl where tpl.id_tipo_local = loc.id_tipo_local order by nome_localizacao  asc") as Timeout[];
         });
 
         return (lista || []);
     }
 
-    public static async obter(id: number): Promise<Timeout> {
+    public static async obter(id_localizacao: number): Promise<Timeout> {
         let lista: Timeout[] = null;
 
         await Sql.conectar(async (sql: Sql) => {
-            lista = await sql.query("select id_localizacao,nome_localizacao,id_tipo_local,dia_semana_localizacao,horario_abertura_localizacao,horario_fechamento_localizacao,preco_localizacao,ambiente_localizacao,atendimento_localizacao,bebida_localizacao,tira_gosto_localizacao,comentario_localizacao,latitude_localizacao,longitude_localizacao  from localizacao where id_localizacao = ?", [id]) as Timeout[];
+            lista = await sql.query("select id_localizacao,nome_localizacao,id_tipo_local,dia_semana_localizacao,horario_abertura_localizacao,horario_fechamento_localizacao,preco_localizacao,ambiente_localizacao,atendimento_localizacao,bebida_localizacao,tira_gosto_localizacao,comentario_localizacao,latitude_localizacao,longitude_localizacao  from localizacao where id_localizacao = ?", [id_localizacao]) as Timeout[];
         });
 
         return ((lista && lista[0]) || null);
