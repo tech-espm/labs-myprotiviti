@@ -2,14 +2,15 @@
 import wrap = require("express-async-error-wrapper");
 import Usuario = require("../models/usuario");
 import Projeto = require("../models/projeto");
-//import Cliente = require("../models/cliente");
+import Cliente = require("../models/cliente");
 import Segmento = require("../models/segmento");
 import Solucao = require("../models/solucao");
-// origem lead - contato
-// matriz de serviço    
+import FormaContato = require("../models/formaContato");
+import MatrizServico = require("../models/matrizServico");
+import ResponsavelProposta = require("../models/responsavelProposta");
 import PursuitTeam = require("../models/pursuitTeam");
-// escritório líder
-// cc líder
+import EscritorioLider = require("../models/escritorioLider");
+import CcLider = require("../models/ccLider");
 
 const router = express.Router();
 
@@ -21,7 +22,16 @@ router.all("/criar", wrap(async (req: express.Request, res: express.Response) =>
         res.render("negocios/projeto/alterar", {
             titulo: "Criar Projeto",
             usuario: u,
-            item: null
+            item: null,
+            clientes: await Cliente.listar(),
+            segmentos: await Segmento.listar(),
+            solucoes: await Solucao.listar(),
+            formasContato: await FormaContato.listar(),
+            matrizServicos: await MatrizServico.listar(),
+            responsaveisProposta: await ResponsavelProposta.listar(),
+            pursuitTeams: await PursuitTeam.listar(),
+            escritoriosLider: await EscritorioLider.listar(),
+            ccLideres: await CcLider.listar()
         });
     }
 }));
@@ -39,7 +49,16 @@ router.all("/alterar", wrap(async (req: express.Request, res: express.Response) 
             res.render("negocios/projeto/alterar", {
                 titulo: "Editar Projeto",
                 usuario: u,
-                item: item
+                item: item,
+                clientes: await Cliente.listar(),
+                segmentos: await Segmento.listar(),
+                solucoes: await Solucao.listar(),
+                formasContato: await FormaContato.listar(),
+                matrizServicos: await MatrizServico.listar(),
+                responsaveisProposta: await ResponsavelProposta.listar(),
+                pursuitTeams: await PursuitTeam.listar(),
+                escritoriosLider: await EscritorioLider.listar(),
+                ccLideres: await CcLider.listar()
             });
     }
 }));

@@ -221,6 +221,7 @@
     <TypeScriptCompile Include="routes\api\empresa.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="routes\api\formaContato.ts" />
     <TypeScriptCompile Include="routes\api\inovacao.ts" />
     <TypeScriptCompile Include="routes\api\oportunidade.ts">
       <SubType>Code</SubType>
@@ -230,7 +231,7 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="routes\api\pec.ts" />
     <TypeScriptCompile Include="routes\api\projeto.ts" />
-    <TypeScriptCompile Include="routes\api\pursuitTeam - Copy.ts" />
+    <TypeScriptCompile Include="routes\api\pursuitTeam.ts" />
     <TypeScriptCompile Include="routes\api\responsavelProposta.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -241,6 +242,7 @@
     <TypeScriptCompile Include="routes\carreiraCapacitacaoTreinamentos.ts" />
     <TypeScriptCompile Include="routes\carreiraCurriculo.ts" />
     <TypeScriptCompile Include="routes\cliente.ts" />
+    <TypeScriptCompile Include="routes\formaContato.ts" />
     <TypeScriptCompile Include="routes\oportunidade.ts" />
     <TypeScriptCompile Include="routes\inovacao.ts" />
     <TypeScriptCompile Include="routes\mentorado.ts" />
