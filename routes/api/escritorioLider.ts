@@ -35,7 +35,7 @@ router.post("/alterar", wrap(async (req: express.Request, res: express.Response)
         return;
     let es = req.body as EscritorioLider;
     if (es)
-        es.id_escritorio_lider = parseInt(req.body.id_solucao);
+        es.id_escritorio_lider = parseInt(req.body.id_escritorio_lider);
     jsonRes(res, 400, (es && !isNaN(es.id_escritorio_lider)) ? await EscritorioLider.alterar(es) : "Dados inválidos!");
 }));
 
