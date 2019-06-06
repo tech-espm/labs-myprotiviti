@@ -21,6 +21,7 @@ export = class Projeto {
     public nome_forma_contato: string;
 	public nome_responsavel_proposta: string;
 	public nome_escritorio_lider: string;
+	public nome_cc_lider: string;
 
 
 	private static validar(p: Projeto): string {
