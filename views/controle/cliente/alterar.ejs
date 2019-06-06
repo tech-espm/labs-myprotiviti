@@ -4,7 +4,7 @@
 		<form id="form" class="panel panel-default" action="#">
 			<div class="panel-heading">Adicionar Novo Cliente</div>
 			<div class="panel-body no-bottom">
-				
+				<input type="hidden" id="id_cc_lider" name="id_nome_cliente" value="<%=(item ? item.id_nome_cliente : 0) %>" />
 				<div class="form-group">
 					<label for="novoCliente">Nome do Cliente</label>
 					<input id="novoCliente" name="novoCliente" maxlength="50" class="form-control upper" type="text" spellcheck="false" value="" />
@@ -21,4 +21,49 @@
 	</div>
 </div>
 
+<%- contentFor("scripts") %>
+<script type="text/javascript">
+    //<![CDATA[
+    "use strict";
 
+    $("#form").validate({
+        rules: {
+            nome_cliente: {
+                required: true,
+                minlength: 3,
+                maxlength: 255
+            },
+        },
+
+        submitHandler: function (form) {
+            if (JsonWebApi.active)
+                return;
+
+            Notification.wait();
+
+            //<% if (item) { %>
+
+            JsonWebApi.postFormData("/api/cliente/alterar", form, function (response) {
+				if (response.success)
+					Notification.success("Cliente alterada com sucesso! \uD83D\uDE04");
+				else
+					Notification.error(response.value, true);
+            });
+
+            //<% } else { %>
+
+            JsonWebApi.postFormData("/api/cliente/criar", form, function (response) {
+				if (response.success) {
+					form.reset();
+					$("#form").validate().resetForm();
+					Notification.success("Cliente criado com sucesso! \uD83D\uDE04");
+				} else {
+					Notification.error(response.value, true);
+				}
+            });
+
+            //<% } %>
+        }
+    });
+    //]]>
+</script>
