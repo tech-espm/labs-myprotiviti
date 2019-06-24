@@ -2,6 +2,7 @@
 import wrap = require("express-async-error-wrapper");
 import Usuario = require("../models/usuario");
 import TipoLocal = require("../models/tipoLocal");
+import Timeout = require("../models/timeout");
 
 const router = express.Router();
 
@@ -56,7 +57,7 @@ router.get("/listar", wrap(async (req: express.Request, res: express.Response) =
 	if (!u || !u.admin) {
 		res.redirect("/acesso");
 	} else {
-		res.render("timeout/listar", { titulo: "Gerenciar Time-Out", usuario: u });
+        res.render("timeout/listar", { titulo: "Gerenciar Time-Out", usuario: u, lista: JSON.stringify(await Timeout.listar())});
 	}
 }));
 
