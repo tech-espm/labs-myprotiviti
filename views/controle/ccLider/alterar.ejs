@@ -2,16 +2,19 @@
 <div class="row">
 	<div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
 		<form id="form" class="panel panel-default" action="#">
-			<div class="panel-heading">Adicionar Novo Pursuit Team</div>
+			<div class="panel-heading">Adicionar Novo CC Líder</div>
 			<div class="panel-body no-bottom">
-				<input type="hidden" id="id_pursuit_team" name="id_pursuit_team" value="<%=(item ? item.id_pursuit_team : 0) %>" />
+				<input type="hidden" id="id_cc_lider" name="id_cc_lider" value="<%=(item ? item.id_cc_lider : 0) %>" />
 				<div class="form-group">
-					<label for="nome_pursuit_team">Nome do Pursuit Team</label>
-					<input id="nome_pursuit_team" name="nome_pursuit_team" maxlength="255" class="form-control upper" type="text" spellcheck="false" value="<%=(item ? item.nome_pursuit_team : '') %>" />
+					<label for="nome_cc_lider">Nome da Forma de Contato</label>
+					<input id="nome_cc_lider" name="nome_cc_lider" maxlength="50" class="form-control upper" type="text" spellcheck="false" value="<%=(item ? item.nome_cc_lider : '') %>" />
 				</div>
+        
+				
+
       </div>
 			<div class="panel-footer">
-				<input value="<%=(item ? 'Salvar Altera��es' : 'Criar') %>" class="btn btn-primary btn-lg btn-block" type="submit" />
+				<input value="<%=(item ? 'Salvar Alterações' : 'Criar') %>" class="btn btn-primary btn-lg btn-block" type="submit" />
 			</div>
 
 		</form>
@@ -25,7 +28,7 @@
 
     $("#form").validate({
         rules: {
-            nome_pursuit_team: {
+            nome_cc_lider: {
                 required: true,
                 minlength: 3,
                 maxlength: 255
@@ -40,20 +43,20 @@
 
             //<% if (item) { %>
 
-            JsonWebApi.postFormData("/api/pursuitTeam/alterar", form, function (response) {
+            JsonWebApi.postFormData("/api/ccLider/alterar", form, function (response) {
 				if (response.success)
-					Notification.success("Time alterado com sucesso! \uD83D\uDE04");
+					Notification.success("CC de Líder alterada com sucesso! \uD83D\uDE04");
 				else
 					Notification.error(response.value, true);
             });
 
             //<% } else { %>
 
-            JsonWebApi.postFormData("/api/pursuitTeam/criar", form, function (response) {
+            JsonWebApi.postFormData("/api/ccLider/criar", form, function (response) {
 				if (response.success) {
 					form.reset();
 					$("#form").validate().resetForm();
-					Notification.success("Time criado com sucesso! \uD83D\uDE04");
+					Notification.success("CC de Líder criada com sucesso! \uD83D\uDE04");
 				} else {
 					Notification.error(response.value, true);
 				}
@@ -64,4 +67,5 @@
     });
     //]]>
 </script>
+
 

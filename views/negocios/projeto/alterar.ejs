@@ -7,81 +7,95 @@
         <input type="hidden" id="id_projeto" name="id_projeto" value="<%=(item ? item.id_projeto : 0) %>" />
 				
           <div class="form-group">
-					  <label for="id_cliente">Nome do cliente</label>
+			<label for="id_cliente">Nome do cliente</label>
             <select id="id_cliente" name="id_cliente" class="form-control" size="1">
               <option value="">SELECIONE...</option>
-              <option value="1" <%=(item && item.id_cliente == 1 ? 'selected="selected"' : '')%>>Cliente 1</option>
-            
-          </select>
-				</div>
-        
-				<div class="form-group">
-					<label for="segmento">Segmento</label>
-          <select id="segmento" name="segmento" class="form-control" size="1">
-            <option value="">SELECIONE...</option>
-            <option value="1" <%=(item && item.id_industria == 1 ? 'selected="selected"' : '')%>>Bens de Consumo e Varejo</option>
-            
-          </select>
-				</div>
-				
-				<div class="form-group">
-					<label for="id_solucao">Soluções</label>
-            <select id="id_solucao" name="id_solucao" class="form-control" size="1">
-              <option value="">SELECIONE...</option>
-              <option value="100" <%=(item && item.id_solucao == 100 ? 'selected="selected"' : '')%>>Transformação digital</option>
-              
+              <% for (var i = 0; i < clientes.length; i++) { %>
+              <option value="<%=clientes[i].id_cliente %>" <%=(item && item.id_cliente == clientes[i].id_cliente ? 'selected="selected"' : '')%>><%=clientes[i].nome_cliente %></option>
+              <% } %>
             </select>
-				</div>
+		  </div>
+        
+		  <div class="form-group">
+		    <label for="id_segmento">Segmento</label>
+            <select id="id_segmento" name="id_segmento" class="form-control" size="1">
+                <option value="">SELECIONE...</option>
+                <% for (var i = 0; i < segmentos.length; i++) { %>
+                <option value="<%=segmentos[i].id_segmento %>" <%=(item && item.id_segmento == segmentos[i].id_segmento ? 'selected="selected"' : '')%>><%=segmentos[i].nome_segmento %></option>
+                <% } %>
+            </select>
+		  </div>
+				
+		    <div class="form-group">
+			  <label for="id_solucao">Soluções</label>
+              <select id="id_solucao" name="id_solucao" class="form-control" size="1">
+                  <option value="">SELECIONE...</option>
+                  <% for (var i = 0; i < solucoes.length; i++) { %>
+                  <option value="<%=solucoes[i].id_solucao %>" <%=(item && item.id_solucao == solucoes[i].id_solucao ? 'selected="selected"' : '')%>><%=solucoes[i].nome_solucao %></option>
+                  <% } %>
+              </select>
+			</div>
 
-        <div class="form-group">
-          <label for="origemLead">Origem do Lead</label>
-          <select id="origemLead" name="origemLead" class="form-control" size="1">
-            <option value="">SELECIONE...</option>
-            <option value="">Telefone</option>
-            <option value="">E-mail</option>
-            <option value="">Indicação</option>
-          </select>
-        </div>
+            <div class="form-group">
+              <label for="id_forma_contato">Forma de contato</label>
+              <select id="id_forma_contato" name="id_forma_contato" class="form-control" size="1">
+                <option value="">SELECIONE...</option>
+                  <% for (var i = 0; i < formasContato.length; i++) { %>
+                  <option value="<%=formasContato[i].id_forma_contato %>" <%=(item && item.id_forma_contato == formasContato[i].id_forma_contato ? 'selected="selected"' : '')%>><%=formasContato[i].nome_forma_contato %></option>
+                  <% } %>
+              </select>
+            </div>
 
           <div class="form-group">
-            <label for="matrizServico">Matriz de Serviço</label>
-            <select id="matrizServico" name="matrizServico" class="form-control" size="1">
+            <label for="id_matriz_servico">Matriz de Serviço</label>
+            <select id="id_matriz_servico" name="id_matriz_servico" class="form-control" size="1">
               <option value="">SELECIONE...</option>
-              <option value="">Telefone</option>
-              <option value="">E-mail</option>
-              <option value="">Indicação</option>
+              <% for (var i = 0; i < matrizServicos.length; i++) { %>
+              <option value="<%=matrizServicos[i].id_matriz_servico %>" <%=(item && item.id_matriz_servico == matrizServicos[i].id_matriz_servico ? 'selected="selected"' : '')%>><%=matrizServicos[i].nome_matriz_servico %></option>
+              <% } %>
             </select>
           </div>  
           
-        <div class="form-group">
-          <label for="responsavelProposta">Responsável pela proposta</label>
-          <select id="responsavelProposta" name="responsavelProposta" class="form-control" size="1">
-            <option value="">SELECIONE...</option>
-            <option value="">João</option>
-            <option value="">Alfredo</option>
-            <option value="">Maria</option>
-          </select>
-        </div>
+           <div class="form-group">
+            <label for="id_responsavel_proposta">Responsável pela proposta</label>
+            <select id="id_responsavel_proposta" name="id_responsavel_proposta" class="form-control" size="1">
+              <option value="">SELECIONE...</option>
+               <% for (var i = 0; i < responsaveisProposta.length; i++) { %>
+               <option value="<%=responsaveisProposta[i].id_responsavel_proposta %>" <%=(item && item.id_responsavel_proposta == responsaveisProposta[i].id_responsavel_proposta ? 'selected="selected"' : '')%>><%=responsaveisProposta[i].nome_responsavel_proposta %></option>
+               <% } %>
+            </select>
+           </div>
 
         <div class="form-group">
           <label for="id_pursuit_team">Pursuit Team</label>
           <select id="id_pursuit_team" name="id_pursuit_team" class="form-control" size="1">
             <option value="">SELECIONE...</option>
-            <option value="100" <%=(item && item.id_pursuit_team == 1 ? 'selected="selected"' : '')%>>Equipe 1</option>
-            
+            <% for (var i = 0; i < pursuitTeams.length; i++) { %>
+            <option value="<%=pursuitTeams[i].id_pursuit_team %>" <%=(item && item.id_pursuit_team == pursuitTeams[i].id_pursuit_team ? 'selected="selected"' : '')%>><%=pursuitTeams[i].nome_pursuit_team %></option>
+            <% } %>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="escritorioLider">Escritório Líder</label>
-          <select id="escritorioLider" name="escritorioLider" class="form-control" size="1">
+          <label for="id_escritorio_lider">Escritório Líder</label>
+          <select id="id_escritorio_lider" name="id_escritorio_lider" class="form-control" size="1">
             <option value="">SELECIONE...</option>
-            <option value="">Escritório 1</option>
-            <option value="">Escritório 2</option>
-            <option value="">Escritório 3</option>
+            <% for (var i = 0; i < escritoriosLider.length; i++) { %>
+            <option value="<%=escritoriosLider[i].id_escritorio_lider %>" <%=(item && item.id_escritorio_lider == escritoriosLider[i].id_escritorio_lider ? 'selected="selected"' : '')%>><%=escritoriosLider[i].nome_escritorio_lider %></option>
+            <% } %>
           </select>
         </div>
 
+          <div class="form-group">
+          <label for="ccLider">CC líder</label>
+          <select id="ccLider" name="ccLider" class="form-control" size="1">
+            <option value="">SELECIONE...</option>
+            <% for (var i = 0; i < ccLideres.length; i++) { %>
+            <option value="<%=ccLideres[i].id_cc_lider %>" <%=(item && item.id_escritorio_lider == ccLideres[i].id_cc_lider ? 'selected="selected"' : '')%>><%=ccLideres[i].nome_cc_lider %></option>
+            <% } %>
+          </select>
+        </div>
+          
         <div class="form-group">
           <label for="valorBrutoVenda">Valor bruto da renda</label>
           <input id="valorBrutoVenda" name="valorBrutoVenda" maxlength="50" class="form-control upper" type="text" spellcheck="false" value="" />
@@ -94,7 +108,7 @@
         
       </div>
 			<div class="panel-footer">
-				<input value="Criar" class="btn btn-primary btn-lg btn-block" type="submit" />
+				<input value="<%=(item ? 'Salvar Alterações' : 'Criar') %>" class="btn btn-primary btn-lg btn-block" type="submit" />
 			</div>
 
 		</form>

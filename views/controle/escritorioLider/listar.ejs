@@ -35,13 +35,16 @@
 	"use strict";
 
 	var tabela = prepareDataTable("#tabela", {
-		order: [[1, "asc"]],
+		order: [[0, "asc"]],
 		deferRender: true,
 		columns: [
-            { title: "Cliente", render: encode, data: "nome_cliente" },
-			{ title: "", "class": "col-min", searchable: false, orderable: false, data: "id_cliente", render: function (v, type, row) { return "<a target=\"_blank\" title=\"Editar\" href=\"/cliente/alterar?id_cliente=" + row.id_cliente + "\" class=\"btn btn-outline btn-primary\"><i class=\"fa fa-nomargin fa-edit\"></i></a> <button title=\"Excluir\" type=\"button\" data-excluir=\"1\" class=\"btn btn-outline btn-danger\"><i class=\"fa fa-nomargin fa-times\"></i></button>"; } },
+            { title: "Escritório líder", render: encode, data: "nome_escritorio_lider" },
+			{ title: "", "class": "col-min", searchable: false, orderable: false, data: "id_escritorio_lider", render: function (v, type, row) { return "<a target=\"_blank\" title=\"Editar\" href=\"/escritorioLider/alterar?id_escritorio_lider=" + row.id_escritorio_lider + "\" class=\"btn btn-outline btn-primary\"><i class=\"fa fa-nomargin fa-edit\"></i></a> <button title=\"Excluir\" type=\"button\" data-excluir=\"1\" class=\"btn btn-outline btn-danger\"><i class=\"fa fa-nomargin fa-times\"></i></button>"; } },
 		],
+	
 		data: <%- lista %>
+
+    
 	});
 
 	var trClicada;
@@ -50,10 +53,10 @@
 		if (JsonWebApi.active)
 			return;
 
-		var cliente = tabela.row(trClicada = this.parentNode.parentNode).data();
+		var formato = tabela.row(trClicada = this.parentNode.parentNode).data();
 
 		if (this.getAttribute("data-excluir")) {
-			$("#lblNome").text(cliente.nome_cliente);
+			$("#lblNome").text(formato.nome);
 
 			$("#modalExcluir").modal({
 				backdrop: "static",
@@ -68,19 +71,19 @@
 
 		$("#modalExcluir").modal("hide");
 
-		var cliente = tabela.row(trClicada).data();
+		var formato = tabela.row(trClicada).data();
 
 		Notification.wait();
 
-		JsonWebApi.get("/api/cliente/excluir", function (response) {
+		JsonWebApi.get("/api/escritorioLider/excluir", function (response) {
 			if (response.success) {
-				Notification.success("Cliente excluído com sucesso! \uD83D\uDE04");
+				Notification.success("Formato excluído com sucesso! \uD83D\uDE04");
 				tabela.row(trClicada).remove().draw();
 			} else {
 				Notification.error(response.value, true);
 			}
-            trClicada = null;
-        }, "id_cliente", cliente.id_cliente);
+			trClicada = null;
+		}, "id_escritorio_lider", formato.id_escritorio_lider);
 	}
 
 	//]]>
