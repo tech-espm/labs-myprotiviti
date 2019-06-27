@@ -1,7 +1,7 @@
 ﻿import express = require("express");
 import wrap = require("express-async-error-wrapper");
 import Usuario = require("../models/usuario");
-import TipoLocal = require("../models/tipolocal");
+import TipoLocal = require("../models/tipoLocal");
 
 const router = express.Router();
 
@@ -10,8 +10,8 @@ router.all("/criar", wrap(async (req: express.Request, res: express.Response) =>
     if (!u || !u.admin) {
         res.redirect("/acesso");
     } else {
-        res.render("controle/tipolocal/alterar", {
-            titulo: "Criar Locacl",
+        res.render("controle/tipoLocal/alterar", {
+            titulo: "Criar Local",
             usuario: u,
             item: null
         });
@@ -41,7 +41,7 @@ router.get("/listar", wrap(async (req: express.Request, res: express.Response) =
     if (!u || !u.admin) {
         res.redirect("/acesso");
     } else {
-        res.render("controle/tipolocal/listar", {
+        res.render("controle/tipoLocal/listar", {
             titulo: "Gerenciar Locais",
             usuario: u,
             lista: JSON.stringify(await TipoLocal.listar())

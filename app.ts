@@ -114,6 +114,7 @@ app.use("/matrizServico", require("./routes/matrizServico"));
 app.use("/ccLider", require("./routes/ccLider"));
 app.use("/responsavelProposta", require("./routes/responsavelProposta"));
 app.use("/escritorioLider", require("./routes/escritorioLider"));
+app.use("/tipoLocal", require("./routes/tipoLocal"));
 
 
 // API
@@ -138,6 +139,7 @@ app.use("/api/matrizServico", require("./routes/api/matrizServico"));
 app.use("/api/ccLider", require("./routes/api/ccLider"));
 app.use("/api/responsavelProposta", require("./routes/api/responsavelProposta"));
 app.use("/api/escritorioLider", require("./routes/api/escritorioLider"));
+app.use("/api/tipoLocal", require("./routes/api/tipoLocal"));
 
 // Depois de registrados todos os caminhos das rotas e seus
 // tratadores, registramos os tratadores que serão chamados

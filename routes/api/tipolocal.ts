@@ -2,7 +2,7 @@
 import wrap = require("express-async-error-wrapper");
 import jsonRes = require("../../utils/jsonRes");
 import Usuario = require("../../models/usuario");
-import TipoLocal = require("../../models/tipolocal");
+import TipoLocal = require("../../models/tipoLocal");
 
 const router = express.Router();
 

@@ -40,7 +40,7 @@
 
             //<% if (item) { %>
 
-            JsonWebApi.postFormData("/api/tipolocal/alterar", form, function (response) {
+            JsonWebApi.postFormData("/api/tipoLocal/alterar", form, function (response) {
 				if (response.success)
 					Notification.success("Local alterado com sucesso! \uD83D\uDE04");
 				else
@@ -49,7 +49,7 @@
 
             //<% } else { %>
 
-            JsonWebApi.postFormData("/api/tipolocal/criar", form, function (response) {
+            JsonWebApi.postFormData("/api/tipoLocal/criar", form, function (response) {
 				if (response.success) {
 					form.reset();
 					$("#form").validate().resetForm();

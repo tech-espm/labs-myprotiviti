@@ -127,6 +127,8 @@
     <Content Include="views\controle\pursuitTeam\alterar.ejs" />
     <Content Include="views\controle\pursuitTeam\listar.ejs" />
     <Content Include="views\controle\pursuitTeam\listar.ejs" />
+    <Content Include="views\controle\tipoLocal\alterar.ejs" />
+    <Content Include="views\controle\tipoLocal\listar.ejs" />
     <Content Include="views\inovacao\alterar.ejs" />
     <Content Include="views\inovacao\listar.ejs" />
     <Content Include="views\layout-index.ejs" />
@@ -154,7 +156,7 @@
     <Content Include="views\pec\listar.ejs" />
     <Content Include="views\rodape.ejs" />
     <Content Include="views\shared\erro.ejs" />
-    <Content Include="views\timeout\criar.ejs" />
+    <Content Include="views\timeout\alterar.ejs" />
     <Content Include="views\timeout\listar.ejs" />
     <Content Include="views\timeout\mapa.ejs" />
     <Content Include="views\tutorial\alterar.ejs" />
@@ -217,12 +219,14 @@
     <TypeScriptCompile Include="routes\api\alocacao.ts" />
     <TypeScriptCompile Include="routes\api\carreiraCapacitacaoTreinamentos.ts" />
     <TypeScriptCompile Include="routes\api\carreiraCurriculo.ts" />
+    <TypeScriptCompile Include="routes\api\ccLider.ts" />
     <TypeScriptCompile Include="routes\api\cliente.ts" />
     <TypeScriptCompile Include="routes\api\empresa.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="routes\api\formaContato.ts" />
     <TypeScriptCompile Include="routes\api\inovacao.ts" />
+    <TypeScriptCompile Include="routes\api\matrizServico.ts" />
     <TypeScriptCompile Include="routes\api\oportunidade.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -236,13 +240,18 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="routes\api\escritorioLider.ts" />
+    <TypeScriptCompile Include="routes\api\segmento.ts" />
     <TypeScriptCompile Include="routes\api\solucao.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="routes\api\timeout.ts" />
+    <TypeScriptCompile Include="routes\api\tipoLocal.ts" />
     <TypeScriptCompile Include="routes\carreiraCapacitacaoTreinamentos.ts" />
     <TypeScriptCompile Include="routes\carreiraCurriculo.ts" />
+    <TypeScriptCompile Include="routes\ccLider.ts" />
     <TypeScriptCompile Include="routes\cliente.ts" />
     <TypeScriptCompile Include="routes\formaContato.ts" />
+    <TypeScriptCompile Include="routes\matrizServico.ts" />
     <TypeScriptCompile Include="routes\oportunidade.ts" />
     <TypeScriptCompile Include="routes\inovacao.ts" />
     <TypeScriptCompile Include="routes\mentorado.ts" />
@@ -262,6 +271,7 @@
     <TypeScriptCompile Include="routes\administrativo.ts" />
     <TypeScriptCompile Include="routes\api\usuario.ts" />
     <TypeScriptCompile Include="routes\timeout.ts" />
+    <TypeScriptCompile Include="routes\tipoLocal.ts" />
     <TypeScriptCompile Include="routes\usuario.ts" />
     <TypeScriptCompile Include="routes\home.ts" />
     <Content Include="tsconfig.json" />
