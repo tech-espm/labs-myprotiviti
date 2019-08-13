@@ -394,7 +394,8 @@ i.fa-nomargin {
     background-image: url('/imagens/skyline.svg');
     background-position: bottom;
     background-size: auto 9%;
-    background-repeat: repeat-x;
+    /*background-repeat: repeat-x;*/
+    background-repeat:no-repeat;
 }
 
 .index-header {
