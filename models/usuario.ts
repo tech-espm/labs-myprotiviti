@@ -189,9 +189,6 @@ export = class Usuario {
 		if (u.nome.length < 3 || u.nome.length > 100)
 			return "Nome inválido";
 
-		if (u.perfil !== Usuario.PerfilAdmin)
-			return "Tipo inválido";
-
 		return null;
 	}
 
@@ -230,6 +227,8 @@ export = class Usuario {
 			} catch (e) {
 				if (e.code && e.code === "ER_DUP_ENTRY")
 					res = "O login \"" + u.login + "\" já está em uso";
+				else if (e.code && (e.code === "ER_NO_REFERENCED_ROW" || e.code === "ER_NO_REFERENCED_ROW_2"))
+					res = "Perfil inexistente";
 				else
 					throw e;
 			}
