@@ -233,7 +233,7 @@
 
 			JsonWebApi.postFormData("/api/timeout/alterar", form, function (response) {
 				if (response.success)
-					Notification.success("Timeout alterado com sucesso! \uD83D\uDE04");
+					Notification.success("Time out alterado com sucesso! \uD83D\uDE04");
 				else
 					Notification.error(response.value, true);
 			});
@@ -244,7 +244,7 @@
 				if (response.success) {
 					form.reset();
 					$("#form").validate().resetForm();
-					Notification.success("Timeout criado com sucesso! \uD83D\uDE04");
+					Notification.success("Time out criado com sucesso! \uD83D\uDE04");
 				} else {
 					Notification.error(response.value, true);
 				}

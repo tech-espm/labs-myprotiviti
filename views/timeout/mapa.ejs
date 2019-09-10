@@ -18,6 +18,8 @@
 <script type='text/javascript' src='/lib/leaflet/js/leaflet.js'></script>
 
 <script type='text/javascript'>
+    var timeouts = <%- timeouts %>;
+
     function iniciarMapa(lat, lng) {
         var latlng = new L.LatLng(lat, lng);
         var map = L.map('map').setView(latlng, 14);
@@ -28,10 +30,27 @@
             minZoom: 10,
             zoom: 14
         }).addTo(map);
-        var marker = L.marker(latlng).addTo(map);
 
-        for (var i = 0; i < marker.length; i++) {
-            marker[i]=L.marker(latlng).addTo(map);
+        var highDpi = (("matchMedia" in window) && (highDpi = window.matchMedia("(min-resolution: 150dpi)")) && highDpi.matches),
+            icons = [null];
+        for (i = 1; i <= 2; i++) {
+            icons.push(L.icon({
+                iconUrl: (highDpi ? "/lib/leaflet/js/images/" + i + "-icon-2x.png" : "/lib/leaflet/js/images/" + i + "-icon.png"),
+                iconSize: [25, 41],
+                iconAnchor: [12, 39],
+                popupAnchor: [0, -39],
+                shadowUrl: (highDpi ? "/lib/leaflet/js/images/marker-shadow-2x.png" : "/lib/leaflet/js/images/marker-shadow.png"),
+                shadowSize: [41, 41],
+                shadowAnchor: [13, 38]
+            }));
+        }
+
+        for (var i = 0; i < timeouts.length; i++) {
+            var marker = L.marker([timeouts[i].latitude_localizacao, timeouts[i].longitude_localizacao], {
+                icon: icons[timeouts[i].id_tipo_local]
+            }).addTo(map);
+            marker.timeout = timeouts[i];
+            timeouts[i].marker = marker;
         }
 
         map.on('click', function (e) {
@@ -41,11 +60,11 @@
                 .openOn(map);
         });
     }
-    if (location.href.indexOf("https://") === 0) {
+    if (location.href.indexOf("https://") === 0 || location.href.indexOf("localhost") >= 0) {
         navigator.geolocation.getCurrentPosition(function (location) {
             iniciarMapa(location.coords.latitude, location.coords.longitude);
         });
     } else {
-        iniciarMapa(-23.5918641, -46.6375661);
+        iniciarMapa(-23.611178, -46.696075);
     }
 </script>

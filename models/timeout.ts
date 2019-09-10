@@ -27,7 +27,7 @@ export = class Timeout {
         if (isNaN(t.id_tipo_local) || t.id_tipo_local <= 0) return "Tipo de local inválido";
         if (!t.nome_localizacao) return "Nome de localização inválido";
         if (isNaN(t.dia_semana_localizacao) || t.dia_semana_localizacao <= 0) return "Dias da semana inválidos";
-        if (!t.horario_abertura_localizacao) return "Horario de abaertura inválido";
+        if (!t.horario_abertura_localizacao) return "Horario de abertura inválido";
         if (!t.horario_fechamento_localizacao) return "Horario de fechamento inválido";
         if (isNaN(t.preco_localizacao) || t.preco_localizacao <= 0) return "Preço  inválido";
         if (isNaN(t.ambiente_localizacao) || t.ambiente_localizacao <= 0) return "Ambiente inválido";
@@ -48,7 +48,7 @@ export = class Timeout {
         await Sql.conectar(async (sql: Sql) => {
             lista = await sql.query("select loc.id_localizacao,loc.nome_localizacao,tpl.nome_tipo_local,loc.dia_semana_localizacao,loc.horario_abertura_localizacao, "+
                 " loc.horario_fechamento_localizacao, loc.preco_localizacao, loc.ambiente_localizacao, loc.atendimento_localizacao, "+
-                " loc.bebida_localizacao, loc.tira_gosto_localizacao, loc.comentario_localizacao ,loc.latitude_localizacao, loc.longitude_localizacao" +
+                " loc.bebida_localizacao, loc.tira_gosto_localizacao, loc.comentario_localizacao ,loc.id_tipo_local, loc.latitude_localizacao, loc.longitude_localizacao" +
                 " from localizacao loc, tipo_local tpl where tpl.id_tipo_local = loc.id_tipo_local order by nome_localizacao  asc") as Timeout[];
         });
 
@@ -87,7 +87,7 @@ export = class Timeout {
         await Sql.conectar(async (sql: Sql) => {
             await sql.query("update localizacao set id_tipo_local=?,nome_localizacao=?,dia_semana_localizacao=?,horario_abertura_localizacao=?,horario_fechamento_localizacao=?,preco_localizacao=?,ambiente_localizacao=?,atendimento_localizacao=?,bebida_localizacao=?,tira_gosto_localizacao=?,comentario_localizacao=?,latitude_localizacao=?,longitude_localizacao  = ? where id_localizacao = ?", [t.id_tipo_local, t.nome_localizacao, t.dia_semana_localizacao, t.horario_abertura_localizacao, t.horario_fechamento_localizacao, t.preco_localizacao, t.ambiente_localizacao, t.atendimento_localizacao, t.bebida_localizacao, t.tira_gosto_localizacao, t.comentario_localizacao, t.latitude_localizacao, t.longitude_localizacao, t.id_localizacao]);
             if (!sql.linhasAfetadas)
-                res = "Timeout inexistente";
+                res = "Time out inexistente";
         });
 
         return res;
@@ -99,7 +99,7 @@ export = class Timeout {
         await Sql.conectar(async (sql: Sql) => {
             await sql.query("delete from curso where id _localizacao= ?", [id]);
             if (!sql.linhasAfetadas)
-                res = "Timeout inexistente";
+                res = "Time out inexistente";
         });
 
         return res;
