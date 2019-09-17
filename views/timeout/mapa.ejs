@@ -19,29 +19,45 @@
 
 <script type='text/javascript'>
     var timeouts = <%- timeouts %>;
+    var map = L.map('map');
+
+    function onMarkerClick() {
+        var timeout = this.timeout;
+        var popup = L.popup()
+            .setLatLng([timeout.latitude_localizacao, timeout.longitude_localizacao])
+            .setContent('<p>' + timeout.nome_localizacao
+                + '<br>Horários: ' + timeout.horario_abertura_localizacao + ' às ' + timeout.horario_fechamento_localizacao
+                + '<br>Preço: ' + timeout.preco_localizacao
+                + '<br>Ambiente: ' + timeout.ambiente_localizacao
+                + '<br>Atendimento: ' + timeout.atendimento_localizacao
+                + '<br>Bebidas: ' + timeout.bebida_localizacao
+                + '<br>Tira gosto: ' + timeout.tira_gosto_localizacao + '</p>')
+            .openOn(map);
+    }
 
     function iniciarMapa(lat, lng) {
         var latlng = new L.LatLng(lat, lng);
-        var map = L.map('map').setView(latlng, 14);
+        map.setView(latlng, 14);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <br> <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/"         title="Flaticon">www.flaticon.com</a></div>',
             subdomains: ['a', 'b', 'c'],
             center: [latlng],
             minZoom: 10,
             zoom: 14
         }).addTo(map);
 
+
         var highDpi = (("matchMedia" in window) && (highDpi = window.matchMedia("(min-resolution: 150dpi)")) && highDpi.matches),
             icons = [null];
-        for (i = 1; i <= 2; i++) {
+        for (i = 2; i >= 1; i--) {
             icons.push(L.icon({
-                iconUrl: (highDpi ? "/lib/leaflet/js/images/" + i + "-icon-2x.png" : "/lib/leaflet/js/images/" + i + "-icon.png"),
-                iconSize: [25, 41],
-                iconAnchor: [12, 39],
-                popupAnchor: [0, -39],
-                shadowUrl: (highDpi ? "/lib/leaflet/js/images/marker-shadow-2x.png" : "/lib/leaflet/js/images/marker-shadow.png"),
-                shadowSize: [41, 41],
-                shadowAnchor: [13, 38]
+                iconUrl: (highDpi ? "/lib/leaflet/js/images/" + i + "-iconi-2x.png" : "/lib/leaflet/js/images/" + i + "-iconi.png"),
+                iconSize: [32, 32],
+                iconAnchor: [16, 16],
+                popupAnchor: [0, -39]//,
+                //        shadowUrl: (highDpi ? "/lib/leaflet/js/images/marker-shadow-2x.png" : "/lib/leaflet/js/images/marker-shadow.png"),
+                //        shadowSize: [32, 32],
+                //        shadowAnchor: [0, 32]
             }));
         }
 
@@ -51,6 +67,7 @@
             }).addTo(map);
             marker.timeout = timeouts[i];
             timeouts[i].marker = marker;
+            marker.on('click', onMarkerClick);
         }
 
         map.on('click', function (e) {
@@ -59,7 +76,9 @@
                 .setContent('<p><a href="/timeout/criar?lat=' + encodeURIComponent(e.latlng.lat) + '&lng=' + encodeURIComponent(e.latlng.lng) + '">Adicionar localização</a></p>')
                 .openOn(map);
         });
+        
     }
+
     if (location.href.indexOf("https://") === 0 || location.href.indexOf("localhost") >= 0) {
         navigator.geolocation.getCurrentPosition(function (location) {
             iniciarMapa(location.coords.latitude, location.coords.longitude);
