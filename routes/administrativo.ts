@@ -7,7 +7,8 @@ const router = express.Router();
 
 router.all("/criar", wrap(async (req: express.Request, res: express.Response) => {
 	let u = await Usuario.cookie(req);
-	if (!u || !u.admin) {
+	// if (!u || !u.admin) {
+	if (!u) {
 		res.redirect("/acesso");
 	} else {
 		res.render("tutorial/alterar", {
@@ -21,7 +22,8 @@ router.all("/criar", wrap(async (req: express.Request, res: express.Response) =>
 
 router.all("/alterar", wrap(async (req: express.Request, res: express.Response) => {
 	let u = await Usuario.cookie(req);
-	if (!u || !u.admin) {
+	// if (!u || !u.admin) {
+	if (!u) {
 		res.redirect("/acesso");
 	} else {
 		let id = parseInt(req.query["id"]);
@@ -40,7 +42,8 @@ router.all("/alterar", wrap(async (req: express.Request, res: express.Response) 
 
 router.get("/listar", wrap(async (req: express.Request, res: express.Response) => {
 	let u = await Usuario.cookie(req);
-	if (!u || !u.admin) {
+	// if (!u || !u.admin) {
+	if (!u) {
 		res.redirect("/acesso");
 	} else {
 		res.render("tutorial/listar", {

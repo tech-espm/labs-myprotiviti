@@ -40,6 +40,7 @@
     <div id="navbar-collapse" class="sidebar-nav navbar-collapse collapse">
       <ul class="nav" id="side-menu">
 
+        
         <li>
           <a href="#">
             <i class="fa fa-file-video-o"></i>Administrativo<span class="fa arrow"></span>
@@ -61,7 +62,7 @@
           </ul>
         </li>
 
-
+        <% if (usuario.perfil == 1) { %>
         <li>
           <a href="#">
             <i class="fa fa-vcard-o"></i>Carreira<span class="fa arrow"></span>
@@ -341,7 +342,7 @@
 
           </ul>
         </li>
-
+        <% } %>
         <li>
           <a href="#">
             <i class="fa fa-cutlery"></i>Time Out<span class="fa arrow"></span>
@@ -364,7 +365,7 @@
 
           </ul>
         </li>
-
+        <% if (usuario.perfil == 1) {%>
         <li>
           <a href="#">
             <i class="fa fa-lightbulb-o"></i>Inovação<span class="fa arrow"></span>
@@ -596,7 +597,7 @@
 
           </ul>
         </li>
-
+        
         <li>
           <a href="#">
             <i class="fa fa-user-o"></i>Usuários<span class="fa arrow"></span>
@@ -612,7 +613,7 @@
                 <i class="fa fa-eye"></i>Visualizar
               </a>
             </li>
-
+            <%}%>
 
 
           </ul>
