@@ -242,6 +242,9 @@ export = class Usuario {
 		if ((res = Usuario.validar(u)))
 			return res;
 
+		if (u.id === 1)
+			return "Não é possível editar o usuário \"ADMIN\"";
+
 		await Sql.conectar(async (sql: Sql) => {
 			await sql.query("update usuario set nome = ?, perfil = ? where id = ?", [u.nome, u.perfil, u.id]);
 			res = sql.linhasAfetadas.toString();
@@ -253,6 +256,9 @@ export = class Usuario {
 	}
 
 	public static async excluir(id: number): Promise<string> {
+		if (id === 1)
+			return "Não é possível excluir o usuário \"ADMIN\"";
+
 		let res: string = null;
 
 		await Sql.conectar(async (sql: Sql) => {
