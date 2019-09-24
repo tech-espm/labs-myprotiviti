@@ -84,7 +84,7 @@
 
 		JsonWebApi.get("/api/timeout/excluir", function (response) {
 			if (response.success) {
-				Notification.success("Timeout excluído com sucesso! \uD83D\uDE04");
+				Notification.success("Time out excluído com sucesso! \uD83D\uDE04");
 				tabela.row(trClicada).remove().draw();
 			} else {
 				Notification.error(response.value, true);

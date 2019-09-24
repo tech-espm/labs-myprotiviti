@@ -25,7 +25,7 @@ router.get("/obter", wrap(async (req: express.Request, res: express.Response) =>
 }));
 
 router.post("/criar", multer().single("miniatura"), wrap(async (req: express.Request, res: express.Response) => {
-	let u = await Usuario.cookie(req, res, true);
+	let u = await Usuario.cookie(req, res);
 	if (!u)
 		return;
 	let a = req.body as Administrativo;
@@ -33,7 +33,7 @@ router.post("/criar", multer().single("miniatura"), wrap(async (req: express.Req
 }));
 
 router.post("/uploadVideo", multer().single("video"), wrap(async (req: express.Request, res: express.Response) => {
-	let u = await Usuario.cookie(req, res, true);
+	let u = await Usuario.cookie(req, res);
 	if (!u)
 		return;
 	let id = parseInt(req.query["id"]);
@@ -49,7 +49,7 @@ router.post("/alterar", wrap(async (req: express.Request, res: express.Response)
 }));
 
 router.get("/excluir", wrap(async (req: express.Request, res: express.Response) => {
-	let u = await Usuario.cookie(req, res, true);
+	let u = await Usuario.cookie(req, res);
 	if (!u)
 		return;
 	let id = parseInt(req.query["id"]);

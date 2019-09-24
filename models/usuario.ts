@@ -189,9 +189,6 @@ export = class Usuario {
 		if (u.nome.length < 3 || u.nome.length > 100)
 			return "Nome inválido";
 
-		if (u.perfil !== Usuario.PerfilAdmin)
-			return "Tipo inválido";
-
 		return null;
 	}
 
@@ -230,6 +227,8 @@ export = class Usuario {
 			} catch (e) {
 				if (e.code && e.code === "ER_DUP_ENTRY")
 					res = "O login \"" + u.login + "\" já está em uso";
+				else if (e.code && (e.code === "ER_NO_REFERENCED_ROW" || e.code === "ER_NO_REFERENCED_ROW_2"))
+					res = "Perfil inexistente";
 				else
 					throw e;
 			}
@@ -243,6 +242,9 @@ export = class Usuario {
 		if ((res = Usuario.validar(u)))
 			return res;
 
+		if (u.id === 1)
+			return "Não é possível editar o usuário \"ADMIN\"";
+
 		await Sql.conectar(async (sql: Sql) => {
 			await sql.query("update usuario set nome = ?, perfil = ? where id = ?", [u.nome, u.perfil, u.id]);
 			res = sql.linhasAfetadas.toString();
@@ -254,6 +256,9 @@ export = class Usuario {
 	}
 
 	public static async excluir(id: number): Promise<string> {
+		if (id === 1)
+			return "Não é possível excluir o usuário \"ADMIN\"";
+
 		let res: string = null;
 
 		await Sql.conectar(async (sql: Sql) => {
