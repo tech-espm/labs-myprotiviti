@@ -6,7 +6,7 @@
 	<div class="index-content">
 		<div class="index-content-column">
 
-
+            <%if(usuario.perfil == 1){%>
             <div class="dashboard-item-container">
                 <div class="dashboard-circle-container">
 			        <a href="/negocios/projeto/listar" class="dashboard-icon-container">
@@ -15,18 +15,18 @@
                 </div>
                 <span class="dashboard-title">Projetos</span>
             </div>
-			
+			<%}%>
 
             <div class="dashboard-item-container">
                 <div class="dashboard-circle-container">
-                    <a href="/adminstrativo/listar" class="dashboard-icon-container">
+                    <a href="/administrativo/listar" class="dashboard-icon-container">
                         <i class="fa fa-file-video-o fa-fw dashboard-icon"></i>
 			        </a>
                 </div>
                 <span class="dashboard-title">Administrativo</span>
             </div>
 
-
+            <%if(usuario.perfil == 1){%>
             <div class="dashboard-item-container">
                 <div class="dashboard-circle-container">
 			        <a href="/negocios/parcerias/listar" class="dashboard-icon-container">
@@ -45,8 +45,9 @@
                 </div>
                 <span class="dashboard-title">Indicação</span>
             </div>
+            <%}%>
 
-
+            <%if(usuario.perfil == 1){%>
             <div class="dashboard-item-container">
                 <div class="dashboard-circle-container">
 			        <a href="/perfil" class="dashboard-icon-container">
@@ -55,7 +56,8 @@
                 </div>
                 <span class="dashboard-title">Inovação</span>
             </div>
-
+            <%}%>
+                
             <div class="dashboard-item-container">
                 <div class="dashboard-circle-container">
 			        <a href="/timeout/listar" class="dashboard-icon-container">
