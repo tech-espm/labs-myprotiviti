@@ -7,6 +7,26 @@
     </div>
 </div>
 
+<div class="modal fade" tabindex="-1" role="dialog" id="modalExcluir">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Oops...</h4>
+			</div>
+			<div class="modal-body">
+				<p>
+					Tem certeza que deseja excluir o Time Out <span id="lblNome"></span>? Essa operação NÃO pode ser desfeita!
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" onclick="excluir()"><i class="fa fa-check"></i> Excluir</button>
+				<button type="button" class="btn btn-outline btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
 <%- contentFor("styles") %>
 <link rel="stylesheet" type="text/css" href="/lib/leaflet/css/leaflet.css" />
 
@@ -20,6 +40,40 @@
 <script type='text/javascript'>
     var timeouts = <%- timeouts %>;
     var map = L.map('map');
+    var id_para_excluir = 0;
+
+    function mostrarModalExcluir(indice) {
+        if (JsonWebApi.active)
+            return;
+
+        id_para_excluir = timeouts[indice].id_localizacao;
+        $("#lblNome").text(timeouts[indice].nome_localizacao);
+
+        $("#modalExcluir").modal({
+            backdrop: "static",
+            keyboard: true
+        });
+    }
+
+    function excluir(id_localizacao) {
+        if (JsonWebApi.active || !id_para_excluir)
+            return;
+
+        $("#modalExcluir").modal("hide");
+
+        Notification.wait();
+
+        JsonWebApi.get("/api/timeout/excluir", function (response) {
+            if (response.success) {
+                location.reload(true);
+            } else {
+                Notification.error(response.value, true);
+            }
+            trClicada = null;
+        }, "id_localizacao", id_para_excluir);
+
+        id_para_excluir = 0;
+    }   
 
     function onMarkerClick() {
         var timeout = this.timeout;
@@ -31,7 +85,10 @@
                 + '<br>Ambiente: ' + timeout.ambiente_localizacao
                 + '<br>Atendimento: ' + timeout.atendimento_localizacao
                 + '<br>Bebidas: ' + timeout.bebida_localizacao
-                + '<br>Tira gosto: ' + timeout.tira_gosto_localizacao + '</p>')
+                + '<br>Tira gosto: ' + timeout.tira_gosto_localizacao
+                + '<a class="btn btn-outline btn-primary btn-block" href="/timeout/alterar?id_localizacao=' + timeout.id_localizacao + '"><i class="fa fa-edit"></i>Editar</a>'
+                + '<button type="button" class="btn btn-outline btn-danger btn-block" onclick="mostrarModalExcluir(' + timeout.indice + ')"><i class="fa fa-times"></i>Excluir</a>'
+                + '</p>')
             .openOn(map);
     }
 
@@ -67,6 +124,7 @@
             }).addTo(map);
             marker.timeout = timeouts[i];
             timeouts[i].marker = marker;
+            timeouts[i].indice = i;
             marker.on('click', onMarkerClick);
         }
 

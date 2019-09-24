@@ -20,7 +20,7 @@ router.get("/obter", wrap(async (req: express.Request, res: express.Response) =>
     let u = await Usuario.cookie(req, res);
     if (!u)
         return;
-    let id = parseInt(req.query["id"]);
+    let id = parseInt(req.query["id_localizacao"]);
     res.json(isNaN(id) ? null : await Timeout.obter(id));
 }));
 
@@ -37,7 +37,7 @@ router.post("/alterar", wrap(async (req: express.Request, res: express.Response)
     let u = await Usuario.cookie(req, res);
     if (!u)
         return;
-    let a = Timeout.converter(req.body);
+    let a = Timeout.converter(req.query["id_localizacao"]);
     jsonRes(res, 400, a ? await Timeout.alterar(a) : "Dados inválidos!");
 }));
 
@@ -45,7 +45,7 @@ router.get("/excluir", wrap(async (req: express.Request, res: express.Response) 
     let u = await Usuario.cookie(req, res);
     if (!u)
         return;
-    let id = parseInt(req.query["id"]);
+    let id = parseInt(req.query["id_localizacao"]);
     jsonRes(res, 400, !isNaN(id) ? await Timeout.excluir(id) : "Dados inválidos");
 }));
 

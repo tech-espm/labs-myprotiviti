@@ -97,7 +97,7 @@ export = class Timeout {
         let res: string = null;
 
         await Sql.conectar(async (sql: Sql) => {
-            await sql.query("delete from curso where id _localizacao= ?", [id]);
+            await sql.query("delete from localizacao where id_localizacao=?", [id]);
             if (!sql.linhasAfetadas)
                 res = "Time out inexistente";
         });
