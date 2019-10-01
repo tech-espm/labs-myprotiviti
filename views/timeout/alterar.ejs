@@ -8,7 +8,7 @@
                 <input type="hidden" id="lng" name="longitude_localizacao" value="<%=(item ? item.longitude_localizacao : lng) %>" />
                 <div class="form-group">
                     <label for="nome">Nome do local</label>
-                    <input id="nome" name="nome_localizacao" maxlength="50" class="form-control upper" type="text" spellcheck="false" value="<%= item.nome_localizacao %>"" />
+                    <input id="nome" name="nome_localizacao" maxlength="50" class="form-control upper" type="text" spellcheck="false" value="<%=(item ? item.nome_localizacao : '') %>" />
                 </div>
                   <div class="form-group">
                     <label for="id_tipo_local">Tipo de local</label>
