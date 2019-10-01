@@ -38,12 +38,12 @@ router.all("/alterar", wrap(async (req: express.Request, res: express.Response) 
 	}
 }));
 
-router.get("/listar", wrap(async (req: express.Request, res: express.Response) => {
+async function listar(grid: boolean, req: express.Request, res: express.Response): Promise<void> {
 	let u = await Usuario.cookie(req);
 	if (!u || !u.admin) {
 		res.redirect("/acesso");
 	} else {
-		res.render("tutorial/listar", {
+		res.render(grid ? "tutorial/grid" : "tutorial/listar", {
 			titulo: "Visualizar Tutoriais Inovação",
 			usuario: u,
 			rota: "inovacao",
@@ -53,6 +53,14 @@ router.get("/listar", wrap(async (req: express.Request, res: express.Response) =
 			extensaoVideo: Inovacao.extensaoVideo
 		});
 	}
+}
+
+router.get("/listar", wrap(async (req: express.Request, res: express.Response) => {
+	return listar(false, req, res);
+}));
+
+router.get("/grid", wrap(async (req: express.Request, res: express.Response) => {
+	return listar(true, req, res);
 }));
 
 export = router;

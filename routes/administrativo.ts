@@ -50,7 +50,7 @@ async function listar(grid: boolean, req: express.Request, res: express.Response
 			titulo: "Visualizar Tutoriais Administrativos",
 			usuario: u,
 			rota: "administrativo",
-			lista: JSON.stringify(await Administrativo.listar()),
+			lista: await Administrativo.listar(),
 			caminhoAbsolutoPastaExterno: Administrativo.caminhoAbsolutoPastaExterno(),
 			extensaoMiniatura: Administrativo.extensaoMiniatura,
 			extensaoVideo: Administrativo.extensaoVideo
