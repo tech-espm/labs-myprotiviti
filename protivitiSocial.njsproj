@@ -235,6 +235,7 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="routes\api\pec.ts" />
+    <TypeScriptCompile Include="routes\api\perfil.ts" />
     <TypeScriptCompile Include="routes\api\projeto.ts" />
     <TypeScriptCompile Include="routes\api\pursuitTeam.ts" />
     <TypeScriptCompile Include="routes\api\responsavelProposta.ts">
