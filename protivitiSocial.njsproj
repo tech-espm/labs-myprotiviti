@@ -73,6 +73,8 @@
     <Content Include="public\imagens\white_circle.svg" />
     <Content Include="public\lib\bootstrap\css\bootstrap-1.0.18.min.css" />
     <Content Include="public\lib\leaflet\css\leaflet.css" />
+    <Content Include="public\lib\leaflet\js\images\1-iconi.png" />
+    <Content Include="public\lib\leaflet\js\images\2-iconi.png" />
     <Content Include="public\lib\leaflet\js\images\marker-icon-2x.png" />
     <Content Include="public\lib\leaflet\js\images\marker-icon.png" />
     <Content Include="public\lib\leaflet\js\images\marker-shadow.png" />
