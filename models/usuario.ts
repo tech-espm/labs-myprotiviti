@@ -20,6 +20,7 @@ export = class Usuario {
 	public nome: string;
 	public perfil: number;
 	public senha: string;
+	public features: any;
 
 	// Utilizados apenas no cache
 	private cookieStr: string;
@@ -28,6 +29,16 @@ export = class Usuario {
 	public static removerDoCache(id: number): void {
 		Usuario.cacheUsuarioLogados.del(id);
 	}
+
+		private static async obterFeatures(sql: Sql, id_perfil: number): Promise<any> {
+			let features: any = {};
+			let rows = await sql.query("select id_feature from perfil_feature where id_perfil = ?", [id_perfil]);
+			for (let i = 0; i < rows.length; i++) {
+				let id_feature = rows[i].id_feature as number;
+				features[id_feature] = id_feature;
+			}
+			return features;
+		}
 
 	// Parei de usar Usuario.pegarDoCookie como middleware, porque existem muitas requests
 	// que não precisam validar o usuário logado, e agora, é assíncrono...
@@ -70,6 +81,7 @@ export = class Usuario {
 					u.perfil = row.perfil as number;
 					u.cookieStr = cookieStr;
 					u.admin = (u.perfil === Usuario.PerfilAdmin);
+					u.features = Usuario.obterFeatures(sql, u.perfil);
 
 					Usuario.cacheUsuarioLogados.set(id, u);
 
@@ -124,6 +136,7 @@ export = class Usuario {
 			u.perfil = row.perfil as number;
 			u.cookieStr = cookieStr;
 			u.admin = (u.perfil === Usuario.PerfilAdmin);
+			u.features = Usuario.obterFeatures(sql, u.perfil);
 
 			Usuario.cacheUsuarioLogados.set(row.id, u);
 
@@ -171,6 +184,7 @@ export = class Usuario {
 
 				this.nome = nome;
 				this.cookieStr = cookieStr;
+				this.features = Usuario.obterFeatures(sql, this.perfil);
 
 				// @@@ secure!!!
 				res.cookie("usuario", cookieStr, { maxAge: 365 * 24 * 60 * 60 * 1000, httpOnly: true, path: "/", secure: false });
