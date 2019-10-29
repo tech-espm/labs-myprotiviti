@@ -2,6 +2,7 @@ import express = require("express");
 import wrap = require("express-async-error-wrapper");
 import Usuario = require("../models/usuario");
 import Perfil = require("../models/perfil");
+import PerfilPermissao = require("../models/perfilPermissao");
 
 const router = express.Router();
 
@@ -13,7 +14,8 @@ router.all("/criar", wrap(async (req: express.Request, res: express.Response) =>
         res.render("perfil/alterar", {
             titulo: "Criar Perfil",
             usuario: u,
-            item: null
+            item: null,
+            features: PerfilPermissao.Lista
         });
     }
 }));
@@ -31,7 +33,8 @@ router.all("/alterar", wrap(async (req: express.Request, res: express.Response) 
             res.render("perfil/alterar", {
                 titulo: "Editar Perfil",
                 usuario: u,
-                item: item
+                item: item,
+                features: PerfilPermissao.Lista
             });
     }
 }));

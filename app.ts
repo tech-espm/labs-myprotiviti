@@ -23,6 +23,7 @@ import express = require("express");
 import cookieParser = require("cookie-parser"); // https://stackoverflow.com/a/16209531/3569421
 import path = require("path");
 import config = require("./config");
+import PerfilPermissao = require("./models/perfilPermissao");
 
 // @@@ Configura o cache, para armazenar as 200 últimas páginas
 // já processadas, por ordem de uso
@@ -31,6 +32,8 @@ import lru = require("lru-cache");
 import { NextFunction } from "express";
 
 ejs.cache = lru(200);
+
+PerfilPermissao.criarLista();
 
 const app = express();
 

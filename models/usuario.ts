@@ -30,15 +30,15 @@ export = class Usuario {
 		Usuario.cacheUsuarioLogados.del(id);
 	}
 
-		private static async obterFeatures(sql: Sql, id_perfil: number): Promise<any> {
-			let features: any = {};
-			let rows = await sql.query("select id_feature from perfil_feature where id_perfil = ?", [id_perfil]);
-			for (let i = 0; i < rows.length; i++) {
-				let id_feature = rows[i].id_feature as number;
-				features[id_feature] = id_feature;
-			}
-			return features;
+	private static async obterFeatures(sql: Sql, id_perfil: number): Promise<any> {
+		let features: any = {};
+		let rows = await sql.query("select id_feature from perfil_feature where id_perfil = ?", [id_perfil]);
+		for (let i = 0; i < rows.length; i++) {
+			let id_feature = rows[i].id_feature as number;
+			features[id_feature] = id_feature;
 		}
+		return features;
+	}
 
 	// Parei de usar Usuario.pegarDoCookie como middleware, porque existem muitas requests
 	// que não precisam validar o usuário logado, e agora, é assíncrono...
@@ -105,7 +105,7 @@ export = class Usuario {
 		let cookieStr = idStr.substring(idStr.length - 8) + extraStr.substring(extraStr.length - 8) + token;
 		return [token, cookieStr];
 	}
-	
+
 	public static async efetuarLogin(login: string, senha: string, res: express.Response): Promise<[string, Usuario]> {
 		if (!login || !senha)
 			return ["Usuário ou senha inválidos", null];

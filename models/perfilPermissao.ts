@@ -1,6 +1,8 @@
 export = class PerfilPermissao {
 
-    Permissoes: {
+    public static Lista: [{ id: number, nome: string }] = [];
+
+    public static Permissoes: {
         CriarAdministrativo: { id: 1, nome: 'Tutoriais Administrativo - Criar' },
         VisualizarAdministrativo: { id: 2, nome: 'Tutoriais Administrativo - Visualizar' },
         EditarAdministrativo: { id: 3, nome: 'Tutoriais Administrativo - Editar' },
@@ -118,4 +120,12 @@ export = class PerfilPermissao {
 
     };
 
+    public static criarLista(): void {
+        for (let k in PerfilPermissao.Permissoes) {
+            let p = PerfilPermissao.Permissoes[k] as { id: number, nome: string };
+            PerfilPermissao.Lista.push(p);
+        }
+
+        PerfilPermissao.Lista.sort((a, b) => a.nome < b.nome ? -1 : 1);
+    }
 }
