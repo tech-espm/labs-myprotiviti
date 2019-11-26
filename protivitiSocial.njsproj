@@ -143,6 +143,8 @@
     <Content Include="views\negocios\parceria\alterar.ejs" />
     <Content Include="views\home\perfil.ejs" />
     <Content Include="views\controle\solucao\listar.ejs" />
+    <Content Include="views\perfil\alterar.ejs" />
+    <Content Include="views\perfil\listar.ejs" />
     <Content Include="views\shared\nao-encontrado.ejs" />
     <Content Include="views\home\acesso.ejs" />
     <Content Include="views\layout-vazio.ejs" />
@@ -194,6 +196,8 @@
     <TypeScriptCompile Include="models\formaContato.ts" />
     <TypeScriptCompile Include="models\inovacao.ts" />
     <TypeScriptCompile Include="models\matrizServico.ts" />
+    <TypeScriptCompile Include="models\perfil.ts" />
+    <TypeScriptCompile Include="models\perfilPermissao.ts" />
     <TypeScriptCompile Include="models\responsavelProposta.ts" />
     <TypeScriptCompile Include="models\oportunidade.ts">
       <SubType>Code</SubType>
@@ -262,6 +266,7 @@
     <TypeScriptCompile Include="routes\mentor.ts" />
     <TypeScriptCompile Include="routes\pec.ts" />
     <TypeScriptCompile Include="routes\mentoring.ts" />
+    <TypeScriptCompile Include="routes\perfil.ts" />
     <TypeScriptCompile Include="routes\responsavelProposta.ts" />
     <TypeScriptCompile Include="routes\pursuitTeam.ts" />
     <TypeScriptCompile Include="routes\empresa.ts" />
@@ -345,6 +350,7 @@
     <Folder Include="views\carreira\" />
     <Folder Include="views\controle\" />
     <Folder Include="views\construindo\" />
+    <Folder Include="views\perfil\" />
     <Folder Include="views\tutorial\" />
     <Folder Include="views\pec\" />
     <Folder Include="views\shared\" />

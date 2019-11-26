@@ -18,7 +18,7 @@ CREATE TABLE perfil_feature (
 	id_perfil int NOT NULL,
 	id_feature int NOT NULL,
 	PRIMARY KEY (id_perfil, id_feature),
-	CONSTRAINT perfil_feature_FK FOREIGN KEY (id_feature) REFERENCES perfil (id) ON DELETE CASCADE
+	CONSTRAINT perfil_feature_FK FOREIGN KEY (id_perfil) REFERENCES perfil (id) ON DELETE CASCADE
 );
 
 -- DROP TABLE IF EXISTS usuario;

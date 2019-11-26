@@ -1,8 +1,8 @@
 export = class PerfilPermissao {
 
-    public static Lista: [{ id: number, nome: string }] = [];
+    public static Lista: [{ id: number, nome: string }] = [] as any;
 
-    public static Permissoes: {
+    public static Permissoes = {
         CriarAdministrativo: { id: 1, nome: 'Tutoriais Administrativo - Criar' },
         VisualizarAdministrativo: { id: 2, nome: 'Tutoriais Administrativo - Visualizar' },
         EditarAdministrativo: { id: 3, nome: 'Tutoriais Administrativo - Editar' },

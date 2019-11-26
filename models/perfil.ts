@@ -3,6 +3,7 @@ import Sql = require("../infra/sql");
 export = class Perfil {
     public id: number;
     public nome: string;
+    public permissoes: any;
 
     private static validar(p: Perfil): string {
         p.nome = (p.nome || "").trim().toUpperCase();
@@ -24,13 +25,22 @@ export = class Perfil {
     }
 
     public static async obter(id: number): Promise<Perfil> {
-        let lista: Perfil[] = null;
+        let perfil: Perfil = null;
 
         await Sql.conectar(async (sql: Sql) => {
-            lista = await sql.query("select id, nome from perfil where id = ?", [id]) as Perfil[];
+            let lista: Perfil[] = await sql.query("select id, nome from perfil where id = ?", [id]) as Perfil[];
+            if (lista && lista[0]) {
+                perfil = lista[0];
+                let permissoes = await sql.query("select id_feature from perfil_feature where id_perfil = ?", [id]);
+                perfil.permissoes = {};
+                for (let i = 0; i < permissoes.length; i++) {
+                    let id_feature = permissoes[i].id_feature;
+                    perfil.permissoes[id_feature] = 1;
+                }
+            }
         });
 
-        return ((lista && lista[0]) || null);
+        return perfil;
     }
 
     public static async criar(p: Perfil): Promise<string> {
@@ -41,6 +51,15 @@ export = class Perfil {
         await Sql.conectar(async (sql: Sql) => {
             try {
                 await sql.query(`insert into perfil (nome) values (?)`, [p.nome]);
+
+                p.id = await sql.scalar("select last_insert_id()") as number;
+
+                if (p.permissoes && p.permissoes.length) {
+                    for (let i = 0; i < p.permissoes.length; i++) {
+                        await sql.query(`insert into perfil_feature (id_perfil, id_feature) values (?, ?)`, [p.id, parseInt(p.permissoes[i])]);
+                    }
+                }
+
             } catch (e) {
                 if (e.code && e.code === "ER_DUP_ENTRY")
                     res = "O perfil já existe!";
@@ -61,7 +80,17 @@ export = class Perfil {
             try {
                 await sql.query("update perfil set nome = ? where id = ?", [p.nome, p.id]);
                 res = sql.linhasAfetadas.toString();
-            } catch (e) {
+
+                if (res) {
+                    await sql.query("delete from perfil_feature where id_perfil = ?", [p.id]);
+
+                    if (p.permissoes && p.permissoes.length) {
+                        for (let i = 0; i < p.permissoes.length; i++) {
+                            await sql.query(`insert into perfil_feature (id_perfil, id_feature) values (?, ?)`, [p.id, parseInt(p.permissoes[i])]);
+                        }
+                    }
+                }
+           } catch (e) {
                 if (e.code && e.code === "ER_DUP_ENTRY")
                     res = "O perfil já existe!";
                 else

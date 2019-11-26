@@ -10,14 +10,15 @@
                 </div>
 
                 <div class="form-group">
-                        <label for="id_feature">Soluções</label>
-                        <select id="id_feature" name="id_feature" class="form-control" size="1">
-                            <option value="">SELECIONE...</option>
-                            <% for (var i = 0; i < features.length; i++) { %>
-                            <option value="<%=features[i].id %>" <%=(item && item.id == features[i].id ? 'selected="selected"' : '')%>><%=features[i].nome %></option>
-                            <% } %>
-                        </select>
+                    <label>Permissões</label>
+                    <% for (var i = 0; i < features.length; i++) { %>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="permissoes" value="<%=features[i].id %>" <%-((item && (features[i].id in item.permissoes)) ? 'checked="checked"' : '') %> /> <%=features[i].nome %>
+                        </label>
                     </div>
+                    <% } %>
+                </div>
             </div>
             <div class="panel-footer">
                 <input value="<%=(item ? 'Salvar Alterações' : 'Criar') %>" class="btn btn-primary btn-lg btn-block" type="submit" />
