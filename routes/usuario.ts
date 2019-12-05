@@ -1,6 +1,7 @@
 ﻿import express = require("express");
 import wrap = require("express-async-error-wrapper");
 import Usuario = require("../models/usuario");
+import Perfil = require("../models/perfil");
 
 const router = express.Router();
 
@@ -9,7 +10,7 @@ router.all("/criar", wrap(async (req: express.Request, res: express.Response) =>
 	if (!u || !u.admin) {
 		res.redirect("/acesso");
 	} else {
-		res.render("usuario/alterar", { titulo: "Criar Usuário", usuario: u, item: null });
+		res.render("usuario/alterar", { titulo: "Criar Usuário", usuario: u, item: null, perfis: await Perfil.listar() });
 	}
 }));
 
@@ -23,7 +24,7 @@ router.all("/alterar", wrap(async (req: express.Request, res: express.Response) 
 		if (isNaN(id) || !(item = await Usuario.obter(id)))
 			res.render("home/nao-encontrado", { usuario: u });
 		else
-			res.render("usuario/alterar", { titulo: "Editar Usuário", usuario: u, item: item });
+			res.render("usuario/alterar", { titulo: "Editar Usuário", usuario: u, item: item, perfis: await Perfil.listar() });
 	}
 }));
 

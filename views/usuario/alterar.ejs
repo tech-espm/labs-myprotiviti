@@ -16,9 +16,12 @@
 				<div class="form-group">
 					<label for="perfil">Perfil</label>
 					<select id="perfil" name="perfil" class="form-control" size="1">
+						<!-- <option value="1" <%=((item && item.tipo === 1) ? 'selected="selected"' : '') %>>ADMIN</option>
+						<option value="2" <%=((item && item.tipo === 2) ? 'selected="selected"' : '') %>>COMUM</option> -->
 						<option value="">SELECIONE...</option>
-						<option value="1" <%=((item && item.tipo === 1) ? 'selected="selected"' : '') %>>ADMIN</option>
-						<option value="2" <%=((item && item.tipo === 2) ? 'selected="selected"' : '') %>>COMUM</option>
+                        <% for (var i = 0; i < perfis.length; i++) { %>
+                        <option value="<%=perfis[i].id %>" <%=(item && item.id == perfis[i].id ? 'selected="selected"' : '')%>><%=perfis[i].nome %></option>
+                        <% } %>
 					</select>
 				</div>
 			</div>
