@@ -373,26 +373,25 @@
 
               </ul>
             </li>
-            <!-- <% if (usuario.perfil == 1) {%> -->
+            <% if (usuario.perfil == 1) {%>
             <li>
               <a href="#">
                 <i class="fa fa-lightbulb-o"></i>Inovação<span class="fa arrow"></span>
               </a>
               <ul class="nav nav-second-level collapse">
-                <% if(perfil.permissoes in permissoes) %>
-                  <li>
-                    <a href="/inovacao/criar">
-                      <i class="fa fa-plus fa-fw"></i>Criar
-                    </a>
-                  </li>
-                <%}%>
-                <% if(perfil.permissoes in permissoes) %>
-                  <li>
-                    <a href="/inovacao/listar">
-                      <i class="fa fa-eye"></i>Visualizar
-                    </a>
-                  </li>
-                <%}%>
+
+                <li>
+                  <a href="/inovacao/criar">
+                    <i class="fa fa-plus fa-fw"></i>Criar
+                  </a>
+                </li>
+
+                <li>
+                  <a href="/inovacao/listar">
+                    <i class="fa fa-eye"></i>Visualizar
+                  </a>
+                </li>
+
               </ul>
             </li>
 
@@ -406,20 +405,16 @@
                     <i class=""></i>Soluções<span class="fa arrow"></span>
                   </a>
                   <ul class="nav nav-third-level collapse">
-                    <% if(perfil.permissoes in permissoes) %>
-                      <li>
-                        <a href="/solucao/criar">
-                          <i class="fa fa-plus fa-fw"></i>Criar
-                        </a>
-                      </li>
-                    <%}%>
-                    <% if(perfil.permissoes in permissoes) %>
-                      <li>
-                        <a href="/solucao/listar">
-                          <i class="fa fa-eye"></i>Visualizar
-                        </a>
-                      </li>
-                    <%}%>
+                    <li>
+                      <a href="/solucao/criar">
+                        <i class="fa fa-plus fa-fw"></i>Criar
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/solucao/listar">
+                        <i class="fa fa-eye"></i>Visualizar
+                      </a>
+                    </li>
                   </ul>
                 </li>
 
@@ -431,20 +426,16 @@
                     <i class=""></i>Empresa<span class="fa arrow"></span>
                   </a>
                   <ul class="nav nav-third-level collapse">
-                    <% if(perfil.permissoes in permissoes) %>
-                      <li>
-                        <a href="/empresa/criar">
-                          <i class="fa fa-plus fa-fw"></i>Criar
-                        </a>
-                      </li>
-                    <%}%>
-                    <% if(perfil.permissoes in permissoes) %>
-                      <li>
-                        <a href="/empresa/listar">
-                          <i class="fa fa-eye"></i>Visualizar
-                        </a>
-                      </li>
-                    <%}%>
+                    <li>
+                      <a href="/empresa/criar">
+                        <i class="fa fa-plus fa-fw"></i>Criar
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/empresa/listar">
+                        <i class="fa fa-eye"></i>Visualizar
+                      </a>
+                    </li>
                   </ul>
                 </li>
 
@@ -456,20 +447,16 @@
                     <i class=""></i>Cliente<span class="fa arrow"></span>
                   </a>
                   <ul class="nav nav-third-level collapse">
-                    <% if(perfil.permissoes in permissoes) %>
-                      <li>
-                        <a href="/cliente/criar">
-                          <i class="fa fa-plus fa-fw"></i>Criar
-                        </a>
-                      </li>
-                    <%}%>
-                    <% if(perfil.permissoes in permissoes) %>
-                      <li>
-                        <a href="/cliente/listar">
-                          <i class="fa fa-eye"></i>Visualizar
-                        </a>
-                      </li>
-                    <%}%>
+                    <li>
+                      <a href="/cliente/criar">
+                        <i class="fa fa-plus fa-fw"></i>Criar
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/cliente/listar">
+                        <i class="fa fa-eye"></i>Visualizar
+                      </a>
+                    </li>
                   </ul>
                 </li>
 
@@ -481,20 +468,16 @@
                     <i class=""></i>Segmento<span class="fa arrow"></span>
                   </a>
                   <ul class="nav nav-third-level collapse">
-                    <% if(perfil.permissoes in permissoes) %>
-                      <li>
-                        <a href="/segmento/criar">
-                          <i class="fa fa-plus fa-fw"></i>Criar
-                        </a>
-                      </li>
-                    <%}%>
-                    <% if(perfil.permissoes in permissoes) %>
-                      <li>
-                        <a href="/segmento/listar">
-                          <i class="fa fa-eye"></i>Visualizar
-                        </a>
-                      </li>
-                    <%}%>
+                    <li>
+                      <a href="/segmento/criar">
+                        <i class="fa fa-plus fa-fw"></i>Criar
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/segmento/listar">
+                        <i class="fa fa-eye"></i>Visualizar
+                      </a>
+                    </li>
                   </ul>
                 </li>
               </ul>
@@ -505,20 +488,16 @@
                     <i class=""></i>Forma de Contato<span class="fa arrow"></span>
                   </a>
                   <ul class="nav nav-third-level collapse">
-                    <% if(perfil.permissoes in permissoes) %>
                     <li>
                       <a href="/formaContato/criar">
                         <i class="fa fa-plus fa-fw"></i>Criar
                       </a>
                     </li>
-                    <%}%>
-                    <% if(perfil.permissoes in permissoes) %>
                     <li>
                       <a href="/formaContato/listar">
                         <i class="fa fa-eye"></i>Visualizar
                       </a>
                     </li>
-                    <%}%>
                   </ul>
                 </li>
               </ul>
@@ -529,20 +508,16 @@
                     <i class=""></i>Matriz de Serviço<span class="fa arrow"></span>
                   </a>
                   <ul class="nav nav-third-level collapse">
-                    <% if(perfil.permissoes in permissoes) %>
-                      <li>
-                        <a href="/matrizServico/criar">
-                          <i class="fa fa-plus fa-fw"></i>Criar
-                        </a>
-                      </li>
-                    <%}%>
-                    <% if(perfil.permissoes in permissoes) %>
-                      <li>
-                        <a href="/matrizServico/listar">
-                          <i class="fa fa-eye"></i>Visualizar
-                        </a>
-                      </li>
-                    <%}%>
+                    <li>
+                      <a href="/matrizServico/criar">
+                        <i class="fa fa-plus fa-fw"></i>Criar
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/matrizServico/listar">
+                        <i class="fa fa-eye"></i>Visualizar
+                      </a>
+                    </li>
                   </ul>
                 </li>
               </ul>
@@ -554,20 +529,16 @@
                     <i class=""></i>Escritório Líder<span class="fa arrow"></span>
                   </a>
                   <ul class="nav nav-third-level collapse">
-                    <% if(perfil.permissoes in permissoes) %>
-                      <li>
-                        <a href="/escritorioLider/criar">
-                          <i class="fa fa-plus fa-fw"></i>Criar
-                        </a>
-                      </li>
-                    <%}%>
-                    <% if(perfil.permissoes in permissoes) %>
+                    <li>
+                      <a href="/escritorioLider/criar">
+                        <i class="fa fa-plus fa-fw"></i>Criar
+                      </a>
+                    </li>
                     <li>
                       <a href="/escritorioLider/listar">
                         <i class="fa fa-eye"></i>Visualizar
                       </a>
                     </li>
-                    <%}%>
                   </ul>
                 </li>
               </ul>
@@ -578,20 +549,16 @@
                     <i class=""></i>CC Líder<span class="fa arrow"></span>
                   </a>
                   <ul class="nav nav-third-level collapse">
-                    <% if(perfil.permissoes in permissoes) %>
-                      <li>
-                        <a href="/ccLider/criar">
-                          <i class="fa fa-plus fa-fw"></i>Criar
-                        </a>
-                      </li>
-                    <%}%>
-                    <% if(perfil.permissoes in permissoes) %>
-                      <li>
-                        <a href="/ccLider/listar">
-                          <i class="fa fa-eye"></i>Visualizar
-                        </a>
-                      </li>
-                    <%}%>
+                    <li>
+                      <a href="/ccLider/criar">
+                        <i class="fa fa-plus fa-fw"></i>Criar
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/ccLider/listar">
+                        <i class="fa fa-eye"></i>Visualizar
+                      </a>
+                    </li>
                   </ul>
                 </li>
               </ul>
@@ -602,20 +569,16 @@
                     <i class=""></i>Pursuit Team<span class="fa arrow"></span>
                   </a>
                   <ul class="nav nav-third-level collapse">
-                    <% if(perfil.permissoes in permissoes) %>
-                      <li>
-                        <a href="/pursuitTeam/criar">
-                          <i class="fa fa-plus fa-fw"></i>Criar
-                        </a>
-                      </li>
-                    <%}%>
-                    <% if(perfil.permissoes in permissoes) %>
-                      <li>
-                        <a href="/pursuitTeam/listar">
-                          <i class="fa fa-eye"></i>Visualizar
-                        </a>
-                      </li>
-                    <%}%>
+                    <li>
+                      <a href="/pursuitTeam/criar">
+                        <i class="fa fa-plus fa-fw"></i>Criar
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/pursuitTeam/listar">
+                        <i class="fa fa-eye"></i>Visualizar
+                      </a>
+                    </li>
                   </ul>
                 </li>
 
@@ -627,20 +590,16 @@
                     <i class=""></i>Responsavel Pela Proposta<span class="fa arrow"></span>
                   </a>
                   <ul class="nav nav-third-level collapse">
-                    <% if(perfil.permissoes in permissoes) %>
-                      <li>
-                        <a href="/responsavelProposta/criar">
-                          <i class="fa fa-plus fa-fw"></i>Criar
-                        </a>
-                      </li>
-                    <%}%>
-                    <% if(perfil.permissoes in permissoes) %>
-                      <li>
-                        <a href="/responsavelProposta/listar">
-                          <i class="fa fa-eye"></i>Visualizar
-                        </a>
-                      </li>
-                    <%}%>
+                    <li>
+                      <a href="/responsavelProposta/criar">
+                        <i class="fa fa-plus fa-fw"></i>Criar
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/responsavelProposta/listar">
+                        <i class="fa fa-eye"></i>Visualizar
+                      </a>
+                    </li>
                   </ul>
                 </li>
 
@@ -652,20 +611,16 @@
                 <i class="fa fa-user-o"></i>Usuários<span class="fa arrow"></span>
               </a>
               <ul class="nav nav-second-level collapse">
-                <% if(perfil.permissoes in permissoes) %>
                 <li>
                   <a href="/usuario/criar">
                     <i class="fa fa-plus fa-fw"></i>Criar
                   </a>
                 </li>
-                <%}%>
-                <% if(perfil.permissoes in permissoes) %>
-                  <li>
-                    <a href="/usuario/listar">
-                      <i class="fa fa-eye"></i>Visualizar
-                    </a>
-                  </li>
-                <%}%>
+                <li>
+                  <a href="/usuario/listar">
+                    <i class="fa fa-eye"></i>Visualizar
+                  </a>
+                </li>
               </ul>
             </li>
 
@@ -674,23 +629,19 @@
                   <i class="fa fa-id-badge"></i>Perfis<span class="fa arrow"></span>
                 </a>
                 <ul class="nav nav-second-level collapse">
-                  <% if(perfil.permissoes in permissoes) %>
-                    <li>
-                      <a href="/perfil/criar">
-                        <i class="fa fa-plus fa-fw"></i>Criar
-                      </a>
-                    </li>
-                  <%}%>
-                  <% if(perfil.permissoes in permissoes) %>
-                    <li>
-                      <a href="/perfil/listar">
-                        <i class="fa fa-eye"></i>Visualizar
-                      </a>
-                    </li>
-                  <%}%>
+                  <li>
+                    <a href="/perfil/criar">
+                      <i class="fa fa-plus fa-fw"></i>Criar
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/perfil/listar">
+                      <i class="fa fa-eye"></i>Visualizar
+                    </a>
+                  </li>
                 </ul>
               </li>
-            <!-- <%}%> -->
+            <%}%>
       </ul>
     </div>
   </div>
