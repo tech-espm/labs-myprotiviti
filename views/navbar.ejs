@@ -47,13 +47,13 @@
             <i class="fa fa-file-video-o"></i>Administrativo<span class="fa arrow"></span>
           </a>
           <ul class="nav nav-second-level collapse">
-            <% if (usuario.perfil == 1) { %>
+            
             <li>
               <a href="/administrativo/criar">
                 <i class="fa fa-plus fa-fw"></i>Criar
               </a>
             </li>
-            <%}%>
+            
             <li>
               <a href="/administrativo/listar">
                 <i class="fa fa-eye"></i>Visualizar
@@ -70,7 +70,7 @@
           </ul>
         </li>
 
-        <% if (usuario.perfil == 1) { %>
+        
             <li>
               <a href="#">
                 <i class="fa fa-vcard-o"></i>Carreira<span class="fa arrow"></span>
@@ -350,7 +350,7 @@
 
               </ul>
             </li>
-            <% } %>
+            
             <li>
               <a href="#">
                 <i class="fa fa-cutlery"></i>Time Out<span class="fa arrow"></span>
@@ -373,7 +373,7 @@
 
               </ul>
             </li>
-            <% if (usuario.perfil == 1) {%>
+            
             <li>
               <a href="#">
                 <i class="fa fa-lightbulb-o"></i>Inovação<span class="fa arrow"></span>
@@ -405,11 +405,13 @@
                     <i class=""></i>Soluções<span class="fa arrow"></span>
                   </a>
                   <ul class="nav nav-third-level collapse">
+                    <% if (usuario.features) { %>
                     <li>
                       <a href="/solucao/criar">
                         <i class="fa fa-plus fa-fw"></i>Criar
                       </a>
                     </li>
+                    <% } %>
                     <li>
                       <a href="/solucao/listar">
                         <i class="fa fa-eye"></i>Visualizar
@@ -641,7 +643,7 @@
                   </li>
                 </ul>
               </li>
-            <%}%>
+            
       </ul>
     </div>
   </div>
