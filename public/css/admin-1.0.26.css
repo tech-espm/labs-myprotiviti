@@ -229,6 +229,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
     display: none;
 }
 
+
 @media(min-width:768px) {
     .sidebar {
         z-index: 1;
@@ -694,6 +695,25 @@ i.fa-nomargin {
     .dashboard-circle-container:hover .dashboard-icon-container {
         background: #549fc9;
     }
+
+.no-border {
+    border: none;
+}
+
+.no-video {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+.no-video i {
+    font-size: 15em;
+    margin: 0;
+}
+
+.no-video p {
+    font-size: 3em;
+}
 
 @media(min-width:768px) {
     .index-wrapper {

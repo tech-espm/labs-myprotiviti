@@ -73,6 +73,8 @@
     <Content Include="public\imagens\white_circle.svg" />
     <Content Include="public\lib\bootstrap\css\bootstrap-1.0.18.min.css" />
     <Content Include="public\lib\leaflet\css\leaflet.css" />
+    <Content Include="public\lib\leaflet\js\images\1-iconi.png" />
+    <Content Include="public\lib\leaflet\js\images\2-iconi.png" />
     <Content Include="public\lib\leaflet\js\images\marker-icon-2x.png" />
     <Content Include="public\lib\leaflet\js\images\marker-icon.png" />
     <Content Include="public\lib\leaflet\js\images\marker-shadow.png" />
@@ -139,8 +141,6 @@
     <Content Include="views\negocios\projeto\listar.ejs" />
     <Content Include="views\controle\solucao\alterar.ejs" />
     <Content Include="views\negocios\parceria\alterar.ejs" />
-    <Content Include="views\administrativo\alterar.ejs" />
-    <Content Include="views\administrativo\listar.ejs" />
     <Content Include="views\home\perfil.ejs" />
     <Content Include="views\controle\solucao\listar.ejs" />
     <Content Include="views\shared\nao-encontrado.ejs" />
@@ -160,6 +160,7 @@
     <Content Include="views\timeout\listar.ejs" />
     <Content Include="views\timeout\mapa.ejs" />
     <Content Include="views\tutorial\alterar.ejs" />
+    <Content Include="views\tutorial\grid.ejs" />
     <Content Include="views\tutorial\listar.ejs" />
     <Content Include="views\usuario\alterar.ejs" />
     <Content Include="views\usuario\listar.ejs" />
@@ -236,6 +237,7 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="routes\api\pec.ts" />
+    <TypeScriptCompile Include="routes\api\perfil.ts" />
     <TypeScriptCompile Include="routes\api\projeto.ts" />
     <TypeScriptCompile Include="routes\api\pursuitTeam.ts" />
     <TypeScriptCompile Include="routes\api\responsavelProposta.ts">
@@ -335,7 +337,6 @@
     <Folder Include="views\controle\tipoLocal\" />
     <Folder Include="views\inovacao\" />
     <Folder Include="views\negocios\" />
-    <Folder Include="views\administrativo\" />
     <Folder Include="views\home\" />
     <Folder Include="views\negocios\oportunidade\" />
     <Folder Include="views\negocios\projeto\" />
