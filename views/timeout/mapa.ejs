@@ -2,18 +2,64 @@
     <% if (msg) { %>
     <div class="alert alert-danger"><%=msg %></div>
     <% } %>
-    <div class="col-lg-12">
-        <div>
-            <div class="filtroMapa">
-            <button type="button" class="fa fa-clock-o" onclick="filtrarHorario()"></button>
-            <button type="button" class="fa fa-dollar" onclick="filtrarPreco()"></button>
-            <button type="button" class="fa fa-location-arrow" onclick="filtrarAmbiente()"></button>
-            <button type="button" class="fa fa-male" onclick="filtrarAtendimento()"></button>
-            <button type="button" class="fa fa-glass" onclick="filtrarBebidas()"></button>
-            <button type="button" class="fa fa-cutlery" onclick="filtrarTiraGosto()"></button>
+    <form class="col-lg-12" action="." method="post" id="form">
+        <div class="row">
+            <div class="col-sm-2 text-center">
+                <div class="form-group">
+                    <label for="txtHorario">Horário</label>
+                    <br />
+                    <input type="text" id="txtHorario" placeholder="00:00" maxlength="5" class="form-control" />
+                </div>
             </div>
-            <div id="map" style="height: 410px; border: 1px solid #AAA;"></div>
+            <div class="col-sm-2 text-center">
+                <div class="form-group">
+                    <label for="txtPreco">Preço</label>
+                    <br />
+                    <input type="number" id="txtPreco" placeholder="MÁX" min="1" max="5" class="form-control" />
+                </div>
+            </div>
+            <div class="col-sm-2 text-center">
+                <div class="form-group">
+                    <label for="txtAmbiente">Ambiente</label>
+                    <br />
+                    <input type="number" id="txtAmbiente" placeholder="MÍN" min="1" max="5" class="form-control" />
+                </div>
+            </div>
+            <div class="col-sm-2 text-center">
+                <div class="form-group">
+                    <label for="txtAtendimento">Atendimento</label>
+                    <br />
+                    <input type="number" id="txtAtendimento" placeholder="MÍN" min="1" max="5" class="form-control"/>
+                </div>
+            </div>
+            <div class="col-sm-2 text-center">
+                <div class="form-group">
+                    <label for="txtBebida">Bebidas</label>
+                    <br />
+                    <input type="number" id="txtBebida" placeholder="MÍN" min="1" max="5" class="form-control" />
+                </div>
+            </div>
+            <div class="col-sm-2 text-center">
+                <div class="form-group">
+                    <label for="txtTira_gosto">Tira Gosto</label>
+                    <br />
+                    <input type="number" id="txtTira_gosto" placeholder="MÍN" min="1" max="5" class="form-control" />
+                </div>
+            </div>
         </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" name="filtrar" value="Aplicar Filtros" />
+                    <input type="button" class="btn btn-default" name="limparFiltro" value="Limpar Filtros" onclick="limparFiltros()" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div id="map" style="height: 410px; border: 1px solid #AAA;"></div>
     </div>
 </div>
 
@@ -56,6 +102,12 @@
     var timeoutsFiltrados = timeouts.slice();
     var map = L.map('map');
     var id_para_excluir = 0;
+    var txtHorario = document.getElementById("txtHorario"),
+        txtPreco = document.getElementById("txtPreco"),
+        txtAmbiente = document.getElementById("txtAmbiente"),
+        txtAtendimento = document.getElementById("txtAtendimento"),
+        txtBebida = document.getElementById("txtBebida"),
+        txtTira_gosto = document.getElementById("txtTira_gosto");
 
     function mostrarModalExcluir(indice) {
         if (JsonWebApi.active)
@@ -89,7 +141,6 @@
         id_para_excluir = 0;
     }   
 
-
     function onMarkerClick() {
         var timeout = this.timeout;
         var popup = L.popup()
@@ -106,6 +157,18 @@
                 + '</p>')
             .openOn(map);
     }
+
+    document.getElementById("form").onsubmit = function (e) {
+        timeoutsFiltrados = timeouts.slice();
+        filtrarHorario();
+        filtrarPreco();
+        filtrarAmbiente();
+        filtrarAtendimento();
+        filtrarBebida();
+        filtrarTiraGosto();
+        atualizarMapa();
+        return cancelEvent(e);
+    };
 
     function star(x) {
         var html = '', i = 0, xi = x | 0;
@@ -136,93 +199,92 @@
     function atualizarMapa() {
         for (var i = timeouts.length - 1; i >= 0; i--) {
             var timeout = timeouts[i];
-            // excluir o marker timeout.marker do mapa
+            map.removeLayer(timeout.marker);
         }
         for (var i = timeoutsFiltrados.length - 1; i >= 0; i--) {
             var timeout = timeoutsFiltrados[i];
-            // inclui o marker timeout.marker no mapa
+            timeout.marker.addTo(map);
         }
     }
 
     function limparFiltros() {
         timeoutsFiltrados = timeouts.slice();
         // desativar todos os filtros
+        txtHorario.value = "";
+        txtPreco.value = "";
+        txtAmbiente.value = "";
+        txtAtendimento.value = "";
+        txtBebida.value = "";
+        txtTira_gosto.value = "";
         atualizarMapa();
     }
 
-    function atualizarFiltro() {
-        timeoutsFiltrados = timeouts.slice();
-        if (filtro_horario = true) {
-            filtrarHorario();
-        }
-        if (filtro_preco = true) {
-            filtrarPreco();
-        }
-        if (filtro_ambiente = true) {
-            filtrarAmbiente();
-        }
-        if (filtro_atendimento = true) {
-            filtrarAtendimento();
-        }
-        if (filtro_bebidas = true) {
-            filtrarBebidas();
-        }
-        if (filtro_tiragosto = true) {
-            filtrarTiraGosto();
-        }
-        atualizarMapa();
-    }
-
-    function filtrarHorario(botaoInicial, botaoFinal) {
+    function filtrarHorario() {
+        var filtro = parseInt(txtHorario.value.replace(':', ''), 10);
         for (var i = timeoutsFiltrados.length - 1; i >= 0; i--) {
-            var horaInicial = timeoutsFiltrados[i].horario_abertura_localizacao;
-            var horaFinal = timeoutsFiltrados[i].horario_fechamento_localizacao;
-            if (horaInicial <= botaoInicial || horaFinal >= botaoFinal) {
+            var horaInicial = parseInt(timeoutsFiltrados[i].horario_abertura_localizacao.replace(':', ''));
+            var horaFinal = parseInt(timeoutsFiltrados[i].horario_fechamento_localizacao.replace(':', ''));
+            if (horaInicial > filtro || horaFinal < filtro) {
                 timeoutsFiltrados.splice(i, 1);
             }
         }
     }
 
-    function filtrarPreco(botao) {
+    function filtrarPreco() {
+        var filtro = parseInt(txtPreco.value);
+        if (isNaN(filtro))
+            return;
         for (var i = timeoutsFiltrados.length - 1; i >= 0; i--) {
             var preco = timeoutsFiltrados[i].preco_localizacao;
-            if (preco > botao) {
+            if (preco > filtro) {
                 timeoutsFiltrados.splice(i, 1);
             }
         }
     }
 
-    function filtrarAmbiente(botao) {
+    function filtrarAmbiente() {
+        var filtro = parseInt(txtAmbiente.value);
+        if (isNaN(filtro))
+            return;
         for (var i = timeoutsFiltrados.length - 1; i >= 0; i--) {
             var ambiente = timeoutsFiltrados[i].ambiente_localizacao;
-            if (ambiente > botao) {
+            if (ambiente < filtro) {
                 timeoutsFiltrados.splice(i, 1);
             }
         }
     }
 
-    function filtrarAtendimento(botao) {
+    function filtrarAtendimento() {
+        var filtro = parseInt(txtAtendimento.value);
+        if (isNaN(filtro))
+            return;
         for (var i = timeoutsFiltrados.length - 1; i >= 0; i--) {
             var atendimento = timeoutsFiltrados[i].atendimento_localizacao;
-            if (atendimento > botao) {
+            if (atendimento < filtro) {
                 timeoutsFiltrados.splice(i, 1);
             }
         }
     }
 
-    function filtrarBebidas(botao) {
+    function filtrarBebida() {
+        var filtro = parseInt(txtBebida.value);
+        if (isNaN(filtro))
+            return;
         for (var i = timeoutsFiltrados.length - 1; i >= 0; i--) {
-            var bebidas = timeoutsFiltrados[i].bebidas_localizacao;
-            if (bebidas > botao) {
+            var bebida = timeoutsFiltrados[i].bebida_localizacao;
+            if (bebida < filtro) {
                 timeoutsFiltrados.splice(i, 1);
             }
         }
     }
 
-    function filtrarTiraGosto(botao) {
+    function filtrarTiraGosto() {
+        var filtro = parseInt(txtTira_gosto.value);
+        if (isNaN(filtro))
+            return;
         for (var i = timeoutsFiltrados.length - 1; i >= 0; i--) {
             var tiraGosto = timeoutsFiltrados[i].tira_gosto_localizacao;
-            if (tiraGosto > botao) {
+            if (tiraGosto < filtro) {
                 timeoutsFiltrados.splice(i, 1);
             }
         }
@@ -254,9 +316,11 @@
         }
 
         for (var i = 0; i < timeouts.length; i++) {
-            var marker = L.marker([timeouts[i].latitude_localizacao, timeouts[i].longitude_localizacao], {
+            var marker = L.marker([timeouts[i].latitude_localizacao, timeouts[i].longitude_localizacao],
+                {
                 icon: icons[timeouts[i].id_tipo_local]
-            }).addTo(map);
+                })
+                .addTo(map);
             marker.timeout = timeouts[i];
             timeouts[i].marker = marker;
             timeouts[i].indice = i;
