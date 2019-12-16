@@ -146,14 +146,14 @@
         var popup = L.popup()
             .setLatLng([timeout.latitude_localizacao, timeout.longitude_localizacao])
             .setContent('<p>' + timeout.nome_localizacao
-                + '<br>Horários: ' + timeout.horario_abertura_localizacao + ' às ' + timeout.horario_fechamento_localizacao
-                + '<br>Preço: ' + '<span class="ghost">' + timeout.preco_localizacao + '</span>' + star$(timeout.preco_localizacao)
-                + '<br>Ambiente: ' + '<span class="ghost">' + timeout.ambiente_localizacao + '</span>' + star(timeout.ambiente_localizacao)
-                + '<br>Atendimento: ' + '<span class="ghost">' + timeout.atendimento_localizacao + '</span>' + star(timeout.atendimento_localizacao)
-                + '<br>Bebidas: ' + '<span class="ghost">' + timeout.bebida_localizacao + '</span>' + star(timeout.bebida_localizacao)
-                + '<br>Tira gosto: ' + '<span class="ghost">' + timeout.tira_gosto_localizacao + '</span>' + star(timeout.tira_gosto_localizacao)
-                + '<a class="btn btn-outline btn-primary btn-block" href="/timeout/alterar?id_localizacao=' + timeout.id_localizacao + '"><i class="fa fa-edit"></i>Editar</a>'
-                + '<button type="button" class="btn btn-outline btn-danger btn-block" onclick="mostrarModalExcluir(' + timeout.indice + ')"><i class="fa fa-times"></i>Excluir</a>'
+                + '<br/>Horários: ' + timeout.horario_abertura_localizacao + ' às ' + timeout.horario_fechamento_localizacao
+                + '<br/>Preço: ' + '<span class="ghost">' + timeout.preco_localizacao + '</span>' + star$(timeout.preco_localizacao)
+                + '<br/>Ambiente: ' + '<span class="ghost">' + timeout.ambiente_localizacao + '</span>' + star(timeout.ambiente_localizacao)
+                + '<br/>Atendimento: ' + '<span class="ghost">' + timeout.atendimento_localizacao + '</span>' + star(timeout.atendimento_localizacao)
+                + '<br/>Bebidas: ' + '<span class="ghost">' + timeout.bebida_localizacao + '</span>' + star(timeout.bebida_localizacao)
+                + '<br/>Tira gosto: ' + '<span class="ghost">' + timeout.tira_gosto_localizacao + '</span>' + star(timeout.tira_gosto_localizacao)
+                + '<br/><a class="btn btn-outline btn-primary btn-block" href="/timeout/alterar?id_localizacao=' + timeout.id_localizacao + '"><i class="fa fa-edit"></i>Editar</a>'
+                + '<button type="button" class="btn btn-outline btn-danger btn-block" onclick="mostrarModalExcluir(' + timeout.indice + ')"><i class="fa fa-times"></i>Excluir</button>'
                 + '</p>')
             .openOn(map);
     }
