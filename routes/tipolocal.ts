@@ -11,7 +11,7 @@ router.all("/criar", wrap(async (req: express.Request, res: express.Response) =>
         res.redirect("/acesso");
     } else {
         res.render("controle/tipoLocal/alterar", {
-            titulo: "Criar Local",
+            titulo: "Criar Tipo de Local",
             usuario: u,
             item: null
         });
@@ -28,7 +28,7 @@ router.all("/alterar", wrap(async (req: express.Request, res: express.Response) 
         if (isNaN(id_tipo_local) || !(item = await TipoLocal.obter(id_tipo_local)))
             res.render("shared/nao-encontrado", { usuario: u });
         else
-            res.render("controle/solucao/alterar", {
+            res.render("controle/tipoLocal/alterar", {
                 titulo: "Editar Local",
                 usuario: u,
                 item: item
@@ -42,7 +42,7 @@ router.get("/listar", wrap(async (req: express.Request, res: express.Response) =
         res.redirect("/acesso");
     } else {
         res.render("controle/tipoLocal/listar", {
-            titulo: "Gerenciar Locais",
+            titulo: "Gerenciar Tipos de Local",
             usuario: u,
             lista: JSON.stringify(await TipoLocal.listar())
         });

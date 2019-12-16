@@ -35,7 +35,7 @@ router.post("/alterar", wrap(async (req: express.Request, res: express.Response)
         return;
     let s = req.body as TipoLocal;
     if (s)
-        s.id_tipo_local = parseInt(req.body.id_solucao);
+		s.id_tipo_local = parseInt(req.body.id_tipo_local);
     jsonRes(res, 400, (s && !isNaN(s.id_tipo_local)) ? await TipoLocal.alterar(s) : "Dados inválidos!");
 }));
 

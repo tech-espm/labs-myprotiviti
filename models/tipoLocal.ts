@@ -7,7 +7,7 @@ export = class TipoLocal {
     private static validar(s: TipoLocal): string {
 		s.nome_tipo_local = (s.nome_tipo_local || "").trim();
         if (s.nome_tipo_local.length < 3 || s.nome_tipo_local.length > 255) {
-            return "Nome do local inválido!";
+            return "Nome do tipo de local inválido!";
         }
 
         return null;
@@ -43,7 +43,7 @@ export = class TipoLocal {
                 await sql.query(`insert into tipo_local (nome_tipo_local) values (?)`, [s.nome_tipo_local]);
             } catch (e) {
                 if (e.code && e.code === "ER_DUP_ENTRY")
-                    res = "O local já existe!";
+                    res = "O tipo de local já existe!";
                 else
                     throw e;
             }
@@ -63,7 +63,7 @@ export = class TipoLocal {
                 res = sql.linhasAfetadas.toString();
             } catch (e) {
                 if (e.code && e.code === "ER_DUP_ENTRY")
-                    res = "A solução já existe!";
+                    res = "O tipo de local já existe!";
                 else
                     throw e;
             }

@@ -191,7 +191,7 @@ CREATE TABLE oportunidade (
   tel_oportunidade VARCHAR(30) NULL,
   email_oportunidade VARCHAR(100) NULL,	
   id_solucao INT NOT NULL,
-  descricao_oportunidade VARCHAR(250) NULL,
+  descricao_oportunidade VARCHAR(255) NULL,
   PRIMARY KEY (id_oportunidade),
   CONSTRAINT fk_oportunidade_id_solucao FOREIGN KEY (id_solucao) REFERENCES solucao (id_solucao)
 );
@@ -207,7 +207,7 @@ CREATE TABLE projeto (
   id_escritorio_lider INT NULL,
   id_cc_lider INT NULL,
   valor_projeto FLOAT NULL,
-  descricao_projeto VARCHAR(250) NULL,
+  descricao_projeto VARCHAR(255) NULL,
   PRIMARY KEY (id_projeto),
   CONSTRAINT fk_projeto_id_cliente FOREIGN KEY (id_cliente) REFERENCES cliente (id_cliente),
   CONSTRAINT fk_projeto_id_segmento FOREIGN KEY (id_segmento) REFERENCES segmento (id_segmento),
@@ -224,7 +224,7 @@ CREATE TABLE parceria (
   id_empresa INT NOT NULL,
   id_solucao INT NOT NULL,
   id_pursuit_team INT NULL,
-  valor_agregado_parceria VARCHAR(250) NULL,
+  valor_agregado_parceria VARCHAR(255) NULL,
   PRIMARY KEY (id_parceria),
   CONSTRAINT fk_parceria_id_empresa FOREIGN KEY (id_empresa) REFERENCES empresa (id_empresa),
   CONSTRAINT fk_parceria_id_solucao FOREIGN KEY (id_solucao) REFERENCES solucao (id_solucao),
@@ -233,13 +233,15 @@ CREATE TABLE parceria (
 
 CREATE TABLE tipo_local (
   id_tipo_local INT NOT NULL AUTO_INCREMENT,
-  nome_tipo_local VARCHAR(250) NULL,
+  nome_tipo_local VARCHAR(255) NULL,
   PRIMARY KEY (id_tipo_local)
 );
 
+INSERT INTO tipo_local (nome_tipo_local) VALUES ('Bar'), ('Restaurante');
+
 CREATE TABLE localizacao (
   id_localizacao INT NOT NULL AUTO_INCREMENT,
-  nome_localizacao VARCHAR(250) NOT NULL,
+  nome_localizacao VARCHAR(255) NOT NULL,
   id_tipo_local INT NULL,
   dia_semana_localizacao INT NULL,
   horario_abertura_localizacao TIME(0) NULL,
@@ -249,7 +251,7 @@ CREATE TABLE localizacao (
   atendimento_localizacao FLOAT NOT NULL,
   bebida_localizacao FLOAT NOT NULL,
   tira_gosto_localizacao FLOAT NOT NULL,
-  comentario_localizacao VARCHAR(250) NULL,
+  comentario_localizacao VARCHAR(255) NULL,
   latitude_localizacao DOUBLE NOT NULL,
   longitude_localizacao DOUBLE NOT NULL,
   PRIMARY KEY (id_localizacao),
