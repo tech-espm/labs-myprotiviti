@@ -2,16 +2,96 @@
     <% if (msg) { %>
     <div class="alert alert-danger"><%=msg %></div>
     <% } %>
+    <form class="col-lg-12" action="." method="post" id="form">
+        <div class="row">
+            <div class="col-sm-2 text-center">
+                <div class="form-group">
+                    <label for="txtHorario">Horário</label>
+                    <br />
+                    <input type="text" id="txtHorario" placeholder="00:00" maxlength="5" class="form-control" />
+                </div>
+            </div>
+            <div class="col-sm-2 text-center">
+                <div class="form-group">
+                    <label for="txtPreco">Preço</label>
+                    <br />
+                    <input type="number" id="txtPreco" placeholder="MÁX" min="1" max="5" class="form-control" />
+                </div>
+            </div>
+            <div class="col-sm-2 text-center">
+                <div class="form-group">
+                    <label for="txtAmbiente">Ambiente</label>
+                    <br />
+                    <input type="number" id="txtAmbiente" placeholder="MÍN" min="1" max="5" class="form-control" />
+                </div>
+            </div>
+            <div class="col-sm-2 text-center">
+                <div class="form-group">
+                    <label for="txtAtendimento">Atendimento</label>
+                    <br />
+                    <input type="number" id="txtAtendimento" placeholder="MÍN" min="1" max="5" class="form-control"/>
+                </div>
+            </div>
+            <div class="col-sm-2 text-center">
+                <div class="form-group">
+                    <label for="txtBebida">Bebidas</label>
+                    <br />
+                    <input type="number" id="txtBebida" placeholder="MÍN" min="1" max="5" class="form-control" />
+                </div>
+            </div>
+            <div class="col-sm-2 text-center">
+                <div class="form-group">
+                    <label for="txtTira_gosto">Tira Gosto</label>
+                    <br />
+                    <input type="number" id="txtTira_gosto" placeholder="MÍN" min="1" max="5" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" name="filtrar" value="Aplicar Filtros" />
+                    <input type="button" class="btn btn-default" name="limparFiltro" value="Limpar Filtros" onclick="limparFiltros()" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="row">
     <div class="col-lg-12">
         <div id="map" style="height: 410px; border: 1px solid #AAA;"></div>
     </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modalExcluir">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Oops...</h4>
+			</div>
+			<div class="modal-body">
+				<p>
+					Tem certeza que deseja excluir o Time Out <span id="lblNome"></span>? Essa operação NÃO pode ser desfeita!
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" onclick="excluir()"><i class="fa fa-check"></i> Excluir</button>
+				<button type="button" class="btn btn-outline btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
+			</div>
+		</div>
+	</div>
 </div>
 
 <%- contentFor("styles") %>
 <link rel="stylesheet" type="text/css" href="/lib/leaflet/css/leaflet.css" />
 
 <style type="text/css">
-
+    .ghost {
+        display: inline-block;
+        overflow: hidden;
+        width: 0;
+    }
 </style>
 
 <%- contentFor("scripts") %>
@@ -19,7 +99,47 @@
 
 <script type='text/javascript'>
     var timeouts = <%- timeouts %>;
+    var timeoutsFiltrados = timeouts.slice();
     var map = L.map('map');
+    var id_para_excluir = 0;
+    var txtHorario = document.getElementById("txtHorario"),
+        txtPreco = document.getElementById("txtPreco"),
+        txtAmbiente = document.getElementById("txtAmbiente"),
+        txtAtendimento = document.getElementById("txtAtendimento"),
+        txtBebida = document.getElementById("txtBebida"),
+        txtTira_gosto = document.getElementById("txtTira_gosto");
+
+    function mostrarModalExcluir(indice) {
+        if (JsonWebApi.active)
+            return;
+
+        id_para_excluir = timeouts[indice].id_localizacao;
+        $("#lblNome").text(timeouts[indice].nome_localizacao);
+
+        $("#modalExcluir").modal({
+            backdrop: "static",
+            keyboard: true
+        });
+    }
+
+    function excluir(id_localizacao) {
+        if (JsonWebApi.active || !id_para_excluir)
+            return;
+
+        $("#modalExcluir").modal("hide");
+
+        Notification.wait();
+
+        JsonWebApi.get("/api/timeout/excluir", function (response) {
+            if (response.success) {
+                location.reload(true);
+            } else {
+                Notification.error(response.value, true);
+            }
+        }, "id_localizacao", id_para_excluir);
+
+        id_para_excluir = 0;
+    }   
 
     function onMarkerClick() {
         var timeout = this.timeout;
@@ -27,14 +147,149 @@
             .setLatLng([timeout.latitude_localizacao, timeout.longitude_localizacao])
             .setContent('<p>' + timeout.nome_localizacao
                 + '<br>Horários: ' + timeout.horario_abertura_localizacao + ' às ' + timeout.horario_fechamento_localizacao
-                + '<br>Preço: ' + timeout.preco_localizacao
-                + '<br>Ambiente: ' + timeout.ambiente_localizacao
-                + '<br>Atendimento: ' + timeout.atendimento_localizacao
-                + '<br>Bebidas: ' + timeout.bebida_localizacao
-                + '<br>Tira gosto: ' + timeout.tira_gosto_localizacao + '</p>')
+                + '<br>Preço: ' + '<span class="ghost">' + timeout.preco_localizacao + '</span>' + star$(timeout.preco_localizacao)
+                + '<br>Ambiente: ' + '<span class="ghost">' + timeout.ambiente_localizacao + '</span>' + star(timeout.ambiente_localizacao)
+                + '<br>Atendimento: ' + '<span class="ghost">' + timeout.atendimento_localizacao + '</span>' + star(timeout.atendimento_localizacao)
+                + '<br>Bebidas: ' + '<span class="ghost">' + timeout.bebida_localizacao + '</span>' + star(timeout.bebida_localizacao)
+                + '<br>Tira gosto: ' + '<span class="ghost">' + timeout.tira_gosto_localizacao + '</span>' + star(timeout.tira_gosto_localizacao)
+                + '<a class="btn btn-outline btn-primary btn-block" href="/timeout/alterar?id_localizacao=' + timeout.id_localizacao + '"><i class="fa fa-edit"></i>Editar</a>'
+                + '<button type="button" class="btn btn-outline btn-danger btn-block" onclick="mostrarModalExcluir(' + timeout.indice + ')"><i class="fa fa-times"></i>Excluir</a>'
+                + '</p>')
             .openOn(map);
     }
 
+    document.getElementById("form").onsubmit = function (e) {
+        timeoutsFiltrados = timeouts.slice();
+        filtrarHorario();
+        filtrarPreco();
+        filtrarAmbiente();
+        filtrarAtendimento();
+        filtrarBebida();
+        filtrarTiraGosto();
+        atualizarMapa();
+        return cancelEvent(e);
+    };
+
+    function star(x) {
+        var html = '', i = 0, xi = x | 0;
+        while (i < xi) {
+            html += '<i class="fa fa-star"></i>';
+            i++;
+        }
+        if (xi !== x) {
+            html += '<i class="fa fa-star-half"></i>';
+            i++;
+        }
+        //while (i < 5) {
+        //    html += '<i class="fa fa-star-o"></i>';
+        //    i++;
+        //}
+        return html;
+    }
+
+    function star$(x) {
+        var html = '', i = 0, xi = (x + 0.5) | 0;
+        while (i < xi) {
+            html += '<i class="fa fa-dollar"></i>';
+            i++;
+        }
+        return html;
+    }
+
+    function atualizarMapa() {
+        for (var i = timeouts.length - 1; i >= 0; i--) {
+            var timeout = timeouts[i];
+            map.removeLayer(timeout.marker);
+        }
+        for (var i = timeoutsFiltrados.length - 1; i >= 0; i--) {
+            var timeout = timeoutsFiltrados[i];
+            timeout.marker.addTo(map);
+        }
+    }
+
+    function limparFiltros() {
+        timeoutsFiltrados = timeouts.slice();
+        // desativar todos os filtros
+        txtHorario.value = "";
+        txtPreco.value = "";
+        txtAmbiente.value = "";
+        txtAtendimento.value = "";
+        txtBebida.value = "";
+        txtTira_gosto.value = "";
+        atualizarMapa();
+    }
+
+    function filtrarHorario() {
+        var filtro = parseInt(txtHorario.value.replace(':', ''), 10);
+        for (var i = timeoutsFiltrados.length - 1; i >= 0; i--) {
+            var horaInicial = parseInt(timeoutsFiltrados[i].horario_abertura_localizacao.replace(':', ''));
+            var horaFinal = parseInt(timeoutsFiltrados[i].horario_fechamento_localizacao.replace(':', ''));
+            if (horaInicial > filtro || horaFinal < filtro) {
+                timeoutsFiltrados.splice(i, 1);
+            }
+        }
+    }
+
+    function filtrarPreco() {
+        var filtro = parseInt(txtPreco.value);
+        if (isNaN(filtro))
+            return;
+        for (var i = timeoutsFiltrados.length - 1; i >= 0; i--) {
+            var preco = timeoutsFiltrados[i].preco_localizacao;
+            if (preco > filtro) {
+                timeoutsFiltrados.splice(i, 1);
+            }
+        }
+    }
+
+    function filtrarAmbiente() {
+        var filtro = parseInt(txtAmbiente.value);
+        if (isNaN(filtro))
+            return;
+        for (var i = timeoutsFiltrados.length - 1; i >= 0; i--) {
+            var ambiente = timeoutsFiltrados[i].ambiente_localizacao;
+            if (ambiente < filtro) {
+                timeoutsFiltrados.splice(i, 1);
+            }
+        }
+    }
+
+    function filtrarAtendimento() {
+        var filtro = parseInt(txtAtendimento.value);
+        if (isNaN(filtro))
+            return;
+        for (var i = timeoutsFiltrados.length - 1; i >= 0; i--) {
+            var atendimento = timeoutsFiltrados[i].atendimento_localizacao;
+            if (atendimento < filtro) {
+                timeoutsFiltrados.splice(i, 1);
+            }
+        }
+    }
+
+    function filtrarBebida() {
+        var filtro = parseInt(txtBebida.value);
+        if (isNaN(filtro))
+            return;
+        for (var i = timeoutsFiltrados.length - 1; i >= 0; i--) {
+            var bebida = timeoutsFiltrados[i].bebida_localizacao;
+            if (bebida < filtro) {
+                timeoutsFiltrados.splice(i, 1);
+            }
+        }
+    }
+
+    function filtrarTiraGosto() {
+        var filtro = parseInt(txtTira_gosto.value);
+        if (isNaN(filtro))
+            return;
+        for (var i = timeoutsFiltrados.length - 1; i >= 0; i--) {
+            var tiraGosto = timeoutsFiltrados[i].tira_gosto_localizacao;
+            if (tiraGosto < filtro) {
+                timeoutsFiltrados.splice(i, 1);
+            }
+        }
+    }
+    
     function iniciarMapa(lat, lng) {
         var latlng = new L.LatLng(lat, lng);
         map.setView(latlng, 14);
@@ -45,7 +300,6 @@
             minZoom: 10,
             zoom: 14
         }).addTo(map);
-
 
         var highDpi = (("matchMedia" in window) && (highDpi = window.matchMedia("(min-resolution: 150dpi)")) && highDpi.matches),
             icons = [null];
@@ -62,11 +316,14 @@
         }
 
         for (var i = 0; i < timeouts.length; i++) {
-            var marker = L.marker([timeouts[i].latitude_localizacao, timeouts[i].longitude_localizacao], {
+            var marker = L.marker([timeouts[i].latitude_localizacao, timeouts[i].longitude_localizacao],
+                {
                 icon: icons[timeouts[i].id_tipo_local]
-            }).addTo(map);
+                })
+                .addTo(map);
             marker.timeout = timeouts[i];
             timeouts[i].marker = marker;
+            timeouts[i].indice = i;
             marker.on('click', onMarkerClick);
         }
 
@@ -76,7 +333,6 @@
                 .setContent('<p><a href="/timeout/criar?lat=' + encodeURIComponent(e.latlng.lat) + '&lng=' + encodeURIComponent(e.latlng.lng) + '">Adicionar localização</a></p>')
                 .openOn(map);
         });
-        
     }
 
     if (location.href.indexOf("https://") === 0 || location.href.indexOf("localhost") >= 0) {

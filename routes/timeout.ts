@@ -23,7 +23,7 @@ router.all("/criar", wrap(async (req: express.Request, res: express.Response) =>
         let lat = parseFloat(req.query['lat']);
         let lng = parseFloat(req.query['lng']);
         if (isNaN(lat) || isNaN(lng)) {
-            res.render("timeout/mapa", { titulo: "Mapa de Time Out", usuario: u, msg: null, timeouts: JSON.stringify(await Timeout.listar()) });
+            res.redirect("/timeout/mapa");
         } else {
             res.render("timeout/alterar", { titulo: "Criar Time Out", usuario: u, lat: lat, lng: lng, item: null, tipoLocal: await TipoLocal.listar() });
         }
@@ -35,19 +35,20 @@ router.all("/alterar", wrap(async (req: express.Request, res: express.Response) 
 	if (!u) {
 		res.redirect("/");
     } else {
-        let lat = parseFloat(req.query['lat']);
-        let lng = parseFloat(req.query['lng']);
-        if (isNaN(lat) || isNaN(lng)) {
-            res.render("timeout/mapa", { titulo: "Mapa de Time Out", usuario: u, msg: null, timeouts: JSON.stringify(await Timeout.listar()) });
-        } else if (lat > -19.714009 ||
-            lat < -25.360810 ||
-            lng > -44.153793 ||
-            lng < -53.170575) {
-            res.render("timeout/mapa", { titulo: "Mapa de Time Out", usuario: u, msg: "Por favor, especifique um ponto dentro do Estado de SP.", timeouts: JSON.stringify(await Timeout.listar()) });
-        } else {
-            res.render("timeout/alterar", { titulo: "Criar Time Out", usuario: u, lat: lat, lng: lng, item: null, tipoLocal: await TipoLocal.listar() });
-        }
-	}
+        let id_localizacao = parseInt(req.query["id_localizacao"]);
+        let item: Timeout = null;
+        if (isNaN(id_localizacao) || !(item = await Timeout.obter(id_localizacao)))
+            res.render("shared/nao-encontrado");
+        else
+            res.render("timeout/alterar", {
+                titulo: "Editar Time Out",
+                usuario: u,
+                lat: item.latitude_localizacao,
+                lng: item.longitude_localizacao,
+                item: item,
+                tipoLocal: await TipoLocal.listar()
+            });
+    }
 }));
 
 router.get("/listar", wrap(async (req: express.Request, res: express.Response) => {
