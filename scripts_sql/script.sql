@@ -34,18 +34,7 @@ CREATE TABLE usuario (
 	CONSTRAINT perfil_FK FOREIGN KEY (perfil) REFERENCES perfil (id) ON DELETE CASCADE
 );
 
-INSERT INTO usuario (login, nome, perfil, senha) VALUES
-('ADMIN','ADMINISTRADOR',1,'peTcC99vkvvLqGQL7mdhGuJZIvL2iMEqvCNvZw3475PJ:JVyo1Pg2HyDyw9aSOd3gNPT30KdEyiUYCjs7RUzSoYGN'),
-('CARLOS.NEVES','CARLOS RAFAEL',1,'peTcC99vkvvLqGQL7mdhGuJZIvL2iMEqvCNvZw3475PJ:JVyo1Pg2HyDyw9aSOd3gNPT30KdEyiUYCjs7RUzSoYGN'),
-('FELIPE.ALVINO','FELIPE ALVINO',1,'peTcC99vkvvLqGQL7mdhGuJZIvL2iMEqvCNvZw3475PJ:JVyo1Pg2HyDyw9aSOd3gNPT30KdEyiUYCjs7RUzSoYGN'),
-('DANIEL.SHIMODA','DANIEL SHIMODA',1,'peTcC99vkvvLqGQL7mdhGuJZIvL2iMEqvCNvZw3475PJ:JVyo1Pg2HyDyw9aSOd3gNPT30KdEyiUYCjs7RUzSoYGN'),
-('CAIO.CATARINO','CAIO CATARINO',1,'peTcC99vkvvLqGQL7mdhGuJZIvL2iMEqvCNvZw3475PJ:JVyo1Pg2HyDyw9aSOd3gNPT30KdEyiUYCjs7RUzSoYGN'),
-('ANDRE.AGUIAR','ANDRÉ AGUIAR',1,'peTcC99vkvvLqGQL7mdhGuJZIvL2iMEqvCNvZw3475PJ:JVyo1Pg2HyDyw9aSOd3gNPT30KdEyiUYCjs7RUzSoYGN'),
-('VINICIUS.JUNQUEIRA','VINÍCIUS JUNQUEIRA',1,'peTcC99vkvvLqGQL7mdhGuJZIvL2iMEqvCNvZw3475PJ:JVyo1Pg2HyDyw9aSOd3gNPT30KdEyiUYCjs7RUzSoYGN'),
-('LUCAS.ZILLIG','LUCAS ZILLIG',1,'peTcC99vkvvLqGQL7mdhGuJZIvL2iMEqvCNvZw3475PJ:JVyo1Pg2HyDyw9aSOd3gNPT30KdEyiUYCjs7RUzSoYGN'),
-('BRUNA.RODRIGUES','BRUNA RODRIGUES',1,'peTcC99vkvvLqGQL7mdhGuJZIvL2iMEqvCNvZw3475PJ:JVyo1Pg2HyDyw9aSOd3gNPT30KdEyiUYCjs7RUzSoYGN'),
-('RAFAEL.PIGNATARO','RAFAEL PIGNATARO',1,'peTcC99vkvvLqGQL7mdhGuJZIvL2iMEqvCNvZw3475PJ:JVyo1Pg2HyDyw9aSOd3gNPT30KdEyiUYCjs7RUzSoYGN'),
-('GUILHERME.LARREA','GUILHERME LARREA',1,'peTcC99vkvvLqGQL7mdhGuJZIvL2iMEqvCNvZw3475PJ:JVyo1Pg2HyDyw9aSOd3gNPT30KdEyiUYCjs7RUzSoYGN');
+INSERT INTO usuario (login, nome, perfil, senha) VALUES ('ADMIN','ADMINISTRADOR',1,'peTcC99vkvvLqGQL7mdhGuJZIvL2iMEqvCNvZw3475PJ:JVyo1Pg2HyDyw9aSOd3gNPT30KdEyiUYCjs7RUzSoYGN');
 
 CREATE TABLE administrativo (
   id INT NOT NULL AUTO_INCREMENT,
@@ -119,12 +108,10 @@ CREATE TABLE mentoring (
   id_mentoring INT NOT NULL AUTO_INCREMENT,
   id_mentor INT NOT NULL,
   id_mentorado INT NOT NULL,
-  PRIMARY KEY (id_mentoring)
+  PRIMARY KEY (id_mentoring),
+  CONSTRAINT fk_mentoring_id_mentor FOREIGN KEY (id_mentor) REFERENCES mentor (id_mentor),
+  CONSTRAINT fk_mentoring_id_mentorado FOREIGN KEY (id_mentorado) REFERENCES mentorado (id_mentorado)
 );
-
-ALTER TABLE mentoring ADD CONSTRAINT fk_mentoring_id_mentor FOREIGN KEY (id_mentor) REFERENCES mentor (id_mentor);
-ALTER TABLE mentoring ADD CONSTRAINT fk_mentoring_id_mentorado FOREIGN KEY (id_mentorado) REFERENCES mentorado (id_mentorado);
-
 
 CREATE TABLE pursuit_team (
   id_pursuit_team INT NOT NULL AUTO_INCREMENT,
@@ -205,10 +192,9 @@ CREATE TABLE oportunidade (
   email_oportunidade VARCHAR(100) NULL,	
   id_solucao INT NOT NULL,
   descricao_oportunidade VARCHAR(250) NULL,
-  PRIMARY KEY (id_oportunidade)
+  PRIMARY KEY (id_oportunidade),
+  CONSTRAINT fk_oportunidade_id_solucao FOREIGN KEY (id_solucao) REFERENCES solucao (id_solucao)
 );
-
-ALTER TABLE oportunidade ADD CONSTRAINT fk_oportunidade_id_solucao FOREIGN KEY (id_solucao) REFERENCES solucao (id_solucao);
 
 CREATE TABLE projeto (
   id_projeto INT NOT NULL AUTO_INCREMENT,
@@ -222,18 +208,16 @@ CREATE TABLE projeto (
   id_cc_lider INT NULL,
   valor_projeto FLOAT NULL,
   descricao_projeto VARCHAR(250) NULL,
-  PRIMARY KEY (id_projeto)
+  PRIMARY KEY (id_projeto),
+  CONSTRAINT fk_projeto_id_cliente FOREIGN KEY (id_cliente) REFERENCES cliente (id_cliente),
+  CONSTRAINT fk_projeto_id_segmento FOREIGN KEY (id_segmento) REFERENCES segmento (id_segmento),
+  CONSTRAINT fk_projeto_id_matriz_servico FOREIGN KEY (id_matriz_servico) REFERENCES matriz_servico (id_matriz_servico),
+  CONSTRAINT fk_projeto_id_forma_contato FOREIGN KEY (id_forma_contato) REFERENCES forma_contato (id_forma_contato),
+  CONSTRAINT fk_projeto_id_responsavel_proposta FOREIGN KEY (id_responsavel_proposta) REFERENCES responsavel_proposta (id_responsavel_proposta),
+  CONSTRAINT fk_projeto_id_pursuit_team FOREIGN KEY (id_pursuit_team) REFERENCES pursuit_team (id_pursuit_team),
+  CONSTRAINT fk_projeto_escritorio_lider FOREIGN KEY (id_escritorio_lider) REFERENCES escritorio_lider (id_escritorio_lider),
+  CONSTRAINT fk_projeto_cc_lider FOREIGN KEY (id_cc_lider) REFERENCES cc_lider (id_cc_lider)
 );
-
-ALTER TABLE projeto ADD CONSTRAINT fk_projeto_id_cliente FOREIGN KEY (id_cliente) REFERENCES cliente (id_cliente);
-ALTER TABLE projeto ADD CONSTRAINT fk_projeto_id_segmento FOREIGN KEY (id_segmento) REFERENCES segmento (id_segmento);
-ALTER TABLE projeto ADD CONSTRAINT fk_projeto_id_matriz_servico FOREIGN KEY (id_matriz_servico) REFERENCES matriz_servico (id_matriz_servico);
-ALTER TABLE projeto ADD CONSTRAINT fk_projeto_id_forma_contato FOREIGN KEY (id_forma_contato) REFERENCES forma_contato (id_forma_contato);
-ALTER TABLE projeto ADD CONSTRAINT fk_projeto_id_responsavel_proposta FOREIGN KEY (id_responsavel_proposta) REFERENCES responsavel_proposta (id_responsavel_proposta);
-ALTER TABLE projeto ADD CONSTRAINT fk_projeto_id_pursuit_team FOREIGN KEY (id_pursuit_team) REFERENCES pursuit_team (id_pursuit_team);
-ALTER TABLE projeto ADD CONSTRAINT fk_projeto_escritorio_lider FOREIGN KEY (id_escritorio_lider) REFERENCES escritorio_lider (id_escritorio_lider);
-ALTER TABLE projeto ADD CONSTRAINT fk_projeto_cc_lider FOREIGN KEY (id_cc_lider) REFERENCES cc_lider (id_cc_lider);
-
 
 CREATE TABLE parceria (
   id_parceria INT NOT NULL AUTO_INCREMENT,
@@ -241,13 +225,11 @@ CREATE TABLE parceria (
   id_solucao INT NOT NULL,
   id_pursuit_team INT NULL,
   valor_agregado_parceria VARCHAR(250) NULL,
-  PRIMARY KEY (id_parceria)
+  PRIMARY KEY (id_parceria),
+  CONSTRAINT fk_parceria_id_empresa FOREIGN KEY (id_empresa) REFERENCES empresa (id_empresa),
+  CONSTRAINT fk_parceria_id_solucao FOREIGN KEY (id_solucao) REFERENCES solucao (id_solucao),
+  CONSTRAINT fk_parceria_id_pursuit_team FOREIGN KEY (id_pursuit_team) REFERENCES pursuit_team (id_pursuit_team)
 );
-
-ALTER TABLE parceria ADD CONSTRAINT fk_parceria_id_empresa FOREIGN KEY (id_empresa) REFERENCES empresa (id_empresa);
-ALTER TABLE parceria ADD CONSTRAINT fk_parceria_id_solucao FOREIGN KEY (id_solucao) REFERENCES solucao (id_solucao);
-ALTER TABLE parceria ADD CONSTRAINT fk_parceria_id_pursuit_team FOREIGN KEY (id_pursuit_team) REFERENCES pursuit_team (id_pursuit_team);
-
 
 CREATE TABLE tipo_local (
   id_tipo_local INT NOT NULL AUTO_INCREMENT,
@@ -270,8 +252,6 @@ CREATE TABLE localizacao (
   comentario_localizacao VARCHAR(250) NULL,
   latitude_localizacao DOUBLE NOT NULL,
   longitude_localizacao DOUBLE NOT NULL,
-  PRIMARY KEY (id_localizacao)
+  PRIMARY KEY (id_localizacao),
+  CONSTRAINT fk_localizacao_id_tipo_local FOREIGN KEY (id_tipo_local) REFERENCES tipo_local (id_tipo_local)
 );
-
-
-ALTER TABLE localizacao ADD CONSTRAINT fk_localizacao_id_tipo_local FOREIGN KEY (id_tipo_local) REFERENCES tipo_local (id_tipo_local);

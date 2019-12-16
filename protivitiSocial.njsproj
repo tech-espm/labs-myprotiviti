@@ -333,7 +333,6 @@
     <Folder Include="views\controle\cliente\" />
     <Folder Include="views\controle\empresa\" />
     <Folder Include="views\controle\escritorioLider\" />
-    <Folder Include="views\controle\industria\" />
     <Folder Include="views\controle\matrizServico\" />
     <Folder Include="views\controle\responsavelProposta\" />
     <Folder Include="views\controle\segmento\" />
