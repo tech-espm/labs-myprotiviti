@@ -23,6 +23,7 @@ import express = require("express");
 import cookieParser = require("cookie-parser"); // https://stackoverflow.com/a/16209531/3569421
 import path = require("path");
 import config = require("./config");
+import Perfil = require("./models/perfil");
 import PerfilPermissao = require("./models/perfilPermissao");
 
 // @@@ Configura o cache, para armazenar as 200 últimas páginas
@@ -32,8 +33,6 @@ import lru = require("lru-cache");
 import { NextFunction } from "express";
 
 ejs.cache = lru(200);
-
-PerfilPermissao.criarLista();
 
 const app = express();
 
@@ -190,9 +189,17 @@ app.use(function (req: express.Request, res: express.Response, next) {
 //	});
 //});
 
-// Vamos utilizar o NGINX para servir pela porta 80 externa, como proxy reverso.
-// Então, deixa o Node atrelado ao localhost, mesmo...
-//const server = app.listen(config.port, config.host, function () {
-const server = app.listen(config.port, function () {
-    debug("Express server listening on port " + server.address()["port"]);
-});
+async function main() {
+	PerfilPermissao.criarLista();
+
+	await Perfil.atualizarCache();
+
+	// Vamos utilizar o NGINX para servir pela porta 80 externa, como proxy reverso.
+	// Então, deixa o Node atrelado ao localhost, mesmo...
+	//const server = app.listen(config.port, config.host, function () {
+	const server = app.listen(config.port, function () {
+		debug("Express server listening on port " + server.address()["port"]);
+	});
+}
+
+main().catch(console.error);

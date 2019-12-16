@@ -11,7 +11,7 @@ router.all("/criar", wrap(async (req: express.Request, res: express.Response) =>
         res.redirect("/acesso");
     } else {
         res.render("controle/responsavelProposta/alterar", {
-            titulo: "Criar Responsável Pela Proposta",
+            titulo: "Criar Responsável pela Proposta",
             usuario: u,
             item: null
         });
@@ -29,7 +29,7 @@ router.all("/alterar", wrap(async (req: express.Request, res: express.Response) 
             res.render("shared/nao-encontrado", { usuario: u });
         else
             res.render("controle/responsavelProposta/alterar", {
-                titulo: "Editar Responsável Pela Proposta",
+                titulo: "Editar Responsável pela Proposta",
                 usuario: u,
                 item: item
             });

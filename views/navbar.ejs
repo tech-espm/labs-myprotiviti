@@ -40,20 +40,21 @@
 	<div class="navbar-default sidebar" id="sidebar" role="navigation">
 		<div id="navbar-collapse" class="sidebar-nav navbar-collapse collapse">
 			<ul class="nav" id="side-menu">
-
-
+				<% if (usuario.temAlgumaPermissao(usuario.permissoes.CriarAdministrativo, 4)) { %>
 				<li>
 					<a href="#">
 						<i class="fa fa-file-video-o"></i>Administrativo<span class="fa arrow"></span>
 					</a>
 					<ul class="nav nav-second-level collapse">
-
+						<% if (usuario.temPermissao(usuario.permissoes.CriarAdministrativo)) { %>
 						<li>
 							<a href="/administrativo/criar">
 								<i class="fa fa-plus fa-fw"></i>Criar
 							</a>
 						</li>
+						<% } %>
 
+						<% if (usuario.temAlgumaPermissao(usuario.permissoes.VisualizarAdministrativo, 3)) { %>
 						<li>
 							<a href="/administrativo/listar">
 								<i class="fa fa-eye"></i>Visualizar
@@ -64,79 +65,44 @@
 								<i class="fa fa-th-large"></i>Grade
 							</a>
 						</li>
-
-
-
+						<% } %>
 					</ul>
 				</li>
+				<% } %>
 
-
+				<% if (usuario.temAlgumaPermissao(usuario.permissoes.CriarCapacitacaoTreinamentos, 12)) { %>
 				<li>
 					<a href="#">
 						<i class="fa fa-vcard-o"></i>Carreira<span class="fa arrow"></span>
 					</a>
-					<!--<ul class="nav nav-second-level collapse">
-            <li>
-              <a href="#">
-                <i class=""></i>Mapa de carreira<span class="fa arrow"></span>
-              </a>
-              <ul class="nav nav-third-level collapse">
-                <li>
-                  <a href="/mapaCarreira/criar">
-                    <i class="fa fa-plus fa-fw"></i>Criar
-                  </a>
-                </li>
-                <li>
-                  <a href="/mapaCarreira/listar">
-                    <i class="fa fa-eye"></i>Visualizar
-                  </a>
-                </li>
-              </ul>
-            </li>
 
-          </ul>
-
-          <ul class="nav nav-second-level collapse">
-            <li>
-              <a href="#">
-                <i class=""></i>Gestão de desempenho<span class="fa arrow"></span>
-              </a>
-              <ul class="nav nav-third-level collapse">
-                <li>
-                  <a href="/gestaoDesempenho/criar">
-                    <i class="fa fa-plus fa-fw"></i>Criar
-                  </a>
-                </li>
-                <li>
-                  <a href="/gestaoDesempenho/listar">
-                    <i class="fa fa-eye"></i>Visualizar
-                  </a>
-                </li>
-              </ul>
-            </li>
-
-          </ul>-->
-
+					<% if (usuario.temAlgumaPermissao(usuario.permissoes.CriarCapacitacaoTreinamentos, 4)) { %>
 					<ul class="nav nav-second-level collapse">
 						<li>
 							<a href="#">
 								<i class=""></i>Capacitação & Treinamentos<span class="fa arrow"></span>
 							</a>
 							<ul class="nav nav-third-level collapse">
+								<% if (usuario.temPermissao(usuario.permissoes.CriarCapacitacaoTreinamentos)) { %>
 								<li>
 									<a href="/carreiraCapacitacaoTreinamentos/criar">
 										<i class="fa fa-plus fa-fw"></i>Criar
 									</a>
 								</li>
+								<% } %>
+								<% if (usuario.temAlgumaPermissao(usuario.permissoes.VisualizarCapacitacaoTreinamentos, 3)) { %>
 								<li>
 									<a href="/carreiraCapacitacaoTreinamentos/listar">
 										<i class="fa fa-eye"></i>Visualizar
 									</a>
 								</li>
+								<% } %>
 							</ul>
 						</li>
 					</ul>
+					<% } %>
 
+					<% if (usuario.temAlgumaPermissao(usuario.permissoes.CriarMentoring, 4)) { %>
 					<ul class="nav nav-second-level collapse">
 						<li>
 							<a href="#">
@@ -144,16 +110,20 @@
 							</a>
 
 							<ul class="nav nav-third-level collapse">
+								<% if (usuario.temPermissao(usuario.permissoes.CriarMentoring)) { %>
 								<li>
 									<a href="/mentoring/criar">
 										<i class="fa fa-plus fa-fw"></i>Criar
 									</a>
 								</li>
+								<% } %>
+								<% if (usuario.temAlgumaPermissao(usuario.permissoes.VisualizarMentoring, 3)) { %>
 								<li>
 									<a href="/mentoring/listar">
 										<i class="fa fa-eye"></i>Visualizar
 									</a>
 								</li>
+								<% } %>
 							</ul>
 
 							<ul class="nav nav-third-level collapse">
@@ -162,16 +132,20 @@
 										<i class=""></i>Mentor<span class="fa arrow"></span>
 									</a>
 									<ul class="nav nav-fourth-level collapse">
+										<% if (usuario.temPermissao(usuario.permissoes.CriarMentoring)) { %>
 										<li>
 											<a href="/mentor/criar">
 												<i class="fa fa-plus fa-fw"></i>Criar
 											</a>
 										</li>
+										<% } %>
+										<% if (usuario.temAlgumaPermissao(usuario.permissoes.VisualizarMentoring, 3)) { %>
 										<li>
 											<a href="/mentor/listar">
 												<i class="fa fa-eye"></i>Visualizar
 											</a>
 										</li>
+										<% } %>
 									</ul>
 							</ul>
 
@@ -181,245 +155,285 @@
 										<i class=""></i>Mentorado<span class="fa arrow"></span>
 									</a>
 									<ul class="nav nav-fourth-level collapse">
+										<% if (usuario.temPermissao(usuario.permissoes.CriarMentoring)) { %>
 										<li>
 											<a href="/mentorado/criar">
 												<i class="fa fa-plus fa-fw"></i>Criar
 											</a>
 										</li>
+										<% } %>
+										<% if (usuario.temAlgumaPermissao(usuario.permissoes.VisualizarMentoring, 3)) { %>
 										<li>
 											<a href="/mentorado/listar">
 												<i class="fa fa-eye"></i>Visualizar
 											</a>
 										</li>
+										<% } %>
 									</ul>
 							</ul>
 						</li>
 					</ul>
+					<% } %>
 
+					<% if (usuario.temAlgumaPermissao(usuario.permissoes.CriarCurriculo, 4)) { %>
 					<ul class="nav nav-second-level collapse">
 						<li>
 							<a href="#">
 								<i class=""></i>Currículo<span class="fa arrow"></span>
 							</a>
 							<ul class="nav nav-third-level collapse">
+								<% if (usuario.temPermissao(usuario.permissoes.CriarCurriculo)) { %>
 								<li>
 									<a href="/curriculo/criar">
 										<i class="fa fa-plus fa-fw"></i>Criar
 									</a>
 								</li>
+								<% } %>
+								<% if (usuario.temAlgumaPermissao(usuario.permissoes.VisualizarCurriculo, 3)) { %>
 								<li>
 									<a href="/curriculo/listar">
 										<i class="fa fa-eye"></i>Visualizar
 									</a>
 								</li>
+								<% } %>
 							</ul>
 						</li>
 					</ul>
+					<% } %>
 
 				</li>
+				<% } %>
 
+				<% if (usuario.temAlgumaPermissao(usuario.permissoes.CriarAlocacao, 4)) { %>
 				<li>
 					<a href="#">
 						<i class="fa  fa-sitemap"></i>Alocação<span class="fa arrow"></span>
 					</a>
 					<ul class="nav nav-second-level collapse">
-
+						<% if (usuario.temPermissao(usuario.permissoes.CriarAlocacao)) { %>
 						<li>
 							<a href="/alocacao/criar">
 								<i class="fa fa-plus fa-fw"></i>Criar
 							</a>
 						</li>
-
+						<% } %>
+						<% if (usuario.temAlgumaPermissao(usuario.permissoes.VisualizarAlocacao, 3)) { %>
 						<li>
 							<a href="/alocacao/listar">
 								<i class="fa fa-eye"></i>Visualizar
 							</a>
 						</li>
-
+						<% } %>
 					</ul>
 				</li>
+				<% } %>
 
+				<% if (usuario.temAlgumaPermissao(usuario.permissoes.CriarPec, 4)) { %>
 				<li>
 					<a href="#">
 						<i class="fa fa-book"></i>PEC<span class="fa arrow"></span>
 					</a>
 					<ul class="nav nav-second-level collapse">
-
+						<% if (usuario.temPermissao(usuario.permissoes.CriarPec)) { %>
 						<li>
 							<a href="/pec/criar">
 								<i class="fa fa-plus fa-fw"></i>Criar
 							</a>
 						</li>
-
+						<% } %>
+						<% if (usuario.temAlgumaPermissao(usuario.permissoes.VisualizarPec, 3)) { %>
 						<li>
 							<a href="/pec/listar">
 								<i class="fa fa-eye"></i>Visualizar
 							</a>
 						</li>
-
+						<% } %>
 					</ul>
 				</li>
+				<% } %>
 
+				<% if (usuario.temAlgumaPermissao(usuario.permissoes.CriarProjeto, 12)) { %>
 				<li>
 					<a href="#">
 						<i class="fa  fa-suitcase"></i>Negócios<span class="fa arrow"></span>
 					</a>
+
+					<% if (usuario.temAlgumaPermissao(usuario.permissoes.CriarProjeto, 4)) { %>
 					<ul class="nav nav-second-level collapse">
 						<li>
 							<a href="#">
 								<i class=""></i>Projetos<span class="fa arrow"></span>
 							</a>
 							<ul class="nav nav-third-level collapse">
+								<% if (usuario.temPermissao(usuario.permissoes.CriarProjeto)) { %>
 								<li>
 									<a href="/projeto/criar">
 										<i class="fa fa-plus fa-fw"></i>Criar
 									</a>
 								</li>
+								<% } %>
+								<% if (usuario.temAlgumaPermissao(usuario.permissoes.VisualizarProjeto, 3)) { %>
 								<li>
 									<a href="/projeto/listar">
 										<i class="fa fa-eye"></i>Visualizar
 									</a>
 								</li>
+								<% } %>
 							</ul>
 						</li>
 					</ul>
+					<% } %>
 
+					<% if (usuario.temAlgumaPermissao(usuario.permissoes.CriarParceria, 4)) { %>
 					<ul class="nav nav-second-level collapse">
 						<li>
 							<a href="#">
 								<i class=""></i>Parcerias<span class="fa arrow"></span>
 							</a>
 							<ul class="nav nav-third-level collapse">
+								<% if (usuario.temPermissao(usuario.permissoes.CriarParceria)) { %>
 								<li>
 									<a href="/negocios/parceria/criar">
 										<i class="fa fa-plus fa-fw"></i>Criar
 									</a>
 								</li>
+								<% } %>
+								<% if (usuario.temAlgumaPermissao(usuario.permissoes.VisualizarParceria, 3)) { %>
 								<li>
 									<a href="/negocios/parceria/listar">
 										<i class="fa fa-eye"></i>Visualizar
 									</a>
 								</li>
+								<% } %>
 							</ul>
 						</li>
 					</ul>
+					<% } %>
 
+					<% if (usuario.temAlgumaPermissao(usuario.permissoes.CriarOportunidade, 4)) { %>
 					<ul class="nav nav-second-level collapse">
 						<li>
 							<a href="#">
 								<i class=""></i>Indicação de Oportunidade<span class="fa arrow"></span>
 							</a>
 							<ul class="nav nav-third-level collapse">
+								<% if (usuario.temPermissao(usuario.permissoes.CriarOportunidade)) { %>
 								<li>
 									<a href="/oportunidade/criar">
 										<i class="fa fa-plus fa-fw"></i>Criar
 									</a>
 								</li>
+								<% } %>
+								<% if (usuario.temAlgumaPermissao(usuario.permissoes.VisualizarOportunidade, 3)) { %>
 								<li>
 									<a href="/oportunidade/listar">
 										<i class="fa fa-eye"></i>Visualizar
 									</a>
 								</li>
+								<% } %>
 							</ul>
 						</li>
-
-
 					</ul>
-
-
-
+					<% } %>
 				</li>
+				<% } %>
 
+				<% if (usuario.temAlgumaPermissao(usuario.permissoes.CriarLideranca, 4)) { %>
 				<li>
 					<a href="#">
 						<i class="fa fa-users"></i>Liderança<span class="fa arrow"></span>
 					</a>
 					<ul class="nav nav-second-level collapse">
-
+						<% if (usuario.temPermissao(usuario.permissoes.CriarLideranca)) { %>
 						<li>
 							<a href="/lideranca/criar">
 								<i class="fa fa-plus fa-fw"></i>Criar
 							</a>
 						</li>
-
+						<% } %>
+						<% if (usuario.temAlgumaPermissao(usuario.permissoes.VisualizarLideranca, 3)) { %>
 						<li>
 							<a href="/lideranca/listar">
 								<i class="fa fa-eye"></i>Visualizar
 							</a>
 						</li>
-
+						<% } %>
 					</ul>
 				</li>
+				<% } %>
 
+				<% if (usuario.temAlgumaPermissao(usuario.permissoes.CriarTimeout, 4)) { %>
 				<li>
 					<a href="#">
 						<i class="fa fa-cutlery"></i>Time Out<span class="fa arrow"></span>
 					</a>
 					<ul class="nav nav-second-level collapse">
-
+						<% if (usuario.temPermissao(usuario.permissoes.CriarTimeout)) { %>
 						<li>
 							<a href="/timeout/mapa">
 								<i class="fa fa-map-marker fa-fw"></i>Mapa
 							</a>
 						</li>
-
+						<% } %>
+						<% if (usuario.temAlgumaPermissao(usuario.permissoes.VisualizarTimeout, 3)) { %>
 						<li>
 							<a href="/timeout/listar">
 								<i class="fa fa-eye"></i>Visualizar
 							</a>
 						</li>
-
-
-
+						<% } %>
 					</ul>
 				</li>
+				<% } %>
 
+				<% if (usuario.temAlgumaPermissao(usuario.permissoes.CriarInovacao, 4)) { %>
 				<li>
 					<a href="#">
 						<i class="fa fa-lightbulb-o"></i>Inovação<span class="fa arrow"></span>
 					</a>
 					<ul class="nav nav-second-level collapse">
-
+						<% if (usuario.temPermissao(usuario.permissoes.CriarInovacao)) { %>
 						<li>
 							<a href="/inovacao/criar">
 								<i class="fa fa-plus fa-fw"></i>Criar
 							</a>
 						</li>
-
+						<% } %>
+						<% if (usuario.temAlgumaPermissao(usuario.permissoes.VisualizarInovacao, 3)) { %>
 						<li>
 							<a href="/inovacao/listar">
 								<i class="fa fa-eye"></i>Visualizar
 							</a>
 						</li>
-
+						<% } %>
 					</ul>
 				</li>
+				<% } %>
 
+				<% if (usuario.admin) { %>
 				<li>
 					<a href="#">
 						<i class="fa fa-gear"></i>Controle<span class="fa arrow"></span>
 					</a>
+
 					<ul class="nav nav-second-level collapse">
 						<li>
 							<a href="#">
 								<i class=""></i>Soluções<span class="fa arrow"></span>
 							</a>
 							<ul class="nav nav-third-level collapse">
-								<% if (usuario.features) { %>
-                    <li>
-						<a href="/solucao/criar">
-							<i class="fa fa-plus fa-fw"></i>Criar
-						</a>
-					</li>
-								<% } %>
-                    <li>
-						<a href="/solucao/listar">
-							<i class="fa fa-eye"></i>Visualizar
-						</a>
-					</li>
+								<li>
+									<a href="/solucao/criar">
+										<i class="fa fa-plus fa-fw"></i>Criar
+									</a>
+								</li>
+								<li>
+									<a href="/solucao/listar">
+										<i class="fa fa-eye"></i>Visualizar
+									</a>
+								</li>
 							</ul>
 						</li>
-
 					</ul>
 
 					<ul class="nav nav-second-level collapse">
@@ -524,7 +538,6 @@
 						</li>
 					</ul>
 
-
 					<ul class="nav nav-second-level collapse">
 						<li>
 							<a href="#">
@@ -589,7 +602,7 @@
 					<ul class="nav nav-second-level collapse">
 						<li>
 							<a href="#">
-								<i class=""></i>Responsável Pela Proposta<span class="fa arrow"></span>
+								<i class=""></i>Responsável pela Proposta<span class="fa arrow"></span>
 							</a>
 							<ul class="nav nav-third-level collapse">
 								<li>
@@ -664,7 +677,7 @@
 						</li>
 					</ul>
 				</li>
-
+				<% } %>
 			</ul>
 		</div>
 	</div>

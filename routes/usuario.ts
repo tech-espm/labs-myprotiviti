@@ -14,9 +14,8 @@ router.all("/criar", wrap(async (req: express.Request, res: express.Response) =>
 		res.render("usuario/alterar", { 
 			titulo: "Criar Usuário", 
 			usuario: u, 
-			item: null, 
-			perfis: await Perfil.listar(),
-			teste: PerfilPermissao.Lista
+			item: null,
+			perfis: Perfil.cachePerfis
 		});
 	}
 }));
@@ -34,9 +33,8 @@ router.all("/alterar", wrap(async (req: express.Request, res: express.Response) 
 			res.render("usuario/alterar", { 
 				titulo: "Editar Usuário", 
 				usuario: u, 
-				item: item, 
-				perfis: await Perfil.listar(),
-				teste: PerfilPermissao.Lista
+				item: item,
+				perfis: Perfil.cachePerfis
 			});
 	}
 }));

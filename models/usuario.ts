@@ -4,6 +4,9 @@ import express = require("express");
 import lru = require("lru-cache");
 import Sql = require("../infra/sql");
 import GeradorHash = require("../utils/geradorHash");
+import Perfil = require("./perfil");
+import PerfilPermissao = require("./perfilPermissao");
+import Permissao = require("./permissao");
 
 export = class Usuario {
 	private static readonly cacheUsuarioLogados = lru(100);
@@ -20,7 +23,8 @@ export = class Usuario {
 	public nome: string;
 	public perfil: number;
 	public senha: string;
-	public features: any;
+	// Para facilitar a busca na navbar
+	public permissoes: any;
 
 	// Utilizados apenas no cache
 	private cookieStr: string;
@@ -28,16 +32,6 @@ export = class Usuario {
 
 	public static removerDoCache(id: number): void {
 		Usuario.cacheUsuarioLogados.del(id);
-	}
-
-	private static async obterFeatures(sql: Sql, id_perfil: number): Promise<any> {
-		let features: any = {};
-		let rows = await sql.query("select id_feature from perfil_feature where id_perfil = ?", [id_perfil]);
-		for (let i = 0; i < rows.length; i++) {
-			let id_feature = rows[i].id_feature as number;
-			features[id_feature] = id_feature;
-		}
-		return features;
 	}
 
 	// Parei de usar Usuario.pegarDoCookie como middleware, porque existem muitas requests
@@ -81,7 +75,8 @@ export = class Usuario {
 					u.perfil = row.perfil as number;
 					u.cookieStr = cookieStr;
 					u.admin = (u.perfil === Usuario.PerfilAdmin);
-					u.features = Usuario.obterFeatures(sql, u.perfil);
+					// Para facilitar a busca na navbar
+					u.permissoes = PerfilPermissao.Permissoes;
 
 					Usuario.cacheUsuarioLogados.set(id, u);
 
@@ -136,7 +131,8 @@ export = class Usuario {
 			u.perfil = row.perfil as number;
 			u.cookieStr = cookieStr;
 			u.admin = (u.perfil === Usuario.PerfilAdmin);
-			u.features = Usuario.obterFeatures(sql, u.perfil);
+			// Para facilitar a busca na navbar
+			u.permissoes = PerfilPermissao.Permissoes;
 
 			Usuario.cacheUsuarioLogados.set(row.id, u);
 
@@ -184,7 +180,6 @@ export = class Usuario {
 
 				this.nome = nome;
 				this.cookieStr = cookieStr;
-				this.features = Usuario.obterFeatures(sql, this.perfil);
 
 				// @@@ secure!!!
 				res.cookie("usuario", cookieStr, { maxAge: 365 * 24 * 60 * 60 * 1000, httpOnly: true, path: "/", secure: false });
@@ -296,5 +291,32 @@ export = class Usuario {
 		});
 
 		return res;
+	}
+
+	public temPermissao(permissao: Permissao): boolean {
+		if (this.admin)
+			return true;
+
+		let perfil: Perfil = Perfil.cachePerfisPorId[this.perfil] as Perfil;
+
+		return (perfil && (permissao.id in perfil.permissoes));
+	}
+
+	public temAlgumaPermissao(primeiraPermissao: Permissao, quantidade: number): boolean {
+		if (this.admin)
+			return true;
+
+		let perfil: Perfil = Perfil.cachePerfisPorId[this.perfil] as Perfil;
+
+		if (perfil) {
+			let id = primeiraPermissao.id;
+
+			for (let i = 0; i < quantidade; i++) {
+				if (((id + i) in perfil.permissoes))
+					return true;
+			}
+		}
+
+		return false;
 	}
 }

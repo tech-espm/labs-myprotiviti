@@ -1,6 +1,8 @@
+import Permissao = require("./permissao");
+
 export = class PerfilPermissao {
 
-    public static Lista: [{ id: number, nome: string }] = [] as any;
+	public static Lista: [Permissao] = [] as any;
 
     public static Permissoes = {
         CriarAdministrativo: { id: 1, nome: 'Tutoriais Administrativo - Criar' },
@@ -63,7 +65,9 @@ export = class PerfilPermissao {
         EditarInovacao: { id: 47, nome: 'Inovação - Editar' },
         ExcluirInovacao: { id: 48, nome: 'Inovação - Excluir' },
 
-        CriarSolucao: { id: 49, nome: 'Solução - Criar' },
+		// As permissões abaixo pertencem apenas ao perfil administrador!
+		/*
+		CriarSolucao: { id: 49, nome: 'Solução - Criar' },
         VisualizarSolucao: { id: 50, nome: 'Solução - Visualizar' },
         EditarSolucao: { id: 51, nome: 'Solução - Editar' },
         ExcluirSolucao: { id: 52, nome: 'Solução - Excluir' },
@@ -108,21 +112,26 @@ export = class PerfilPermissao {
         EditarPursuitTeam: { id: 83, nome: 'Pursuit Team - Editar' },
         ExcluirPursuitTeam: { id: 84, nome: 'Pursuit Team - Excluir' },
 
-        CriarResponsavelProposta: { id: 85, nome: 'Responsável Pela Proposta - Criar' },
-        VisualizarResponsavelProposta: { id: 86, nome: 'Responsável Pela Proposta - Visualizar' },
-        EditarResponsavelProposta: { id: 87, nome: 'Responsável Pela Proposta - Editar' },
-        ExcluirResponsavelProposta: { id: 88, nome: 'Responsável Pela Proposta - Excluir' },
+        CriarResponsavelProposta: { id: 85, nome: 'Responsável pela Proposta - Criar' },
+        VisualizarResponsavelProposta: { id: 86, nome: 'Responsável pela Proposta - Visualizar' },
+        EditarResponsavelProposta: { id: 87, nome: 'Responsável pela Proposta - Editar' },
+        ExcluirResponsavelProposta: { id: 88, nome: 'Responsável pela Proposta - Excluir' },
 
-        CriarUsuario: { id: 89, nome: 'Usuário - Criar' },
-        VisualizarUsuario: { id: 90, nome: 'Usuário - Visualizar' },
-        EditarUsuario: { id: 91, nome: 'Usuário - Editar' },
-        ExcluirUsuario: { id: 92, nome: 'Usuário - Excluir' },
+        CriarTipoLocal: { id: 89, nome: 'Tipo de Local - Criar' },
+		VisualizarTipoLocal: { id: 90, nome: 'Tipo de Local - Visualizar' },
+		EditarTipoLocal: { id: 91, nome: 'Tipo de Local - Editar' },
+		ExcluirTipoLocal: { id: 92, nome: 'Tipo de Local - Excluir' },
 
+        CriarUsuario: { id: 93, nome: 'Usuário - Criar' },
+        VisualizarUsuario: { id: 94, nome: 'Usuário - Visualizar' },
+        EditarUsuario: { id: 95, nome: 'Usuário - Editar' },
+		ExcluirUsuario: { id: 96, nome: 'Usuário - Excluir' },
+		*/
     };
 
     public static criarLista(): void {
         for (let k in PerfilPermissao.Permissoes) {
-            let p = PerfilPermissao.Permissoes[k] as { id: number, nome: string };
+			let p = PerfilPermissao.Permissoes[k] as Permissao;
             PerfilPermissao.Lista.push(p);
         }
 

@@ -43,7 +43,7 @@
 		order: [[1, "asc"]],
 		deferRender: true,
 		columns: [
-            { title: "Responsável Pela Proposta", render: encode, data: "nome_responsavel_proposta" },
+            { title: "Responsável pela Proposta", render: encode, data: "nome_responsavel_proposta" },
 			{ title: "", "class": "col-min", searchable: false, orderable: false, data: "id_responsavel_proposta", render: function (v, type, row) { return "<a target=\"_blank\" title=\"Editar\" href=\"/responsavelProposta/alterar?id_responsavel_proposta=" + row.id_responsavel_proposta + "\" class=\"btn btn-outline btn-primary\"><i class=\"fa fa-nomargin fa-edit\"></i></a> <button title=\"Excluir\" type=\"button\" data-excluir=\"1\" class=\"btn btn-outline btn-danger\"><i class=\"fa fa-nomargin fa-times\"></i></button>"; } },
 		],
 		data: <%- lista %>

@@ -149,7 +149,8 @@
 							posicaoFinal = arquivoVideo.size;
 
 						var formDataVideo = new FormData();
-						formDataVideo.append("video", arquivoVideo.slice(ultimaPosicaoEnviada, posicaoFinal));
+						formDataVideo.append("video", arquivoVideo.slice(ultimaPosicaoEnviada, posicaoFinal));
+
 						ultimaPosicaoEnviada = posicaoFinal;
 
 						JsonWebApi.postFormData("/api/<%- rota %>/uploadVideo?id=" + id, formDataVideo, function (response) {

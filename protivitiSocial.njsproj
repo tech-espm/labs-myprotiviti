@@ -197,6 +197,7 @@
     <TypeScriptCompile Include="models\inovacao.ts" />
     <TypeScriptCompile Include="models\matrizServico.ts" />
     <TypeScriptCompile Include="models\perfil.ts" />
+    <TypeScriptCompile Include="models\permissao.ts" />
     <TypeScriptCompile Include="models\perfilPermissao.ts" />
     <TypeScriptCompile Include="models\responsavelProposta.ts" />
     <TypeScriptCompile Include="models\oportunidade.ts">
