@@ -87,7 +87,7 @@ export = class Timeout {
         await Sql.conectar(async (sql: Sql) => {
             await sql.query("update localizacao set id_tipo_local=?,nome_localizacao=?,dia_semana_localizacao=?,horario_abertura_localizacao=?,horario_fechamento_localizacao=?,preco_localizacao=?,ambiente_localizacao=?,atendimento_localizacao=?,bebida_localizacao=?,tira_gosto_localizacao=?,comentario_localizacao=?,latitude_localizacao=?,longitude_localizacao  = ? where id_localizacao = ?", [t.id_tipo_local, t.nome_localizacao, t.dia_semana_localizacao, t.horario_abertura_localizacao, t.horario_fechamento_localizacao, t.preco_localizacao, t.ambiente_localizacao, t.atendimento_localizacao, t.bebida_localizacao, t.tira_gosto_localizacao, t.comentario_localizacao, t.latitude_localizacao, t.longitude_localizacao, t.id_localizacao]);
             if (!sql.linhasAfetadas)
-                res = "Time out inexistente";
+                res = "Time out inexistente!";
         });
 
         return res;
@@ -99,7 +99,7 @@ export = class Timeout {
         await Sql.conectar(async (sql: Sql) => {
             await sql.query("delete from localizacao where id_localizacao=?", [id]);
             if (!sql.linhasAfetadas)
-                res = "Time out inexistente";
+                res = "Time out inexistente!";
         });
 
         return res;

@@ -5,9 +5,9 @@ export = class ResponsavelProposta {
     public nome_responsavel_proposta: string;
 
     private static validar(s: ResponsavelProposta): string {
-        s.nome_responsavel_proposta = (s.nome_responsavel_proposta || "").trim().toUpperCase();
+		s.nome_responsavel_proposta = (s.nome_responsavel_proposta || "").trim();
         if (s.nome_responsavel_proposta.length < 3 || s.nome_responsavel_proposta.length > 255) {
-            return "Nome do responsavel pela proposta inválido!";
+            return "Nome do responsável pela proposta inválido!";
         }
 
         return null;
@@ -43,7 +43,7 @@ export = class ResponsavelProposta {
                 await sql.query(`insert into responsavel_proposta (nome_responsavel_proposta) values (?)`, [s.nome_responsavel_proposta]);
             } catch (e) {
                 if (e.code && e.code === "ER_DUP_ENTRY")
-                    res = "O responsavel pela proposta já existe!";
+                    res = "O responsável pela proposta já existe!";
                 else
                     throw e;
             }
@@ -63,7 +63,7 @@ export = class ResponsavelProposta {
                 res = sql.linhasAfetadas.toString();
             } catch (e) {
                 if (e.code && e.code === "ER_DUP_ENTRY")
-                    res = "O responsavel pela proposta já existe!";
+                    res = "O responsável pela proposta já existe!";
                 else
                     throw e;
             }

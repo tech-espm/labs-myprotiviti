@@ -6,7 +6,7 @@ export = class Perfil {
     public permissoes: any;
 
     private static validar(p: Perfil): string {
-        p.nome = (p.nome || "").trim().toUpperCase();
+		p.nome = (p.nome || "").trim();
         if (p.nome.length < 3 || p.nome.length > 255) {
             return "Nome de perfil inválido!";
         }

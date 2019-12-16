@@ -11,7 +11,7 @@ CREATE TABLE perfil (
 	UNIQUE KEY nome_UNIQUE (nome)
 );
 
-INSERT INTO perfil (nome) VALUES ('ADMINISTRADOR');
+INSERT INTO perfil (nome) VALUES ('Administrador');
 
 -- DROP TABLE IF EXISTS perfil_feature;
 CREATE TABLE perfil_feature (
@@ -34,7 +34,7 @@ CREATE TABLE usuario (
 	CONSTRAINT perfil_FK FOREIGN KEY (perfil) REFERENCES perfil (id) ON DELETE CASCADE
 );
 
-INSERT INTO usuario (login, nome, perfil, senha) VALUES ('ADMIN','ADMINISTRADOR',1,'peTcC99vkvvLqGQL7mdhGuJZIvL2iMEqvCNvZw3475PJ:JVyo1Pg2HyDyw9aSOd3gNPT30KdEyiUYCjs7RUzSoYGN');
+INSERT INTO usuario (login, nome, perfil, senha) VALUES ('ADMIN','Administrador',1,'peTcC99vkvvLqGQL7mdhGuJZIvL2iMEqvCNvZw3475PJ:JVyo1Pg2HyDyw9aSOd3gNPT30KdEyiUYCjs7RUzSoYGN');
 
 CREATE TABLE administrativo (
   id INT NOT NULL AUTO_INCREMENT,

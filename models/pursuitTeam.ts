@@ -5,7 +5,7 @@ export = class PursuitTeam {
     public nome_pursuit_team: string;
 
     private static validar(s: PursuitTeam): string {
-        s.nome_pursuit_team = (s.nome_pursuit_team || "").trim().toUpperCase();
+		s.nome_pursuit_team = (s.nome_pursuit_team || "").trim();
         if (s.nome_pursuit_team.length < 3 || s.nome_pursuit_team.length > 255) {
             return "Nome do time inválido!";
         }

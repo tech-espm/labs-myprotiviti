@@ -23,12 +23,9 @@ export = class Projeto {
 	public nome_escritorio_lider: string;
 	public nome_cc_lider: string;
 
-
 	private static validar(p: Projeto): string {
-		
-
 		if (p.descricao_projeto.length < 1 || p.descricao_projeto.length > 50)
-			return "Descrição inválida";
+			return "Descrição inválida!";
 		return null;
 	}
 
@@ -96,7 +93,7 @@ export = class Projeto {
 				res = sql.linhasAfetadas.toString();
 			} catch (e) {
 				if (e.code && e.code === "ER_DUP_ENTRY")
-					res = "O Projeto \"" + p.id_projeto + "\" já existe";
+					res = "O projeto \"" + p.id_projeto + "\" já existe";
 				else
 					throw e;
 			}

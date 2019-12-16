@@ -5,7 +5,7 @@ export = class TipoLocal {
     public nome_tipo_local: string;
 
     private static validar(s: TipoLocal): string {
-        s.nome_tipo_local = (s.nome_tipo_local || "").trim().toUpperCase();
+		s.nome_tipo_local = (s.nome_tipo_local || "").trim();
         if (s.nome_tipo_local.length < 3 || s.nome_tipo_local.length > 255) {
             return "Nome do local inválido!";
         }

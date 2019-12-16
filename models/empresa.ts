@@ -5,7 +5,7 @@ export = class Empresa {
     public nome_empresa: string;
 
     private static validar(e: Empresa): string {
-        e.nome_empresa = (e.nome_empresa || "").trim().toUpperCase();
+        e.nome_empresa = (e.nome_empresa || "").trim();
         if (e.nome_empresa.length < 3 || e.nome_empresa.length > 255) {
             return "Nome da empresa inválida!";
         }

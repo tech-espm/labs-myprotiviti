@@ -12,7 +12,7 @@ export = class Oportunidade {
     public nome_solucao: string;
 
     private static validar(o: Oportunidade): string {
-        o.empresa_oportunidade = (o.empresa_oportunidade || "").trim().toUpperCase();
+		o.empresa_oportunidade = (o.empresa_oportunidade || "").trim();
         if (o.empresa_oportunidade.length < 3 || o.empresa_oportunidade.length > 150) {
             return "Nome da empresa inválido!";
         }

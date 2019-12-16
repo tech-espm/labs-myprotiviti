@@ -36,16 +36,16 @@ abstract class Tutorial {
 	protected static validarPorTipo(t: Tutorial): string {
 		t.nome = (t.nome || "").trim();
 		if (t.nome.length < 3 || t.nome.length > 50)
-			return "Nome inválido";
+			return "Nome inválido!";
 
 		t.link = (t.link || "").trim();
 		let l = t.link.toLowerCase();
 		if ((!l.startsWith("http://") && !l.startsWith("https://")) || t.link.length > 100)
-			return "Link inválido";
+			return "Link inválido!";
 
 		t.descricao = (t.descricao || "").trim();
 		if (t.descricao.length > 150)
-			return "Descrição inválida";
+			return "Descrição inválida!";
 
 		return null;
 	}

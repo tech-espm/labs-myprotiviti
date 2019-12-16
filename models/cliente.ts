@@ -5,7 +5,7 @@ export = class Cliente {
     public nome_cliente: string;
 
     private static validar(c: Cliente): string {
-        c.nome_cliente = (c.nome_cliente || "").trim().toUpperCase();
+        c.nome_cliente = (c.nome_cliente || "").trim();
         if (c.nome_cliente.length < 3 || c.nome_cliente.length > 255) {
             return "Nome do cliente inválido!";
         }

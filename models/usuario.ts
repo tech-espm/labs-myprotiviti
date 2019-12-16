@@ -159,12 +159,12 @@ export = class Usuario {
 	}
 
 	public async alterarPerfil(res: express.Response, nome: string, senhaAtual: string, novaSenha: string): Promise<string> {
-		nome = (nome || "").trim().toUpperCase();
+		nome = (nome || "").trim();
 		if (nome.length < 3 || nome.length > 100)
-			return "Nome inválido";
+			return "Nome inválido!";
 
 		if (!!senhaAtual !== !!novaSenha || (novaSenha && novaSenha.length > 20))
-			return "Senha inválida";
+			return "Senha inválida!";
 
 		let r: string = null;
 
@@ -172,7 +172,7 @@ export = class Usuario {
 			if (senhaAtual) {
 				let hash = await sql.scalar("select senha from usuario where id = ?", [this.id]) as string;
 				if (!await GeradorHash.validarSenha(senhaAtual, hash)) {
-					r = "Senha atual não confere";
+					r = "Senha atual não confere!";
 					return;
 				}
 
@@ -199,9 +199,9 @@ export = class Usuario {
 	}
 
 	private static validar(u: Usuario): string {
-		u.nome = (u.nome || "").trim().toUpperCase();
+		u.nome = (u.nome || "").trim();
 		if (u.nome.length < 3 || u.nome.length > 100)
-			return "Nome inválido";
+			return "Nome inválido!";
 
 		return null;
 	}
@@ -233,16 +233,16 @@ export = class Usuario {
 
 		u.login = (u.login || "").trim().toUpperCase();
 		if (u.login.length < 3 || u.login.length > 50)
-			return "Login inválido";
+			return "Login inválido!";
 
 		await Sql.conectar(async (sql: Sql) => {
 			try {
 				await sql.query("insert into usuario (login, nome, perfil, senha) values (?, ?, ?, '" + Usuario.HashSenhaPadrao + "')", [u.login, u.nome, u.perfil]);
 			} catch (e) {
 				if (e.code && e.code === "ER_DUP_ENTRY")
-					res = "O login \"" + u.login + "\" já está em uso";
+					res = "O login \"" + u.login + "\" já está em uso!";
 				else if (e.code && (e.code === "ER_NO_REFERENCED_ROW" || e.code === "ER_NO_REFERENCED_ROW_2"))
-					res = "Perfil inexistente";
+					res = "Perfil inexistente!";
 				else
 					throw e;
 			}
@@ -257,7 +257,7 @@ export = class Usuario {
 			return res;
 
 		if (u.id === 1)
-			return "Não é possível editar o usuário \"ADMIN\"";
+			return "Não é possível editar o usuário \"ADMIN\"!";
 
 		await Sql.conectar(async (sql: Sql) => {
 			await sql.query("update usuario set nome = ?, perfil = ? where id = ?", [u.nome, u.perfil, u.id]);
@@ -271,7 +271,7 @@ export = class Usuario {
 
 	public static async excluir(id: number): Promise<string> {
 		if (id === 1)
-			return "Não é possível excluir o usuário \"ADMIN\"";
+			return "Não é possível excluir o usuário \"ADMIN\"!";
 
 		let res: string = null;
 

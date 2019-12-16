@@ -5,7 +5,7 @@ export = class EscritorioLider {
     public nome_escritorio_lider: string;
 
     private static validar(es: EscritorioLider): string {
-        es.nome_escritorio_lider = (es.nome_escritorio_lider || "").trim().toUpperCase();
+        es.nome_escritorio_lider = (es.nome_escritorio_lider || "").trim();
         if (es.nome_escritorio_lider.length < 3 || es.nome_escritorio_lider.length > 255) {
             return "Nome do escritório líder inválido!";
         }

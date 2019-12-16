@@ -9,13 +9,13 @@ export = class Parceria {
 
     private static validar(p: Parceria): string {
         if (p.id_solucao < 1) {
-            return "Escolha uma solução";
+            return "Solução inválida!";
         }
         if (p.id_empresa < 1) {
-            return "Escolha uma empresa parceira";
+            return "Empresa parceira inválida!";
         }
         if (p.id_pursuit_team < 1) {
-            return "Escolha o responsável pela parceria";
+            return "Responsável pela parceria inválido!";
         }
         return null;
     }
@@ -60,7 +60,7 @@ export = class Parceria {
         await Sql.conectar(async (sql) => {
             await sql.query("update parceria set id_empresa = ?, id_solucao = ?, id_pursuit_team = ?, valor_agregado_parceria = ? where id_parceria = ?", [p.id_empresa, p.id_solucao, p.id_pursuit_team, p.valor_agregado_parceria, p.id_parceria]);
             if (!sql.linhasAfetadas)
-                res = "Curso inexistente";
+				res = "Parceria inexistente";
         });
     }
 

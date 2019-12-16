@@ -5,9 +5,9 @@ export = class Segmento {
     public nome_segmento: string;
 
     private static validar(s: Segmento): string {
-        s.nome_segmento = (s.nome_segmento || "").trim().toUpperCase();
+		s.nome_segmento = (s.nome_segmento || "").trim();
         if (s.nome_segmento.length < 3 || s.nome_segmento.length > 255) {
-            return "Nome da Segmento inválida!";
+            return "Nome do segmento inválido!";
         }
 
         return null;

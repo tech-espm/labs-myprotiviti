@@ -1,15 +1,14 @@
-
 <div class="row">
 	<div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
 		<form id="form" class="panel panel-default" action="#">
 			<div class="panel-heading">Adicionar Novo Segmento</div>
 			<div class="panel-body no-bottom">
-                <input type="hidden" id="id_segmento" name="id_segmento" value="<%=(item ? item.id_segmento : 0) %>" />
+				<input type="hidden" id="id_segmento" name="id_segmento" value="<%=(item ? item.id_segmento : 0) %>" />
 				<div class="form-group">
 					<label for="nome_segmento">Nome da segmento</label>
-					<input id="nome_segmento" name="nome_segmento" maxlength="255" class="form-control upper" type="text" spellcheck="false" value="<%=(item ? item.nome_segmento : '') %>" />
+					<input id="nome_segmento" name="nome_segmento" maxlength="255" class="form-control" type="text" spellcheck="false" value="<%=(item ? item.nome_segmento : '') %>" />
 				</div>
-      </div>
+			</div>
 			<div class="panel-footer">
 				<input value="<%=(item ? 'Salvar Alterações' : 'Criar') %>" class="btn btn-primary btn-lg btn-block" type="submit" />
 			</div>
@@ -20,36 +19,36 @@
 
 <%- contentFor("scripts") %>
 <script type="text/javascript">
-    //<![CDATA[
-    "use strict";
+	//<![CDATA[
+	"use strict";
 
-    $("#form").validate({
-        rules: {
-            nome_segmento: {
-                required: true,
-                minlength: 3,
-                maxlength: 255
-            },
-        },
+	$("#form").validate({
+		rules: {
+			nome_segmento: {
+				required: true,
+				minlength: 3,
+				maxlength: 255
+			},
+		},
 
-        submitHandler: function (form) {
-            if (JsonWebApi.active)
-                return;
+		submitHandler: function (form) {
+			if (JsonWebApi.active)
+				return;
 
-            Notification.wait();
+			Notification.wait();
 
-            //<% if (item) { %>
+			//<% if (item) { %>
 
-            JsonWebApi.postFormData("/api/segmento/alterar", form, function (response) {
+			JsonWebApi.postFormData("/api/segmento/alterar", form, function (response) {
 				if (response.success)
 					Notification.success("Segmento alterado com sucesso! \uD83D\uDE04");
 				else
 					Notification.error(response.value, true);
-            });
+			});
 
-            //<% } else { %>
+			//<% } else { %>
 
-            JsonWebApi.postFormData("/api/segmento/criar", form, function (response) {
+			JsonWebApi.postFormData("/api/segmento/criar", form, function (response) {
 				if (response.success) {
 					form.reset();
 					$("#form").validate().resetForm();
@@ -57,11 +56,11 @@
 				} else {
 					Notification.error(response.value, true);
 				}
-            });
+			});
 
-            //<% } %>
-        }
-    });
+			//<% } %>
+		}
+	});
     //]]>
 </script>
 

@@ -5,7 +5,7 @@ export = class Solucao {
     public nome_solucao: string;
 
     private static validar(s: Solucao): string {
-        s.nome_solucao = (s.nome_solucao || "").trim().toUpperCase();
+		s.nome_solucao = (s.nome_solucao || "").trim();
         if (s.nome_solucao.length < 3 || s.nome_solucao.length > 255) {
             return "Nome da solução inválida!";
         }

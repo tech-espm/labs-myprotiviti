@@ -5,7 +5,7 @@ export = class MatrizServico {
     public nome_matriz_servico: string;
 
     private static validar(m: MatrizServico): string {
-        m.nome_matriz_servico = (m.nome_matriz_servico || "").trim().toUpperCase();
+		m.nome_matriz_servico = (m.nome_matriz_servico || "").trim();
         if (m.nome_matriz_servico.length < 3 || m.nome_matriz_servico.length > 255) {
             return "Nome da matriz de serviço inválida!";
         }
@@ -43,7 +43,7 @@ export = class MatrizServico {
                 await sql.query(`insert into matriz_servico (nome_matriz_servico) values (?)`, [o.nome_matriz_servico]);
             } catch (e) {
                 if (e.code && e.code === "ER_DUP_ENTRY")
-                    res = "A Matriz de Serviço já existe!";
+                    res = "A matriz de serviço já existe!";
                 else
                     throw e;
             }
@@ -63,7 +63,7 @@ export = class MatrizServico {
                 res = sql.linhasAfetadas.toString();
             } catch (e) {
                 if (e.code && e.code === "ER_DUP_ENTRY")
-                    res = "A Matriz de Serviço já existe!";
+                    res = "A matriz de serviço já existe!";
                 else
                     throw e;
             }

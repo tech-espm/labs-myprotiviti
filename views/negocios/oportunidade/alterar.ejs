@@ -6,22 +6,22 @@
                 <input type="hidden" id="id_oportunidade" name="id_oportunidade" value="<%=(item ? item.id_oportunidade : 0) %>" />
                 <div class="form-group">
                     <label for="empresa_oportunidade">Nome da empresa</label>
-                    <input id="empresa_oportunidade" name="empresa_oportunidade" maxlength="150" class="form-control upper" type="text" spellcheck="false" value="<%=(item ? item.empresa_oportunidade : '') %>" />
+                    <input id="empresa_oportunidade" name="empresa_oportunidade" maxlength="150" class="form-control" type="text" spellcheck="false" value="<%=(item ? item.empresa_oportunidade : '') %>" />
                 </div>
 
                 <div class="form-group">
                     <label for="contato_oportunidade">Contato</label>
-                    <input id="contato_oportunidade" name="contato_oportunidade" maxlength="100" class="form-control upper" type="text" spellcheck="false" value="<%=(item ? item.contato_oportunidade : '') %>" />
+                    <input id="contato_oportunidade" name="contato_oportunidade" maxlength="100" class="form-control" type="text" spellcheck="false" value="<%=(item ? item.contato_oportunidade : '') %>" />
                 </div>
 
                 <div class="form-group">
                     <label for="tel_oportunidade">Telefone</label>
-                    <input id="tel_oportunidade" name="tel_oportunidade" maxlength="30" class="form-control upper" type="text" spellcheck="false" value="<%=(item ? item.tel_oportunidade : '') %>" />
+                    <input id="tel_oportunidade" name="tel_oportunidade" maxlength="30" class="form-control" type="text" spellcheck="false" value="<%=(item ? item.tel_oportunidade : '') %>" />
                 </div>
 
                 <div class="form-group">
                     <label for="email_oportunidade">E-mail</label>
-                    <input id="email_oportunidade" name="email_oportunidade" maxlength="100" class="form-control upper" type="text" spellcheck="false" value="<%=(item ? item.email_oportunidade : '') %>" />
+                    <input id="email_oportunidade" name="email_oportunidade" maxlength="100" class="form-control" type="text" spellcheck="false" value="<%=(item ? item.email_oportunidade : '') %>" />
                 </div>
 
                 <div class="form-group">
@@ -50,56 +50,56 @@
 
 <%- contentFor("scripts") %>
 <script type="text/javascript">
-    //<![CDATA[
-    "use strict";
+	//<![CDATA[
+	"use strict";
 
-    $("#form").validate({
-        rules: {
-            empresa_oportunidade: {
-                required: true,
-                minlength: 3,
-                maxlength: 150
-            },
+	$("#form").validate({
+		rules: {
+			empresa_oportunidade: {
+				required: true,
+				minlength: 3,
+				maxlength: 150
+			},
 
-            contato_oportunidade: {
-                maxlength: 100
-            },
+			contato_oportunidade: {
+				maxlength: 100
+			},
 
-            tel_oportunidade: {
-                maxlength: 30
-            },
+			tel_oportunidade: {
+				maxlength: 30
+			},
 
-            email_oportunidade: {
-                maxlength: 100
-            },
+			email_oportunidade: {
+				maxlength: 100
+			},
 
-            id_solucao: {
-                required: true
-            },
+			id_solucao: {
+				required: true
+			},
 
-            descricao_oportunidade: {
-                maxlength: 250
-            },
-        },
+			descricao_oportunidade: {
+				maxlength: 250
+			},
+		},
 
-        submitHandler: function (form) {
-            if (JsonWebApi.active)
-                return;
+		submitHandler: function (form) {
+			if (JsonWebApi.active)
+				return;
 
-            Notification.wait();
+			Notification.wait();
 
-            //<% if (item) { %>
+			//<% if (item) { %>
 
-            JsonWebApi.postFormData("/api/oportunidade/alterar", form, function (response) {
+			JsonWebApi.postFormData("/api/oportunidade/alterar", form, function (response) {
 				if (response.success)
 					Notification.success("Oportunidade alterada com sucesso! \uD83D\uDE04");
 				else
 					Notification.error(response.value, true);
-            });
+			});
 
-            //<% } else { %>
+			//<% } else { %>
 
-            JsonWebApi.postFormData("/api/oportunidade/criar", form, function (response) {
+			JsonWebApi.postFormData("/api/oportunidade/criar", form, function (response) {
 				if (response.success) {
 					form.reset();
 					$("#form").validate().resetForm();
@@ -107,10 +107,10 @@
 				} else {
 					Notification.error(response.value, true);
 				}
-            });
+			});
 
-            //<% } %>
-        }
-    });
+			//<% } %>
+		}
+	});
     //]]>
 </script>

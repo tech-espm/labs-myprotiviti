@@ -5,9 +5,9 @@ export = class CcLider {
     public nome_cc_lider: string;
 
     private static validar(c: CcLider): string {
-        c.nome_cc_lider = (c.nome_cc_lider || "").trim().toUpperCase();
+        c.nome_cc_lider = (c.nome_cc_lider || "").trim();
         if (c.nome_cc_lider.length < 3 || c.nome_cc_lider.length > 255) {
-            return "Nome da Cc Líder inválida!";
+            return "Nome da cc de líder inválido!";
         }
 
         return null;
@@ -43,7 +43,7 @@ export = class CcLider {
                 await sql.query(`insert into cc_lider (nome_cc_lider) values (?)`, [c.nome_cc_lider]);
             } catch (e) {
                 if (e.code && e.code === "ER_DUP_ENTRY")
-                    res = "A CC de Líder já existe!";
+                    res = "A cc de líder já existe!";
                 else
                     throw e;
             }
@@ -63,7 +63,7 @@ export = class CcLider {
                 res = sql.linhasAfetadas.toString();
             } catch (e) {
                 if (e.code && e.code === "ER_DUP_ENTRY")
-                    res = "A CC de Líder já existe!";
+                    res = "A cc de líder já existe!";
                 else
                     throw e;
             }

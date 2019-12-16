@@ -5,7 +5,7 @@ export = class FormaContato {
     public nome_forma_contato: string;
 
     private static validar(o: FormaContato): string {
-        o.nome_forma_contato = (o.nome_forma_contato || "").trim().toUpperCase();
+		o.nome_forma_contato = (o.nome_forma_contato || "").trim();
         if (o.nome_forma_contato.length < 3 || o.nome_forma_contato.length > 255) {
             return "Nome da forma de contato inválida!";
         }
@@ -43,7 +43,7 @@ export = class FormaContato {
                 await sql.query(`insert into forma_contato (nome_forma_contato) values (?)`, [o.nome_forma_contato]);
             } catch (e) {
                 if (e.code && e.code === "ER_DUP_ENTRY")
-                    res = "A Forma de Contato já existe!";
+                    res = "A forma de contato já existe!";
                 else
                     throw e;
             }
@@ -63,7 +63,7 @@ export = class FormaContato {
                 res = sql.linhasAfetadas.toString();
             } catch (e) {
                 if (e.code && e.code === "ER_DUP_ENTRY")
-                    res = "A Forma de Contato já existe!";
+                    res = "A forma de contato já existe!";
                 else
                     throw e;
             }
